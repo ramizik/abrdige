@@ -1,5 +1,15 @@
 # CLAUDE.md
 
+## Implementation Status (2026-07-18) — read before planning work
+The core build is **done and demo-ready**. Both integrations are real and verified end-to-end:
+
+- **Backend** (`backend/app/`): all endpoints live (`/health`, `/cases`, `/cases/{id}`, `/visits/{id}/transcript-chunk|analyze|complete|ask|export.pdf`). `store.py` in-memory state + delta engine; `analysis.py` + `extraction.py` = Claude Agent SDK pipelines (schema-validated, Pydantic-checked, graceful fallback); `medplum.py` = OAuth2 FHIR client (case-def read at load, visit-summary write-back, 3s timeout → local JSON fallback); `pdf.py` = ReportLab export. `VisitState` also carries `insights` (`InsightPack`: guideline-linked differential-dx + treatment considerations per case) and `history_source` (`"medplum"`/`"local"`).
+- **Frontend** (`frontend/src/App.tsx`, single file by design): full dashboard ported from the Lovable prototype and wired to the backend — Live Visit tab (agent rail with real chunk playback + Analyze button, transcript, evidence-linked profile grid, PedMIDAS capture, timeline, action console with insights / plan / Ask Bridge / complete + PDF) and Headache Summary tab (14-item red-flag catalog, PedMIDAS trend chart, diary heatmap, pain-location diagram). Evidence drawer opens from any fact/chip. Deep links `?case=&tab=`. **Rule: the frontend renders only what the backend returned — never fabricate clinical values client-side.** Theme in `src/index.css` (Tailwind v4), tones in `src/lib/tone.ts`, API client `src/lib/api.ts`, types `src/types/bridge.ts` (mirror of `models.py` — keep in sync).
+- **Cases**: Case A (first visit, 10 chunks, no red flags) and Case B (follow-up, precomputed state, PedMIDAS 32→11 trend) — both seeded in Medplum. After editing `backend/app/demo_data/*.json`, re-run `scripts/seed_medplum.py` or the backend will serve the stale Medplum copy.
+- Remaining work is polish, demo rehearsal, and deployment (see `vercel.json`) — not new scope.
+
+***
+
 ## Mission
 You are the coding agent for **Bridge**, a pediatric headache visit-intelligence agent for a healthcare hackathon.
 
@@ -422,7 +432,7 @@ Do NOT use:
 ***
 
 ## Required UI Components
-Suggested component list:
+**Implemented** — all live inside `frontend/src/App.tsx` (names differ slightly: `TopBar`, `AgentRail`, `TranscriptCard`, `HeadacheProfileCard`, `PedMidasCapture`, `RedFlagPanel`, `MissingQuestions`, `IntelligentInsights`, `PlanCard`, `AskBridgeCard`, `EvidenceDrawer`, `CompleteVisitCard`, `PedMidasChart`, `HeadacheHeatmap`, `PainLocationCard`, …). Original suggested list kept for reference:
 - `PatientHeader`
 - `VisitModeToggle`
 - `HistoryContextCard`
@@ -610,8 +620,8 @@ Do not build:
 
 ***
 
-## Time Pressure — Read This First
-**~3 hours left on clock.** Work fast, no dawdling. Every response should move build forward, not discuss it.
+## Working Under Time Pressure — Read This First
+Core build is complete (see Implementation Status). Current phase: polish, demo hardening, deployment. Still work fast — every response should move the demo forward, not discuss it.
 
 - Do not ask user to choose between minor implementation options — pick reasonable default, build, move on.
 - Only interrupt user for irreversible/destructive actions (force-push, drop data) or true scope-defining decisions (e.g. cutting a Tier 1 feature).
