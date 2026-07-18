@@ -61,7 +61,7 @@ async def analyze_visit(
             system_prompt=PROMPT_PATH.read_text(),
             model=ANALYSIS_MODEL,
             allowed_tools=[],
-            max_turns=1,
+            max_turns=8,
             output_format={
                 "type": "json_schema",
                 "schema": _inline_refs(AnalysisDelta.model_json_schema()),
