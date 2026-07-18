@@ -1,0 +1,172 @@
+/** TS mirror of backend/app/models.py — keep in sync. */
+
+export type FactStatus = 'present' | 'negative' | 'unknown' | 'needs_confirmation';
+export type RedFlagStatus = 'present' | 'absent' | 'unknown';
+export type SourceType = 'history' | 'transcript' | 'vitals' | 'document' | 'guideline';
+export type VisitMode = 'first_visit' | 'follow_up';
+export type VisitPhase = 'not_started' | 'in_progress' | 'complete';
+
+export interface EvidenceRef {
+  id: string;
+  source_type: SourceType;
+  source_label: string;
+  quote: string;
+  timestamp?: string | null;
+}
+
+export interface ExtractedFact {
+  value: string | null;
+  status: FactStatus;
+  evidence_ids: string[];
+}
+
+export interface NumericFact {
+  value: number | null;
+  status: FactStatus;
+  evidence_ids: string[];
+}
+
+export interface ListFact {
+  value: string[];
+  status: FactStatus;
+  evidence_ids: string[];
+}
+
+export interface HeadacheProfile {
+  onset: ExtractedFact;
+  frequency_days_per_month: NumericFact;
+  episode_duration: ExtractedFact;
+  location: ExtractedFact;
+  quality: ExtractedFact;
+  severity: ExtractedFact;
+  associated_symptoms: ListFact;
+  triggers: ListFact;
+  habits: ListFact;
+  acute_medication_use: ListFact;
+  school_impact: ExtractedFact;
+}
+
+export interface RedFlag {
+  key: string;
+  label: string;
+  status: RedFlagStatus;
+  evidence_ids: string[];
+}
+
+export interface PedMIDASResponse {
+  question_id: string;
+  question: string;
+  value: number | null;
+  evidence_ids: string[];
+}
+
+export interface PedMIDASState {
+  responses: PedMIDASResponse[];
+  score: number | null;
+  completion: 'complete' | 'partial' | 'not_started';
+  missing_question_ids: string[];
+}
+
+export interface DiaryDay {
+  day: number; // 1..30, relative days back from today
+  intensity: number | null; // 0 none .. 3 severe
+  evidence_ids: string[];
+}
+
+export interface HeadacheDiary {
+  label: string;
+  days: DiaryDay[];
+}
+
+export interface CarePlanDraft {
+  summary: string[];
+  questions_to_ask: string[];
+  suggested_pathway: string[];
+  referral_considerations: string[];
+  patient_instructions: string[];
+  disclaimer: string;
+  evidence_ids: string[];
+}
+
+export interface TranscriptTurn {
+  id: string;
+  speaker: 'clinician' | 'patient' | 'parent';
+  text: string;
+  timestamp?: string | null;
+}
+
+export interface HistoryEntry {
+  id: string;
+  label: string;
+  date?: string | null;
+  text: string;
+}
+
+export interface PedMIDASPoint {
+  date: string;
+  score: number;
+  evidence_ids: string[];
+}
+
+export interface MedicationEvent {
+  date: string;
+  label: string;
+  kind: 'start' | 'change' | 'stop';
+  evidence_ids: string[];
+}
+
+export interface Patient {
+  id: string;
+  name: string;
+  age: number;
+  sex: string;
+  preferred_language: string;
+  clinic: string;
+}
+
+export interface VisitState {
+  visit_id: string;
+  case_id: string;
+  mode: VisitMode;
+  phase: VisitPhase;
+  patient: Patient;
+  history: HistoryEntry[];
+  transcript: TranscriptTurn[];
+  chunks_processed: number;
+  chunks_total: number;
+  agent_status: string;
+  profile: HeadacheProfile;
+  red_flags: RedFlag[];
+  pedmidas: PedMIDASState;
+  diary: HeadacheDiary;
+  missing_questions: string[];
+  care_plan: CarePlanDraft | null;
+  pedmidas_trend: PedMIDASPoint[];
+  medication_events: MedicationEvent[];
+  changes_since_last_visit: string[];
+  evidence: Record<string, EvidenceRef>;
+}
+
+export interface CaseSummary {
+  case_id: string;
+  title: string;
+  mode: VisitMode;
+  description: string;
+}
+
+export interface Citation {
+  evidence_id: string;
+  quote: string;
+  source_label: string;
+}
+
+export interface AskResponse {
+  answer: string;
+  citations: Citation[];
+  grounded: boolean;
+}
+
+export interface ChunkAdvanceResponse {
+  state: VisitState;
+  done: boolean;
+}

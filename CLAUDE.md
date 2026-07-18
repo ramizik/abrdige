@@ -1,0 +1,595 @@
+# CLAUDE.md
+
+## Mission
+You are the coding agent for **Bridge**, a pediatric headache visit-intelligence agent for a healthcare hackathon.
+
+Build a narrow, impressive, demo-stable workflow in <=24 hours. Optimize for:
+- visible AI utility
+- clinician trust
+- strong UX
+- fast implementation
+- deterministic demo behavior
+- one clear workflow that judges understand immediately
+
+Do **not** optimize for:
+- production-grade completeness
+- enterprise integrations
+- broad platform scope
+- unnecessary abstraction
+- features that are not visible in the demo
+
+Core filter for every idea:
+1. Can this be built tonight?
+2. Can this fail during the demo?
+3. Will a judge understand it in 10 seconds?
+4. Is the AI doing real work, or is it decorative?
+
+If the answer is weak, cut it.
+
+***
+
+## Hackathon Context
+Theme: **The Future of Agentic AI in Healthcare by Abridge**.
+
+Use **Anthropic's Agent SDK** meaningfully.
+
+Important context:
+- Judges will likely see many generic AI copilot/chatbot entries.
+- This project must feel like a real clinical workflow tool, not AI theater.
+- It should resemble contextual clinical support inside the visit workflow rather than a disconnected assistant. Abridge publicly emphasizes context-aware support grounded in the encounter and linked to evidence. [1][2]
+- This is a hackathon prototype using **synthetic data only**.
+
+Do not build a broad healthcare platform.
+Build one excellent workflow.
+
+***
+
+## Product Definition
+
+### Name
+**Bridge**
+
+### One-line pitch
+**Bridge turns a pediatric headache visit—live conversation plus fragmented history—into a structured, evidence-linked clinical picture and a clinician-reviewed next-step plan.**
+
+### Primary user
+A primary care pediatrician in an underserved / safety-net setting seeing a child with headaches.
+
+### Real product wedge
+Bridge is a **live pediatric headache visit copilot**.
+
+It combines:
+- preloaded prior history / prior visits / vitals from seeded JSON
+- live transcript chunks from the encounter (synthetic STT stream for MVP)
+- structured extraction of headache-relevant facts
+- PedMIDAS capture and scoring when sufficient data exists
+- headache diary drafting from conversation
+- red-flag screening
+- grounded patient-profile Q&A
+- end-of-visit summary and action-plan PDF
+- follow-up mode for visit 2+
+
+### What Bridge is NOT
+- a generic doctor chatbot
+- an autonomous diagnosis engine
+- an autonomous prescribing system
+- a full EHR replacement
+- a multi-specialty platform
+- a patient portal
+
+***
+
+## Clinical Safety Position
+Bridge is a **clinical support tool for clinician review**, not an autonomous clinician.
+
+All outputs and UI language must use framing like:
+- draft
+- suggested
+- clinician review required
+- evidence-linked
+- consider escalation
+- confirm with clinical judgment
+- based on demo pathway reference
+
+Never use wording like:
+- “Bridge diagnosed…”
+- “AI prescribed…”
+- “safe to proceed” without qualification
+- “the correct treatment is…”
+
+### Medication guidance boundary
+The system may surface a **reviewable pathway suggestion** based on a constrained local demo reference informed by ICHD-3-style feature capture and demo care logic. It may not independently prescribe or emit medication orders. ICHD-3 migraine criteria can inform feature matching, but Bridge must not claim autonomous diagnosis. [3]
+
+### PedMIDAS boundary
+PedMIDAS is a strong clinical anchor because it is a validated tool for assessing migraine-related disability in children and adolescents and monitoring change over time. [4][5] Use it as a structured disability capture and visualization tool, not as a gimmick.
+
+***
+
+## Core Product Scope
+
+### In scope
+- pediatric headache / migraine only
+- first visit workflow
+- follow-up visit state (visit 2+)
+- seeded pre-visit history JSON
+- synthetic transcript chunks simulating STT
+- structured extraction + grounded evidence
+- live dashboard updates during the visit
+- end-of-visit summary + PDF export
+- grounded Ask Bridge feature
+
+### Out of scope
+- real EHR/FHIR integration
+- real telephony or production STT
+- broad multi-condition platform
+- real medication ordering
+- real referrals being sent
+- auth / users / organizations
+- patient messaging
+- real fax ingestion at scale
+- long-term production persistence
+
+***
+
+## Product Workflows
+
+## 1) Primary Workflow: First Visit
+
+### Scenario
+A pediatric patient visits a PCP for headaches for the first time.
+The doctor is asking structured and unstructured questions about:
+- headache features
+- associated symptoms
+- habits and triggers
+- school impact
+- vitals/context
+- medication usage
+- red flags
+
+Bridge should process this encounter live.
+
+### What happens during the visit
+1. PCP opens the patient case.
+2. Bridge loads seeded pre-visit history / prior context JSON.
+3. Synthetic transcript chunks arrive sequentially.
+4. The Anthropic-based Visit Intelligence Agent extracts structured facts from each chunk.
+5. The frontend updates a live headache dashboard.
+6. The agent identifies missing high-value questions.
+7. At the end, Bridge generates a structured summary and PDF action plan.
+
+### Required first-visit outputs
+- structured headache profile
+- PedMIDAS capture state and score when complete
+- patient-reported headache diary draft
+- red-flag screen with present/absent/unknown states
+- contextualized prior history panel
+- grounded Q&A
+- clinician-review plan
+- exportable PDF
+
+## 2) Secondary Workflow: Follow-Up Visit (2+)
+This is a secondary demo mode showing longitudinal value.
+
+Prioritize:
+- what changed since last visit
+- PedMIDAS trend
+- headache frequency/severity trend
+- intervention or medication overlay
+- prior plan status
+- referral/escalation consideration
+
+The follow-up screen should answer:
+**Is this child improving, stable, worsening, or now appropriate for clinician-reviewed escalation?**
+
+***
+
+## Agent Responsibilities
+The agent is a **Visit Intelligence Agent**, not a freeform assistant.
+
+It must:
+- ingest seeded history
+- process transcript chunks
+- extract headache facts into a strict schema
+- maintain evidence links for important claims
+- update visit state live
+- calculate PedMIDAS only when enough information exists
+- surface unknowns rather than hallucinating
+- build a draft headache diary from patient-reported conversation
+- run a structured red-flag screen
+- generate a clinician-review plan
+- answer grounded patient-profile questions using available evidence only
+- create summary data for PDF export
+
+### Visible agent activity states
+Expose concise operational statuses in UI such as:
+- Reading prior history
+- Extracting headache characteristics
+- Updating PedMIDAS capture
+- Checking red flags
+- Drafting visit summary
+- Preparing clinician-review plan
+
+Do NOT expose chain-of-thought.
+Only show compact, user-safe action states.
+
+***
+
+## Data / Extraction Requirements
+Bridge should extract or organize the following when supported by evidence:
+- headache onset
+- duration of problem
+- headache days per month
+- episode duration
+- location
+- quality (e.g. throbbing)
+- severity
+- associated symptoms
+- triggers
+- sleep/hydration/meals/screen time/stress context
+- acute medication use
+- school / disability impact
+- family history if mentioned
+- relevant vitals/context if provided
+- positive and negative red-flag findings
+- unresolved / unknown fields
+
+If a field is not supported by transcript/history, mark it as:
+- unknown
+- needs confirmation
+- not yet asked
+
+Never invent values.
+
+***
+
+## Suggested Structured Schema
+Use typed schemas / strict JSON. Example shape:
+
+```ts
+type EvidenceRef = {
+  id: string;
+  sourceType: 'history' | 'transcript' | 'vitals' | 'document' | 'guideline';
+  sourceLabel: string;
+  quote: string;
+  timestamp?: string;
+};
+
+type ExtractedFact<T = string> = {
+  value: T | null;
+  status: 'present' | 'negative' | 'unknown' | 'needs_confirmation';
+  evidenceIds: string[];
+};
+
+type HeadacheProfile = {
+  onset: ExtractedFact;
+  frequencyDaysPerMonth: ExtractedFact<number>;
+  episodeDuration: ExtractedFact;
+  location: ExtractedFact;
+  quality: ExtractedFact;
+  severity: ExtractedFact;
+  associatedSymptoms: ExtractedFact<string[]>;
+  triggers: ExtractedFact<string[]>;
+  habits: ExtractedFact<string[]>;
+  acuteMedicationUse: ExtractedFact<string[]>;
+  schoolImpact: ExtractedFact;
+};
+
+type RedFlag = {
+  key: string;
+  label: string;
+  status: 'present' | 'absent' | 'unknown';
+  evidenceIds: string[];
+};
+
+type PedMIDASState = {
+  responses: Array<{ questionId: string; value: number | null; evidenceIds: string[] }>;
+  score: number | null;
+  completion: 'complete' | 'partial' | 'not_started';
+  missingQuestionIds: string[];
+};
+
+type CarePlanDraft = {
+  summary: string[];
+  questionsToAsk: string[];
+  suggestedPathway: string[];
+  referralConsiderations: string[];
+  patientInstructions: string[];
+  disclaimer: string;
+  evidenceIds: string[];
+};
+```
+
+You do not need to use this exact schema, but keep the same philosophy: typed facts plus evidence references.
+
+***
+
+## Grounding Rules
+Every important claim must trace to evidence.
+
+Evidence may come from:
+- prior-history JSON
+- transcript chunks
+- local case data
+- constrained local demo pathway reference
+
+Rules:
+- if unsupported, mark unknown
+- never invent a symptom, timeline, or risk factor
+- Q&A must cite evidence
+- summary lines must have evidence IDs
+- pathway suggestions must be visually separated from patient facts
+
+The app must be able to open an evidence drawer/panel for important claims.
+This is a major trust feature.
+
+***
+
+## UI Product Requirements
+The main product is a **desktop-first clinical app screen**, not a landing page.
+
+### First-visit layout
+Use a 3-region structure:
+
+#### Left: Safety + patient context
+- patient card
+- visit mode badge
+- pre-visit history snapshot
+- relevant context/vitals
+- red-flag panel
+- acute-medication / overuse signal if available
+
+#### Center: Live visit intelligence
+- compact transcript stream or encounter feed
+- structured headache profile
+- PedMIDAS capture state
+- patient-reported headache diary draft
+- compact agent activity rail
+
+#### Right: PCP action console
+- missing questions
+- ICHD-3-informed feature screen (clinician review required)
+- draft pathway / next-step suggestions
+- referral consideration
+- Ask Bridge
+- complete visit / export PDF controls
+
+### Follow-up layout
+Reuse the same visual language but shift emphasis to:
+- trend line
+- timeline
+- intervention overlay
+- changes since last visit
+- current plan status
+- escalation/referral state
+
+### UI principles
+- glanceable before readable
+- calm, serious clinical software
+- no generic KPI spam
+- chat is secondary
+- evidence visibility matters
+- agent work should be obvious
+- key decision surfaces should be visual, not prose-heavy
+
+### Visual style
+Use:
+- light, professional healthcare aesthetic
+- warm off-white or neutral surfaces
+- slate/charcoal text
+- restrained teal or blue-green for verified/active states
+- amber for warnings
+- red for urgent escalation only
+- subtle borders, clean spacing, restrained shadows
+
+Do NOT use:
+- purple “AI” gradients
+- glowing blobs
+- flashy consumer wellness design
+- generic chatbot-first layout
+- giant centered marketing hero sections
+
+***
+
+## Required UI Components
+Suggested component list:
+- `PatientHeader`
+- `VisitModeToggle`
+- `HistoryContextCard`
+- `TranscriptStream`
+- `AgentActivityRail`
+- `HeadacheProfileCard`
+- `PedMIDASCaptureCard`
+- `HeadacheDiaryCard`
+- `RedFlagScreenCard`
+- `MissingQuestionsCard`
+- `FeatureScreenCard`
+- `CarePlanDraftCard`
+- `GroundedAskBridge`
+- `EvidenceDrawer`
+- `VisitSummaryPreview`
+- `ExportPdfButton`
+- `FollowUpTrendCard`
+
+Adapt as needed, but preserve the hierarchy.
+
+***
+
+## Backend Requirements
+Use a single FastAPI service.
+Keep it lean.
+
+Suggested endpoints:
+- `GET /health`
+- `GET /cases`
+- `GET /cases/{case_id}`
+- `POST /visits/{visit_id}/transcript-chunk`
+- `POST /visits/{visit_id}/complete`
+- `POST /visits/{visit_id}/ask`
+- `GET /visits/{visit_id}/export.pdf`
+
+If fewer endpoints makes the build safer, reduce them.
+
+### Backend behavior
+- validate structured outputs with Pydantic
+- support deterministic seeded fallback state
+- allow “load sample case” behavior
+- avoid complex async/event infra unless it is clearly needed
+- polling or simple sequential updates are acceptable for MVP
+
+No microservices.
+No database unless there is a compelling reason.
+
+***
+
+## Demo Cases
+Ship at least two deterministic cases.
+
+### Case A — First visit, nonurgent path
+Main demo case.
+- recurrent headaches
+- transcript reveals migraine-compatible features and school impact
+- no major red flags
+- PedMIDAS starts partial and becomes complete
+- agent surfaces missing questions and drafts clinician-review plan
+- end with PDF export
+
+### Case B — Secondary wow case
+Pick one:
+- follow-up with persistent symptoms / referral consideration
+- red-flag case where routine pathway is visibly paused
+
+Case A should be the polished default.
+Case B can be precomputed and toggled.
+
+***
+
+## PDF Requirements
+The generated PDF must be real enough to demo.
+It can be built from structured state.
+
+Include:
+1. patient and visit context
+2. headache profile
+3. PedMIDAS status / score if complete
+4. red-flag screen result
+5. headache diary summary
+6. visit summary
+7. clinician-review plan
+8. family instructions
+9. disclaimer that clinical decisions remain with the clinician
+
+Use synthetic PHI only.
+
+***
+
+## Build Order
+Follow this order unless explicitly told otherwise:
+
+1. scaffold frontend and backend
+2. define schemas and seeded JSON cases
+3. build first-visit dashboard from static seeded state
+4. build transcript chunk simulator
+5. wire deterministic structured updates to UI
+6. connect Anthropic Agent SDK extraction path
+7. add evidence drawer/citations
+8. add complete-visit summary + PDF export
+9. add follow-up state
+10. add one grounded Ask Bridge flow
+11. polish / fallback states / demo hardening
+
+Do not start with real STT, real RAG across large corpora, or broad chat.
+
+***
+
+## Demo Reliability Requirements
+Mandatory:
+- preloaded demo case that always works
+- deterministic fallback output
+- visible loading states
+- no blank screen failures
+- friendly error handling
+- manual “use cached demo result” fallback if live call fails
+- core demo must not depend on fragile external integrations
+
+This matters more than cleverness.
+
+***
+
+## What to Build vs Simulate
+### Build for real
+- polished dashboard
+- seeded history ingestion
+- transcript chunk flow
+- structured extraction contract
+- at least one meaningful Agent SDK path
+- evidence drawer
+- end-of-visit PDF generation
+- grounded Q&A for seeded cases
+
+### Simulate responsibly
+- live STT microphone pipeline
+- real EHR/FHIR access
+- large-scale fax ingestion
+- full guideline engine
+- persistent patient storage
+- actual prescribing/referral execution
+
+Be honest internally about what is mocked.
+Externally, demo the real workflow and present simulations as a prototype boundary.
+
+***
+
+## Anti-Patterns to Kill
+Do not build:
+- broad “whole patient platform” scope
+- generic chatbot homepage
+- autonomous treatment engine
+- auth
+- org management
+- settings bloat
+- dashboard widgets without clinical value
+- too many tabs
+- raw chain-of-thought UI
+- overengineered infrastructure
+
+***
+
+## Time Pressure — Read This First
+**~3 hours left on clock.** Work fast, no dawdling. Every response should move build forward, not discuss it.
+
+- Do not ask user to choose between minor implementation options — pick reasonable default, build, move on.
+- Only interrupt user for irreversible/destructive actions (force-push, drop data) or true scope-defining decisions (e.g. cutting a Tier 1 feature).
+- No long explanations before coding. Short scope note, then code.
+- **After finishing any implementation step (feature, fix, component), immediately `git add -A && git commit` with a clear message and `git push`.** Do this automatically, every time, without asking.
+
+## Working Style
+When asked to implement:
+1. choose the smallest reliable version
+2. explain scope tradeoffs briefly
+3. write code, not long essays
+4. preserve the core demo path
+5. call out scope creep immediately
+
+When suggesting features, label them:
+- Must-have
+- Nice-to-have
+- Cut
+
+Default attitude:
+- practical
+- anti-bloat
+- execution-first
+- demo-stability-first
+
+## First Tasks Claude Should Help With
+If no better instruction is given, start here:
+1. scaffold repo structure
+2. define shared frontend/backend schemas
+3. create seeded case JSON for Case A and Case B
+4. build first-visit dashboard layout
+5. create FastAPI health + case endpoints
+6. wire dashboard to seeded sample response
+7. implement transcript chunk simulator
+8. implement evidence drawer interaction
+
+That is the correct first milestone.
