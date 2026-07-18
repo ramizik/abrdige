@@ -1,0 +1,1187 @@
+{
+  "case_id": "case-c",
+  "title": "Jordan Park — Preventive plateau (visit 4)",
+  "mode": "follow_up",
+  "description": "Fourth PCP headache visit: propranolol failed after initial response, venlafaxine titrating up, PedMIDAS plateaued (42 → 36 → 35 → 33), school absenteeism continuing, pediatric neurology referral placed today.",
+  "patient": {
+    "id": "pt-jordan",
+    "name": "Jordan Park",
+    "age": 13,
+    "sex": "M",
+    "preferred_language": "English",
+    "clinic": "Eastside Pediatrics",
+    "mrn": "MRN 009-7741",
+    "provider": "Dr. Okafor",
+    "visit_length": "15 min",
+    "visit_type": "PCP follow-up (visit 4)",
+    "chief_complaint": "Chronic headache — not improving",
+    "referral_status": "Established - Referral Initiated"
+  },
+  "history": [
+    {
+      "id": "hxc-1",
+      "label": "Visit 1 note — first headache visit",
+      "date": "2026-03-06",
+      "text": "First PCP headache visit. Recurrent migraine-pattern headaches, ~12 headache days/month, PedMIDAS 42. Started propranolol 10 mg daily after clinician review. Family reported initial improvement at the 2-week nurse check. Family history: father with migraine."
+    },
+    {
+      "id": "hxc-2",
+      "label": "Visit 2 note — headache follow-up",
+      "date": "2026-04-10",
+      "text": "Second headache visit. Initial response to propranolol faded after about 1 month; frequency back to ~12 days/month. PedMIDAS 36. Propranolol increased to 20 mg daily."
+    },
+    {
+      "id": "hxc-3",
+      "label": "Visit 3 note — headache follow-up",
+      "date": "2026-05-22",
+      "text": "Third headache visit. Brief response to propranolol 20 mg, then effect faded again after about a month. Frequency unchanged at ~12 days/month. PedMIDAS 35. Propranolol tapered and stopped; venlafaxine started after clinician review."
+    },
+    {
+      "id": "hxc-4",
+      "label": "School attendance letter + parent call",
+      "date": "2026-07-02",
+      "text": "School attendance letter: 6 full days and 8 partial days missed in the last 3 months due to headache. Parents called the clinic expressing worry that Jordan is falling behind at school."
+    },
+    {
+      "id": "hxc-5",
+      "label": "Pre-visit PedMIDAS questionnaire (parent)",
+      "date": "2026-07-16",
+      "text": "PedMIDAS completed by parent before today's visit: 6 full school days missed, 8 partial school days, 8 days functioning at less than half in school, 4 days unable to do home activities, 3 days missed play or social activities, 4 days participated at less than half. Total 33. Family continues to keep the headache diary."
+    },
+    {
+      "id": "hxc-6",
+      "label": "Vitals (today)",
+      "date": "2026-07-18",
+      "text": "BP 112/70, HR 72, T 36.7C, Ht 160 cm, Wt 52 kg. Appears well."
+    }
+  ],
+  "red_flag_catalog": [
+    {
+      "key": "thunderclap",
+      "label": "Sudden severe (thunderclap) / worst headache of life"
+    },
+    {
+      "key": "waking_headache",
+      "label": "Wakes from sleep / worst on awakening"
+    },
+    {
+      "key": "vomiting_am",
+      "label": "Early-morning vomiting unrelated to illness"
+    },
+    {
+      "key": "exertional_valsalva",
+      "label": "Triggered by cough / Valsalva / exertion"
+    },
+    {
+      "key": "neuro_deficit",
+      "label": "Focal weakness or numbness"
+    },
+    {
+      "key": "vision_change",
+      "label": "Vision changes (double vision, non-aura vision loss)"
+    },
+    {
+      "key": "speech_difficulty",
+      "label": "Difficulty speaking or understanding"
+    },
+    {
+      "key": "gait_change",
+      "label": "Imbalance or gait changes"
+    },
+    {
+      "key": "seizures",
+      "label": "Seizure history or recent seizure"
+    },
+    {
+      "key": "altered_mental_status",
+      "label": "Altered mental status / personality change"
+    },
+    {
+      "key": "fever_stiff_neck",
+      "label": "Fever, stiff neck, or systemic infection signs"
+    },
+    {
+      "key": "cancer_immunosuppression_shunt",
+      "label": "History of cancer, immune suppression, or shunt"
+    },
+    {
+      "key": "head_trauma",
+      "label": "Recent significant head trauma"
+    },
+    {
+      "key": "worsening_pattern",
+      "label": "Progressive worsening over weeks/months"
+    }
+  ],
+  "pedmidas_questions": [
+    {
+      "question_id": "pm1",
+      "question": "Full school days missed in last 3 months"
+    },
+    {
+      "question_id": "pm2",
+      "question": "Partial school days missed in last 3 months"
+    },
+    {
+      "question_id": "pm3",
+      "question": "School days functioning at less than half"
+    },
+    {
+      "question_id": "pm4",
+      "question": "Days unable to do home activities/chores"
+    },
+    {
+      "question_id": "pm5",
+      "question": "Days unable to join play/social/sports"
+    },
+    {
+      "question_id": "pm6",
+      "question": "Days participated in activities at less than half"
+    }
+  ],
+  "precomputed_state": {
+    "agent_status": "Follow-up review ready",
+    "evidence": [
+      {
+        "id": "evc-1",
+        "source_type": "history",
+        "source_label": "Visit 1 note, 2026-03-06",
+        "quote": "~12 headache days/month, PedMIDAS 42. Started propranolol 10 mg daily after clinician review. Family reported initial improvement at the 2-week nurse check."
+      },
+      {
+        "id": "evc-2",
+        "source_type": "history",
+        "source_label": "Visit 2 note, 2026-04-10",
+        "quote": "Initial response to propranolol faded after about 1 month; frequency back to ~12 days/month. PedMIDAS 36. Propranolol increased to 20 mg daily."
+      },
+      {
+        "id": "evc-3",
+        "source_type": "history",
+        "source_label": "Visit 3 note, 2026-05-22",
+        "quote": "Brief response to propranolol 20 mg, then effect faded again after about a month. Frequency unchanged at ~12 days/month. PedMIDAS 35. Propranolol tapered and stopped; venlafaxine started after clinician review."
+      },
+      {
+        "id": "evc-4",
+        "source_type": "history",
+        "source_label": "School attendance letter, 2026-07-02",
+        "quote": "6 full days and 8 partial days missed in the last 3 months due to headache."
+      },
+      {
+        "id": "evc-5",
+        "source_type": "history",
+        "source_label": "Parent call, 2026-07-02",
+        "quote": "Parents called the clinic expressing worry that Jordan is falling behind at school."
+      },
+      {
+        "id": "evc-6",
+        "source_type": "history",
+        "source_label": "Pre-visit PedMIDAS questionnaire, 2026-07-16",
+        "quote": "6 full school days missed, 8 partial school days, 8 days functioning at less than half in school, 4 days unable to do home activities, 3 days missed play or social activities, 4 days participated at less than half. Total 33."
+      },
+      {
+        "id": "evc-7",
+        "source_type": "vitals",
+        "source_label": "Vitals (today), 2026-07-18",
+        "quote": "BP 112/70, HR 72, T 36.7C, Ht 160 cm, Wt 52 kg. Appears well."
+      },
+      {
+        "id": "evc-8",
+        "source_type": "history",
+        "source_label": "Pre-visit PedMIDAS questionnaire, 2026-07-16",
+        "quote": "Family continues to keep the headache diary."
+      }
+    ],
+    "profile": {
+      "frequency_days_per_month": {
+        "value": 12,
+        "status": "present",
+        "evidence_ids": [
+          "evc-2",
+          "evc-3"
+        ]
+      },
+      "progression": {
+        "value": "Plateaued — minimal change over 4 visits",
+        "status": "present",
+        "evidence_ids": [
+          "evc-2",
+          "evc-3",
+          "evc-6"
+        ]
+      },
+      "preventive_medication_use": {
+        "value": [
+          "Venlafaxine — titrating up (started 05/22)",
+          "Propranolol 10→20 mg — failed after initial response, stopped 05/22"
+        ],
+        "status": "present",
+        "evidence_ids": [
+          "evc-1",
+          "evc-2",
+          "evc-3"
+        ]
+      },
+      "treatment_response": {
+        "value": "Initial response to propranolol lost after ~1 month; plateau on current regimen",
+        "status": "present",
+        "evidence_ids": [
+          "evc-1",
+          "evc-2",
+          "evc-3"
+        ]
+      },
+      "school_impact": {
+        "value": "Severe — 6 full and 8 partial school days missed in last 3 months; absenteeism continuing, parents worried",
+        "status": "present",
+        "evidence_ids": [
+          "evc-4",
+          "evc-5",
+          "evc-6"
+        ]
+      },
+      "family_history": {
+        "value": "Father: migraine (per visit 1 note)",
+        "status": "present",
+        "evidence_ids": [
+          "evc-1"
+        ]
+      },
+      "diary_available": {
+        "value": "Yes — family continues to keep the headache diary",
+        "status": "present",
+        "evidence_ids": [
+          "evc-8"
+        ]
+      }
+    },
+    "exam": {
+      "general_appearance": {
+        "value": "Appears well (vitals today)",
+        "status": "present",
+        "evidence_ids": [
+          "evc-7"
+        ]
+      }
+    },
+    "red_flags": [
+      {
+        "key": "thunderclap",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
+        "key": "waking_headache",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
+        "key": "vomiting_am",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
+        "key": "exertional_valsalva",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
+        "key": "neuro_deficit",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
+        "key": "vision_change",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
+        "key": "speech_difficulty",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
+        "key": "gait_change",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
+        "key": "seizures",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
+        "key": "altered_mental_status",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
+        "key": "fever_stiff_neck",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
+        "key": "cancer_immunosuppression_shunt",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
+        "key": "head_trauma",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
+        "key": "worsening_pattern",
+        "status": "absent",
+        "evidence_ids": [
+          "evc-2",
+          "evc-3"
+        ]
+      }
+    ],
+    "pedmidas_responses": [
+      {
+        "question_id": "pm1",
+        "value": 6,
+        "evidence_ids": [
+          "evc-4",
+          "evc-6"
+        ]
+      },
+      {
+        "question_id": "pm2",
+        "value": 8,
+        "evidence_ids": [
+          "evc-4",
+          "evc-6"
+        ]
+      },
+      {
+        "question_id": "pm3",
+        "value": 8,
+        "evidence_ids": [
+          "evc-6"
+        ]
+      },
+      {
+        "question_id": "pm4",
+        "value": 4,
+        "evidence_ids": [
+          "evc-6"
+        ]
+      },
+      {
+        "question_id": "pm5",
+        "value": 3,
+        "evidence_ids": [
+          "evc-6"
+        ]
+      },
+      {
+        "question_id": "pm6",
+        "value": 4,
+        "evidence_ids": [
+          "evc-6"
+        ]
+      }
+    ],
+    "pedmidas_trend": [
+      {
+        "date": "2026-03-06",
+        "score": 42,
+        "evidence_ids": [
+          "evc-1"
+        ]
+      },
+      {
+        "date": "2026-04-10",
+        "score": 36,
+        "evidence_ids": [
+          "evc-2"
+        ]
+      },
+      {
+        "date": "2026-05-22",
+        "score": 35,
+        "evidence_ids": [
+          "evc-3"
+        ]
+      },
+      {
+        "date": "2026-07-18",
+        "score": 33,
+        "evidence_ids": [
+          "evc-6"
+        ]
+      }
+    ],
+    "medication_events": [
+      {
+        "date": "2026-03-06",
+        "label": "Propranolol 10 mg started (clinician-reviewed)",
+        "kind": "start",
+        "evidence_ids": [
+          "evc-1"
+        ]
+      },
+      {
+        "date": "2026-04-10",
+        "label": "Propranolol increased to 20 mg",
+        "kind": "change",
+        "evidence_ids": [
+          "evc-2"
+        ]
+      },
+      {
+        "date": "2026-05-22",
+        "label": "Propranolol tapered and stopped",
+        "kind": "stop",
+        "evidence_ids": [
+          "evc-3"
+        ]
+      },
+      {
+        "date": "2026-05-22",
+        "label": "Venlafaxine started (clinician-reviewed)",
+        "kind": "start",
+        "evidence_ids": [
+          "evc-3"
+        ]
+      }
+    ],
+    "changes_since_last_visit": [
+      "PedMIDAS 35 → 33 — plateaued, not meaningfully improving [evc-3, evc-6]",
+      "Headache frequency essentially unchanged at ~12 days/month [evc-2, evc-3]",
+      "School absenteeism continuing — 6 full + 8 partial days in last 3 months [evc-4]",
+      "Parents increasingly worried about school [evc-5]"
+    ],
+    "missing_questions": [
+      "Mood changes or side effects since starting venlafaxine?",
+      "Sleep pattern and late-night screen time?",
+      "Caffeine or energy drink intake?",
+      "Would school accommodations (504 plan) help?"
+    ]
+  },
+  "chunks": [
+    {
+      "turns": [
+        {
+          "id": "tc-1",
+          "speaker": "clinician",
+          "text": "Jordan, how have the headaches been since we started the venlafaxine?",
+          "timestamp": "00:00:10"
+        },
+        {
+          "id": "tc-2",
+          "speaker": "patient",
+          "text": "Honestly, about the same. Still around three days a week — some weeks a little less, but they always come back.",
+          "timestamp": "00:00:16"
+        }
+      ],
+      "delta": {
+        "agent_status": "Extracting headache characteristics",
+        "evidence": [
+          {
+            "id": "evc-9",
+            "source_type": "transcript",
+            "source_label": "Patient, 00:00:16",
+            "quote": "Honestly, about the same. Still around three days a week — some weeks a little less, but they always come back."
+          }
+        ],
+        "profile": {
+          "frequency_days_per_month": {
+            "value": 12,
+            "status": "present",
+            "evidence_ids": [
+              "evc-2",
+              "evc-3",
+              "evc-9"
+            ]
+          },
+          "treatment_response": {
+            "value": "Initial response to propranolol lost after ~1 month; no clear change yet on venlafaxine",
+            "status": "present",
+            "evidence_ids": [
+              "evc-1",
+              "evc-3",
+              "evc-9"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "turns": [
+        {
+          "id": "tc-3",
+          "speaker": "parent",
+          "text": "What worries us most is school. He's missed six full days this quarter and left early another eight times. He's falling behind, and he's stopped playing basketball with his friends.",
+          "timestamp": "00:00:48"
+        },
+        {
+          "id": "tc-4",
+          "speaker": "clinician",
+          "text": "That's a big burden. The attendance letter from the school matches what you're describing.",
+          "timestamp": "00:01:05"
+        }
+      ],
+      "delta": {
+        "agent_status": "Assessing functional burden",
+        "evidence": [
+          {
+            "id": "evc-10",
+            "source_type": "transcript",
+            "source_label": "Parent, 00:00:48",
+            "quote": "What worries us most is school. He's missed six full days this quarter and left early another eight times. He's falling behind, and he's stopped playing basketball with his friends."
+          }
+        ],
+        "profile": {
+          "school_impact": {
+            "value": "Severe — 6 full and 8 partial school days missed in last 3 months; absenteeism continuing, parents worried",
+            "status": "present",
+            "evidence_ids": [
+              "evc-4",
+              "evc-5",
+              "evc-6",
+              "evc-10"
+            ]
+          },
+          "activity_impact": {
+            "value": "Stopped playing basketball with friends",
+            "status": "present",
+            "evidence_ids": [
+              "evc-10"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "turns": [
+        {
+          "id": "tc-5",
+          "speaker": "clinician",
+          "text": "Any headaches that wake him from sleep, vomiting in the morning, vision changes, or any weakness or numbness?",
+          "timestamp": "00:01:40"
+        },
+        {
+          "id": "tc-6",
+          "speaker": "patient",
+          "text": "No, nothing like that. No waking up with headaches, no throwing up in the morning, my eyes are fine, no weakness or anything.",
+          "timestamp": "00:01:47"
+        },
+        {
+          "id": "tc-7",
+          "speaker": "clinician",
+          "text": "How often are you using ibuprofen when a headache hits?",
+          "timestamp": "00:02:05"
+        },
+        {
+          "id": "tc-8",
+          "speaker": "patient",
+          "text": "Maybe once or twice a week, only for the really bad ones.",
+          "timestamp": "00:02:09"
+        },
+        {
+          "id": "tc-9",
+          "speaker": "clinician",
+          "text": "We'll step the venlafaxine up to the next dose as planned, and I'm sending a referral to pediatric neurology today — after two preventives without lasting improvement, it's time to bring in a specialist.",
+          "timestamp": "00:02:30"
+        }
+      ],
+      "delta": {
+        "agent_status": "Checking red flags",
+        "evidence": [
+          {
+            "id": "evc-11",
+            "source_type": "transcript",
+            "source_label": "Patient, 00:01:47",
+            "quote": "No, nothing like that. No waking up with headaches, no throwing up in the morning, my eyes are fine, no weakness or anything."
+          },
+          {
+            "id": "evc-12",
+            "source_type": "transcript",
+            "source_label": "Patient, 00:02:09",
+            "quote": "Maybe once or twice a week, only for the really bad ones."
+          },
+          {
+            "id": "evc-13",
+            "source_type": "transcript",
+            "source_label": "Clinician, 00:02:30",
+            "quote": "We'll step the venlafaxine up to the next dose as planned, and I'm sending a referral to pediatric neurology today — after two preventives without lasting improvement, it's time to bring in a specialist."
+          }
+        ],
+        "profile": {
+          "acute_medication_use": {
+            "value": [
+              "Ibuprofen 1-2 days/week (~6 days/month) at onset"
+            ],
+            "status": "present",
+            "evidence_ids": [
+              "evc-12"
+            ]
+          },
+          "medication_overuse_risk": {
+            "value": "Ibuprofen 1-2 days/week ≈ 6 days/month — below 10 days/month overuse threshold",
+            "status": "negative",
+            "evidence_ids": [
+              "evc-12"
+            ]
+          }
+        },
+        "clinician_assessment": {
+          "plan_selections": {
+            "value": [
+              "Venlafaxine titrated up today (clinician-stated)",
+              "Pediatric neurology referral — sent today"
+            ],
+            "status": "present",
+            "evidence_ids": [
+              "evc-13"
+            ]
+          }
+        },
+        "red_flags": [
+          {
+            "key": "waking_headache",
+            "status": "absent",
+            "evidence_ids": [
+              "evc-11"
+            ]
+          },
+          {
+            "key": "vomiting_am",
+            "status": "absent",
+            "evidence_ids": [
+              "evc-11"
+            ]
+          },
+          {
+            "key": "vision_change",
+            "status": "absent",
+            "evidence_ids": [
+              "evc-11"
+            ]
+          },
+          {
+            "key": "neuro_deficit",
+            "status": "absent",
+            "evidence_ids": [
+              "evc-11"
+            ]
+          }
+        ],
+        "medication_events": [
+          {
+            "date": "2026-07-18",
+            "label": "Venlafaxine titrated up (clinician-reviewed)",
+            "kind": "change",
+            "evidence_ids": [
+              "evc-13"
+            ]
+          }
+        ],
+        "changes_since_last_visit": [
+          "PedMIDAS 35 → 33 — plateaued, not meaningfully improving [evc-3, evc-6]",
+          "Headache frequency essentially unchanged at ~12 days/month [evc-2, evc-9]",
+          "School absenteeism continuing — 6 full + 8 partial days in last 3 months [evc-4, evc-10]",
+          "Parents increasingly worried about school [evc-5, evc-10]",
+          "Venlafaxine titrated up today (clinician-reviewed) [evc-13]",
+          "Pediatric neurology referral placed today [evc-13]"
+        ]
+      }
+    }
+  ],
+  "previsit": {
+    "headline": "Follow-Up Review — Needs Attention",
+    "documents_count": 11,
+    "sources_count": 4,
+    "assembled_seconds": 5.4,
+    "confidence": "high",
+    "evidence": [
+      {
+        "id": "pevc-1",
+        "source_type": "document",
+        "source_label": "Referral coordination note - 07/18",
+        "quote": "Pediatric neurology wait time approximately 10-12 weeks; expedite request submitted."
+      }
+    ],
+    "brief_lines": [
+      {
+        "id": "blc-1",
+        "text": "4th PCP headache visit: propranolol 10 → 20 mg failed after initial response; venlafaxine started 05/22, titrating up.",
+        "source_label": "Visit notes 03/06 - 05/22",
+        "evidence_ids": [
+          "evc-1",
+          "evc-2",
+          "evc-3"
+        ]
+      },
+      {
+        "id": "blc-2",
+        "text": "PedMIDAS plateaued: 42 → 36 → 35 → 33 — slight early improvement only, not meaningfully better.",
+        "source_label": "PedMIDAS scores",
+        "evidence_ids": [
+          "evc-1",
+          "evc-2",
+          "evc-3",
+          "evc-6"
+        ]
+      },
+      {
+        "id": "blc-3",
+        "text": "Headache frequency essentially unchanged at ~12 days/month across all four visits.",
+        "source_label": "Visit notes",
+        "evidence_ids": [
+          "evc-2",
+          "evc-3"
+        ]
+      },
+      {
+        "id": "blc-4",
+        "text": "School heavily affected: 6 full + 8 partial days missed in last 3 months; parents called expressing worry.",
+        "source_label": "School letter + parent call - 07/02",
+        "evidence_ids": [
+          "evc-4",
+          "evc-5"
+        ]
+      },
+      {
+        "id": "blc-5",
+        "text": "Neurology referral appropriate today — two adequate preventive trials without sustained response (clinician decision).",
+        "source_label": "Draft plan - today",
+        "evidence_ids": [
+          "evc-2",
+          "evc-3"
+        ]
+      },
+      {
+        "id": "blc-6",
+        "text": "Neurology wait currently ~10-12 weeks — expedite request pending.",
+        "source_label": "Referral coordination note - 07/18",
+        "evidence_ids": [
+          "pevc-1"
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-03-06",
+        "label": "Visit 1",
+        "sublabel": "Propranolol 10 mg started — initial improvement",
+        "kind": "visit"
+      },
+      {
+        "date": "2026-04-10",
+        "label": "Visit 2",
+        "sublabel": "Propranolol increased to 20 mg; response faded after ~1 month",
+        "kind": "visit"
+      },
+      {
+        "date": "2026-05-22",
+        "label": "Visit 3",
+        "sublabel": "Venlafaxine started; propranolol stopped",
+        "kind": "visit"
+      },
+      {
+        "date": "2026-07-02",
+        "label": "School letter + parent call",
+        "sublabel": "6 full + 8 partial days missed; parents worried",
+        "kind": "records"
+      },
+      {
+        "date": "2026-07-18",
+        "label": "Today",
+        "sublabel": "Visit 4 — venlafaxine titration; neurology referral placed",
+        "kind": "today"
+      }
+    ],
+    "referral_snapshot": {
+      "reason": "Chronic headache — preventive plateau",
+      "duration": "4 PCP headache visits since March 2026",
+      "prior_workup": "Two preventives trialed; no imaging to date",
+      "family_history": "Father: migraine"
+    },
+    "prior_evaluations": [
+      {
+        "id": "pec-1",
+        "title": "Visit 1 - Mar 6",
+        "detail": "Propranolol 10 mg started; initial improvement at 2-week check",
+        "evidence_ids": [
+          "evc-1"
+        ]
+      },
+      {
+        "id": "pec-2",
+        "title": "Visit 2 - Apr 10",
+        "detail": "Propranolol increased to 20 mg; response faded after ~1 month",
+        "evidence_ids": [
+          "evc-2"
+        ]
+      },
+      {
+        "id": "pec-3",
+        "title": "Visit 3 - May 22",
+        "detail": "Propranolol stopped; venlafaxine started after clinician review",
+        "evidence_ids": [
+          "evc-3"
+        ]
+      }
+    ],
+    "draft_plan": [
+      {
+        "id": "plc-1",
+        "title": "Titrate venlafaxine per plan",
+        "detail": "Step to next dose today; monitor mood and side effects (clinician review)",
+        "evidence_ids": [
+          "evc-3"
+        ]
+      },
+      {
+        "id": "plc-2",
+        "title": "Send pediatric neurology referral",
+        "detail": "Placed today — preventive plateau after two adequate trials",
+        "evidence_ids": [
+          "evc-2",
+          "evc-3"
+        ]
+      },
+      {
+        "id": "plc-3",
+        "title": "School 504 accommodation letter",
+        "detail": "Draft ready — hydration, nurse access, make-up work support",
+        "evidence_ids": [
+          "evc-4"
+        ]
+      },
+      {
+        "id": "plc-4",
+        "title": "Re-score PedMIDAS in 4-6 weeks",
+        "detail": "Track whether titration changes the disability trend",
+        "evidence_ids": [
+          "evc-6"
+        ]
+      },
+      {
+        "id": "plc-5",
+        "title": "Safety-net advice",
+        "detail": "Return sooner for waking headaches, morning vomiting, vision change, or weakness",
+        "evidence_ids": []
+      }
+    ],
+    "ask_during_visit": [
+      "Mood changes or side effects since starting venlafaxine?",
+      "Sleep pattern and late-night screen time?",
+      "Would school accommodations (504 plan) help while treatment is optimized?"
+    ],
+    "handoff_items": [
+      {
+        "id": "hoc-1",
+        "title": "Pediatric neurology referral",
+        "detail": "Sent today — chronic headache, preventive plateau after two trials",
+        "status": "sent"
+      },
+      {
+        "id": "hoc-2",
+        "title": "School 504 accommodation letter",
+        "detail": "Hydration, nurse access, make-up work support",
+        "status": "draft_ready"
+      },
+      {
+        "id": "hoc-3",
+        "title": "Family update letter",
+        "detail": "Plain-language summary of today's plan and the referral",
+        "status": "draft_ready"
+      }
+    ],
+    "unresolved_items": [
+      {
+        "id": "urc-1",
+        "text": "Pediatric neurology wait time ~10-12 weeks — expedite request pending.",
+        "requested_from": "Children's Neuro Clinic scheduling",
+        "date": "2026-07-18"
+      }
+    ]
+  },
+  "emr_summary": {
+    "headline": "Agent-assembled chart summary",
+    "evidence": [
+      {
+        "id": "emrc-ev-1",
+        "source_type": "history",
+        "source_label": "Visit 3 note - 05/22",
+        "quote": "Propranolol tapered and stopped; venlafaxine started after clinician review."
+      },
+      {
+        "id": "emrc-ev-2",
+        "source_type": "history",
+        "source_label": "Visit 2 note - 04/10",
+        "quote": "Initial response to propranolol faded after about 1 month; frequency back to ~12 days/month."
+      },
+      {
+        "id": "emrc-ev-3",
+        "source_type": "history",
+        "source_label": "School attendance letter - 07/02",
+        "quote": "6 full days and 8 partial days missed in the last 3 months due to headache."
+      }
+    ],
+    "items": [
+      {
+        "id": "emrc-1",
+        "category": "medication",
+        "label": "Venlafaxine (preventive) — titrating",
+        "detail": "Started 05/22 after clinician review; dose stepped up today per plan",
+        "flag": "monitor mood/side effects — clinician review",
+        "date": "2026-07-18",
+        "evidence_ids": [
+          "emrc-ev-1"
+        ]
+      },
+      {
+        "id": "emrc-2",
+        "category": "medication",
+        "label": "Propranolol — failed trial (documented for neurology)",
+        "detail": "10 mg 03/06 → 20 mg 04/10; response faded after ~1 month each time; stopped 05/22",
+        "flag": "adequate first-line trial on record",
+        "date": "2026-05-22",
+        "evidence_ids": [
+          "emrc-ev-1",
+          "emrc-ev-2"
+        ]
+      },
+      {
+        "id": "emrc-3",
+        "category": "referral",
+        "label": "Pediatric neurology referral — sent today",
+        "detail": "Chronic headache, preventive plateau after two adequate trials",
+        "flag": "wait ~10-12 weeks — expedite requested",
+        "date": "2026-07-18",
+        "evidence_ids": [
+          "emrc-ev-1"
+        ]
+      },
+      {
+        "id": "emrc-4",
+        "category": "visit_note",
+        "label": "School absenteeism record",
+        "detail": "6 full + 8 partial days missed in last 3 months per attendance letter; parents worried",
+        "flag": "functional burden — 504 letter drafted",
+        "date": "2026-07-02",
+        "evidence_ids": [
+          "emrc-ev-3"
+        ]
+      },
+      {
+        "id": "emrc-5",
+        "category": "imaging",
+        "label": "No head imaging on file",
+        "detail": "No red-flag trigger met to date",
+        "flag": "baseline for specialist review",
+        "date": "",
+        "evidence_ids": []
+      },
+      {
+        "id": "emrc-6",
+        "category": "medication",
+        "label": "Methylphenidate daily (ADHD)",
+        "detail": "Long-standing; continue per prescriber",
+        "flag": "interaction check with venlafaxine — clinician review",
+        "date": "",
+        "evidence_ids": []
+      },
+      {
+        "id": "emrc-7",
+        "category": "pmh",
+        "label": "BMI 88th percentile",
+        "detail": "Noted at visit 1; relevant to preventive selection",
+        "flag": "",
+        "date": "2026-03-06",
+        "evidence_ids": []
+      }
+    ]
+  },
+  "care_plan": {
+    "summary": [
+      "4th PCP headache visit: propranolol 10 → 20 mg failed after initial response; venlafaxine started 05/22 and titrated up today. [evc-1, evc-2, evc-3, evc-13]",
+      "PedMIDAS plateaued 42 → 36 → 35 → 33; headache frequency essentially unchanged at ~12 days/month. [evc-2, evc-6, evc-9]",
+      "School burden severe and continuing: 6 full + 8 partial days missed in last 3 months; parents worried. [evc-4, evc-5, evc-10]",
+      "Red-flag screen negative today; frequency static, not progressive. [evc-11, evc-2]",
+      "Pediatric neurology referral placed today — preventive plateau after two adequate trials. [evc-13]"
+    ],
+    "questions_to_ask": [
+      "Mood changes or side effects since starting venlafaxine?",
+      "Sleep pattern and late-night screen time?",
+      "Caffeine or energy drink intake?",
+      "Would school accommodations (504 plan) help while treatment is optimized?"
+    ],
+    "suggested_pathway": [
+      "Continue venlafaxine titration per plan (clinician review required)",
+      "Reinforce non-pharmacologic measures: sleep routine, hydration, regular meals",
+      "Continue headache diary; re-score PedMIDAS in 4-6 weeks"
+    ],
+    "referral_considerations": [
+      "Neurology referral placed today — preventive plateau after two adequate trials (clinician confirmed)",
+      "Expedite request pending — wait currently ~10-12 weeks; escalate sooner if red flags emerge"
+    ],
+    "patient_instructions": [
+      "Keep taking venlafaxine exactly as reviewed with your clinician",
+      "Keep the headache diary going — the neurology team will use it",
+      "Return sooner for waking headaches, morning vomiting, vision changes, weakness, or sudden severe headache"
+    ],
+    "disclaimer": "Draft for clinician review. Final clinical decisions remain with the clinician.",
+    "evidence_ids": [
+      "evc-1",
+      "evc-2",
+      "evc-3",
+      "evc-4",
+      "evc-5",
+      "evc-6",
+      "evc-9",
+      "evc-10",
+      "evc-11",
+      "evc-12",
+      "evc-13"
+    ]
+  },
+  "canned_qa": [
+    {
+      "match": [
+        "refer",
+        "neurology",
+        "why now",
+        "specialist",
+        "escalat"
+      ],
+      "answer": "The referral was placed today because Jordan has had two adequate preventive trials without sustained response: propranolol (10 then 20 mg) helped briefly but faded after about a month each time, and PedMIDAS has plateaued at 42 → 36 → 35 → 33 with frequency unchanged at ~12 days/month. This meets a common threshold for pediatric neurology co-management — the decision was confirmed by the clinician today.",
+      "citations": [
+        "evc-1",
+        "evc-2",
+        "evc-3",
+        "evc-6",
+        "evc-13"
+      ]
+    },
+    {
+      "match": [
+        "preventive",
+        "tried",
+        "propranolol",
+        "venlafaxine",
+        "medication",
+        "med"
+      ],
+      "answer": "Two preventives so far: propranolol 10 mg was started 03/06 with initial improvement, increased to 20 mg on 04/10, but the response faded after about a month each time and it was stopped 05/22. Venlafaxine was started 05/22 after clinician review and is being titrated up today.",
+      "citations": [
+        "evc-1",
+        "evc-2",
+        "evc-3",
+        "evc-13"
+      ]
+    },
+    {
+      "match": [
+        "school",
+        "absen",
+        "missed",
+        "class"
+      ],
+      "answer": "School impact is severe and continuing: the attendance letter documents 6 full and 8 partial days missed in the last 3 months, the parent reports Jordan is falling behind and has stopped basketball, and the parents have called the clinic expressing worry. This is reflected in the PedMIDAS responses (pm1=6, pm2=8).",
+      "citations": [
+        "evc-4",
+        "evc-5",
+        "evc-6",
+        "evc-10"
+      ]
+    },
+    {
+      "match": [
+        "danger",
+        "red flag",
+        "serious",
+        "scary",
+        "worrying",
+        "safe"
+      ],
+      "answer": "No red flags were identified today: Jordan denies waking headaches, morning vomiting, vision changes, and weakness or numbness. The pattern is static rather than progressively worsening — frequency has stayed at ~12 days/month across four visits. Several screen items remain unasked and are marked unknown. Clinical judgment remains with the clinician.",
+      "citations": [
+        "evc-11",
+        "evc-2",
+        "evc-3"
+      ]
+    }
+  ],
+  "insights": {
+    "note": "Established chronic migraine picture, refractory to first-line preventives — plateau after two adequate trials. Neurology co-management appropriate; clinician review required.",
+    "dxs": [
+      {
+        "dx": "Chronic migraine without aura (established)",
+        "confidence": 0.85,
+        "tone": "amber",
+        "guideline": "ICHD-3 · 1.3",
+        "guideline_url": "https://ichd-3.org/1-migraine/1-3-chronic-migraine/",
+        "criteria": [
+          {
+            "text": "Headache ≥15 days/month for >3 months",
+            "met": "partial"
+          },
+          {
+            "text": "Migraine features on ≥8 days/month",
+            "met": "met"
+          },
+          {
+            "text": "Not better accounted for by another ICHD-3 diagnosis",
+            "met": "met"
+          }
+        ],
+        "rationale": "Phenotype stable across four visits at ~12 days/month — near-chronic frequency with plateaued disability despite two preventive trials. Amber reflects management difficulty, not diagnostic doubt."
+      },
+      {
+        "dx": "Medication-overuse headache",
+        "confidence": 0.1,
+        "tone": "neutral",
+        "guideline": "ICHD-3 · 8.2",
+        "guideline_url": "https://ichd-3.org/8-headache-attributed-to-a-substance-or-its-withdrawal/8-2-medication-overuse-headache/",
+        "criteria": [
+          {
+            "text": "Acute medication ≥10-15 days/month for >3 months",
+            "met": "unmet"
+          }
+        ],
+        "rationale": "Ibuprofen ~6 days/month — below overuse threshold. Included to document that overuse was screened and excluded."
+      }
+    ],
+    "txs": [
+      {
+        "step": "Preventive",
+        "rec": "Continue venlafaxine titration per plan",
+        "detail": "Second preventive after adequate propranolol failure — monitor mood and side effects during titration (clinician review required).",
+        "evidence": "AAN/AHS 2019 · plausible pediatric option",
+        "evidence_url": "https://www.aan.com/Guidelines/",
+        "tone": "teal"
+      },
+      {
+        "step": "Refer",
+        "rec": "Pediatric neurology co-management",
+        "detail": "Two adequate preventive trials without sustained response — referral sent today; expedite requested (~10-12 week wait).",
+        "evidence": "AAN/AHS 2019 · Pediatric prevention",
+        "evidence_url": "https://www.aan.com/Guidelines/",
+        "tone": "amber"
+      },
+      {
+        "step": "Behavioral",
+        "rec": "Consider CBT / behavioral therapy alongside preventive",
+        "detail": "Behavioral components support durable response and may help plateaued disability (clinician review).",
+        "evidence": "CHAMP · NEJM 2017",
+        "evidence_url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1610384",
+        "tone": "neutral"
+      },
+      {
+        "step": "School",
+        "rec": "504 accommodation letter to reduce absenteeism impact",
+        "detail": "Hydration, nurse access, make-up work support while treatment is optimized — draft ready for clinician review.",
+        "evidence": "Draft ready · clinician review",
+        "evidence_url": "",
+        "tone": "teal"
+      }
+    ]
+  }
+}
