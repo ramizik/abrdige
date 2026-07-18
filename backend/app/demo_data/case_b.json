@@ -1,40 +1,58 @@
 {
   "case_id": "case-b",
-  "title": "Maya R. — Follow-up visit (8 weeks)",
+  "title": "Maya G. Torres — Post-specialist follow-up (visit 5)",
   "mode": "follow_up",
-  "description": "Follow-up state: PedMIDAS improving after lifestyle plan + riboflavin, ibuprofen use reduced, referral watch item retained.",
+  "description": "Fifth visit, first PCP check-in after pediatric neurology: gabapentin 100 mg added plus multimodal plan (chiropractic, CBT, physical therapy). PedMIDAS 34 → 18 and frequency falling — improving.",
   "patient": {
-    "id": "pt-001",
-    "name": "Maya R.",
-    "age": 12,
+    "id": "pt-maya",
+    "name": "Maya G. Torres",
+    "age": 11,
     "sex": "F",
-    "preferred_language": "English",
-    "clinic": "Eastside Community Pediatrics",
-    "mrn": "MRN 204-8817",
+    "preferred_language": "Spanish (interpreter)",
+    "clinic": "Eastside Pediatrics",
+    "mrn": "MRN 004-2213",
     "provider": "Dr. Okafor",
-    "visit_length": "20 min",
-    "visit_type": "Follow-up headache visit",
-    "chief_complaint": "Headache follow-up",
-    "referral_status": "Established - Follow-up Review"
+    "visit_length": "15 min",
+    "visit_type": "Post-specialist PCP follow-up",
+    "chief_complaint": "Chronic headache — improving",
+    "referral_status": "Established - Post-Specialist Review"
   },
   "history": [
     {
       "id": "hxb-1",
-      "label": "First headache visit (ByeByeHeadache summary)",
-      "date": "2026-07-18",
-      "text": "Migraine-compatible recurrent headaches, ~8 days/month, PedMIDAS 32, red-flag screen negative. Plan: lifestyle changes, headache diary, limit ibuprofen <3 days/week, riboflavin discussed and started after clinician review."
+      "label": "Prior PCP headache visits (summary)",
+      "date": "2026-06-05",
+      "text": "Four PCP headache visits since February for chronic headaches. PedMIDAS 44 (02/05) → 40 (03/12) → 38 (04/30) → 34 (06/05). Referral to pediatric neurology placed 06/05 for persistent disability despite lifestyle plan and riboflavin."
     },
     {
       "id": "hxb-2",
-      "label": "Nurse follow-up call",
-      "date": "2026-08-14",
-      "text": "Family reports diary being kept most days. Headaches somewhat less frequent. No new symptoms. Riboflavin tolerated well."
+      "label": "Pediatric neurology consult — Dr. Lin, Children's Neuro Clinic",
+      "date": "2026-06-20",
+      "text": "Chronic migraine without aura confirmed. Gabapentin 100 mg nightly started. Advised chiropractic care, CBT with psychology, and physical therapy. Neurology follow-up in 3 months (approx 2026-09-20)."
     },
     {
       "id": "hxb-3",
+      "label": "Chiropractic progress note",
+      "date": "2026-07-10",
+      "text": "Attending weekly since 06/24. Cervical tension reduced; patient reports fewer headache days. Tolerating care well."
+    },
+    {
+      "id": "hxb-4",
+      "label": "Physical therapy note",
+      "date": "2026-07-14",
+      "text": "Started 06/27, attending twice weekly. Posture and neck-strengthening program; home exercises done most days."
+    },
+    {
+      "id": "hxb-5",
+      "label": "Psychology / CBT note",
+      "date": "2026-07-08",
+      "text": "CBT started 07/01. Learning relaxation and coping strategies; using them at school. Mood improved."
+    },
+    {
+      "id": "hxb-6",
       "label": "Vitals (today)",
-      "date": "2026-09-12",
-      "text": "BP 102/64, HR 74, T 36.7C. Appears well."
+      "date": "2026-07-18",
+      "text": "BP 100/62, HR 76, T 36.8C, Ht 145 cm, Wt 38 kg. Appears well."
     }
   ],
   "red_flag_catalog": [
@@ -122,141 +140,166 @@
     }
   ],
   "precomputed_state": {
-    "agent_status": "Follow-up review ready",
+    "agent_status": "Post-specialist review ready",
     "evidence": [
       {
         "id": "evb-1",
         "source_type": "history",
-        "source_label": "First visit summary, 2026-07-18",
-        "quote": "PedMIDAS 32, ~8 headache days/month, ibuprofen ~3x/week."
+        "source_label": "Prior PCP visits summary, 2026-06-05",
+        "quote": "PedMIDAS 44 (02/05) → 40 (03/12) → 38 (04/30) → 34 (06/05)."
       },
       {
         "id": "evb-2",
-        "source_type": "transcript",
-        "source_label": "Parent, follow-up visit",
-        "quote": "It's down to maybe one a week now, and she's only left school early once since summer."
+        "source_type": "history",
+        "source_label": "Neurology consult — Dr. Lin, 2026-06-20",
+        "quote": "Gabapentin 100 mg nightly started. Advised chiropractic care, CBT with psychology, and physical therapy."
       },
       {
         "id": "evb-3",
-        "source_type": "transcript",
-        "source_label": "Parent, follow-up visit",
-        "quote": "She takes the ibuprofen maybe once a week now, and the riboflavin every morning."
+        "source_type": "history",
+        "source_label": "Chiropractic progress note, 2026-07-10",
+        "quote": "Attending weekly since 06/24. Cervical tension reduced; patient reports fewer headache days."
       },
       {
         "id": "evb-4",
-        "source_type": "transcript",
-        "source_label": "Parent, follow-up visit",
-        "quote": "Nothing new — no night headaches, no vomiting, nothing scary."
+        "source_type": "history",
+        "source_label": "Physical therapy note, 2026-07-14",
+        "quote": "Started 06/27, attending twice weekly. Posture and neck-strengthening program; home exercises done most days."
       },
       {
         "id": "evb-5",
         "source_type": "history",
-        "source_label": "Nurse follow-up call, 2026-08-14",
-        "quote": "Diary being kept most days. Headaches somewhat less frequent. Riboflavin tolerated well."
+        "source_label": "Psychology / CBT note, 2026-07-08",
+        "quote": "CBT started 07/01. Learning relaxation and coping strategies; using them at school. Mood improved."
+      },
+      {
+        "id": "evb-6",
+        "source_type": "transcript",
+        "source_label": "Interpreter, follow-up visit",
+        "quote": "She says much better — only about four headache days in the last month."
+      },
+      {
+        "id": "evb-7",
+        "source_type": "transcript",
+        "source_label": "Interpreter, follow-up visit",
+        "quote": "Taking gabapentin every night; a little sleepy the first week, nothing since."
+      },
+      {
+        "id": "evb-8",
+        "source_type": "transcript",
+        "source_label": "Interpreter, follow-up visit",
+        "quote": "No night waking, no vomiting, no vision changes — nothing scary."
+      },
+      {
+        "id": "evb-9",
+        "source_type": "transcript",
+        "source_label": "Interpreter, follow-up visit",
+        "quote": "One partial school day missed since June; back in PE and sleeping nine hours."
+      },
+      {
+        "id": "evb-10",
+        "source_type": "transcript",
+        "source_label": "Parent, follow-up visit",
+        "quote": "We kept the diary; ibuprofen only twice this month."
       }
     ],
     "profile": {
       "frequency_days_per_month": {
         "value": 4,
         "status": "present",
-        "evidence_ids": [
-          "evb-2"
-        ]
-      },
-      "acute_medication_use": {
-        "value": [
-          "Ibuprofen ~1x/week",
-          "Riboflavin daily (preventive, clinician-reviewed)"
-        ],
-        "status": "present",
-        "evidence_ids": [
-          "evb-3"
-        ]
-      },
-      "school_impact": {
-        "value": "One early dismissal since last visit",
-        "status": "present",
-        "evidence_ids": [
-          "evb-2"
-        ]
-      },
-      "treatment_response": {
-        "value": "Ibuprofen effective at ~1x/week; riboflavin tolerated, adherent",
-        "status": "present",
-        "evidence_ids": [
-          "evb-3",
-          "evb-5"
-        ]
+        "evidence_ids": ["evb-6"]
       },
       "progression": {
-        "value": "Improving — frequency down ~8 to ~4 days/month since July plan",
+        "value": "Improving since specialist plan started 06/20",
         "status": "present",
-        "evidence_ids": [
-          "evb-2"
-        ]
-      },
-      "repeat_visits": {
-        "value": "No ED/urgent-care visits since last visit",
-        "status": "negative",
-        "evidence_ids": [
-          "evb-4"
-        ]
+        "evidence_ids": ["evb-1", "evb-6"]
       },
       "preventive_medication_use": {
         "value": [
-          "Riboflavin 200 mg daily (clinician-reviewed, started 2026-07-22)"
+          "Gabapentin 100 mg (specialist-managed, started 06/20)"
         ],
         "status": "present",
-        "evidence_ids": [
-          "evb-3"
-        ]
+        "evidence_ids": ["evb-2", "evb-7"]
+      },
+      "acute_medication_use": {
+        "value": [
+          "Ibuprofen ~2 days/month"
+        ],
+        "status": "present",
+        "evidence_ids": ["evb-10"]
+      },
+      "treatment_response": {
+        "value": "Improving on gabapentin + chiropractic/PT/CBT; tolerated well (mild first-week sleepiness resolved)",
+        "status": "present",
+        "evidence_ids": ["evb-3", "evb-7"]
+      },
+      "non_medical_interventions": {
+        "value": [
+          "Chiropractic care weekly since 06/24",
+          "Physical therapy 2x/week since 06/27",
+          "CBT (psychology) since 07/01"
+        ],
+        "status": "present",
+        "evidence_ids": ["evb-3", "evb-4", "evb-5"]
+      },
+      "school_impact": {
+        "value": "One partial school day missed since June — reintegrating well",
+        "status": "present",
+        "evidence_ids": ["evb-9"]
       },
       "medication_overuse_risk": {
-        "value": "Ibuprofen ~1 day/week (~4 days/month) — below overuse threshold, improved from ~12",
+        "value": "Ibuprofen ~2 days/month — well below 10 days/month threshold",
         "status": "negative",
-        "evidence_ids": [
-          "evb-3"
-        ]
+        "evidence_ids": ["evb-10"]
       },
       "diary_available": {
-        "value": "Yes — kept most days since first visit",
+        "value": "Yes — family kept diary through the specialist plan",
         "status": "present",
-        "evidence_ids": [
-          "evb-5"
-        ]
+        "evidence_ids": ["evb-10"]
+      },
+      "habits": {
+        "value": [
+          "Regular sleep ~9 h",
+          "Hydration plan maintained",
+          "PE resumed"
+        ],
+        "status": "present",
+        "evidence_ids": ["evb-9"]
       }
     },
     "red_flags": [
       {
         "key": "thunderclap",
-        "status": "absent",
-        "evidence_ids": [
-          "evb-4"
-        ]
-      },
-      {
-        "key": "vomiting_am",
-        "status": "absent",
-        "evidence_ids": [
-          "evb-4"
-        ]
+        "status": "unknown",
+        "evidence_ids": []
       },
       {
         "key": "waking_headache",
         "status": "absent",
-        "evidence_ids": [
-          "evb-4"
-        ]
+        "evidence_ids": ["evb-8"]
+      },
+      {
+        "key": "vomiting_am",
+        "status": "absent",
+        "evidence_ids": ["evb-8"]
+      },
+      {
+        "key": "exertional_valsalva",
+        "status": "unknown",
+        "evidence_ids": []
       },
       {
         "key": "neuro_deficit",
-        "status": "absent",
-        "evidence_ids": [
-          "evb-4"
-        ]
+        "status": "unknown",
+        "evidence_ids": []
       },
       {
-        "key": "seizures",
+        "key": "vision_change",
+        "status": "absent",
+        "evidence_ids": ["evb-8"]
+      },
+      {
+        "key": "speech_difficulty",
         "status": "unknown",
         "evidence_ids": []
       },
@@ -266,257 +309,658 @@
         "evidence_ids": []
       },
       {
+        "key": "seizures",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
         "key": "altered_mental_status",
         "status": "unknown",
         "evidence_ids": []
       },
       {
-        "key": "exertional_valsalva",
+        "key": "fever_stiff_neck",
         "status": "unknown",
         "evidence_ids": []
       },
       {
-        "key": "vision_change",
-        "status": "absent",
-        "evidence_ids": [
-          "evb-4"
-        ]
-      },
-      {
-        "key": "speech_difficulty",
-        "status": "absent",
-        "evidence_ids": [
-          "evb-4"
-        ]
-      },
-      {
-        "key": "fever_stiff_neck",
-        "status": "absent",
-        "evidence_ids": [
-          "evb-4"
-        ]
-      },
-      {
         "key": "cancer_immunosuppression_shunt",
-        "status": "absent",
-        "evidence_ids": [
-          "evb-4"
-        ]
+        "status": "unknown",
+        "evidence_ids": []
       },
       {
         "key": "head_trauma",
-        "status": "absent",
-        "evidence_ids": [
-          "evb-4"
-        ]
+        "status": "unknown",
+        "evidence_ids": []
       },
       {
         "key": "worsening_pattern",
         "status": "absent",
-        "evidence_ids": [
-          "evb-2"
-        ]
+        "evidence_ids": ["evb-1", "evb-6"]
       }
     ],
     "pedmidas_responses": [
       {
         "question_id": "pm1",
         "value": 1,
-        "evidence_ids": [
-          "evb-2"
-        ]
+        "evidence_ids": ["evb-9"]
       },
       {
         "question_id": "pm2",
         "value": 1,
-        "evidence_ids": [
-          "evb-2"
-        ]
+        "evidence_ids": ["evb-9"]
       },
       {
         "question_id": "pm3",
-        "value": 4,
-        "evidence_ids": [
-          "evb-2"
-        ]
+        "value": 2,
+        "evidence_ids": ["evb-9"]
       },
       {
         "question_id": "pm4",
-        "value": 2,
-        "evidence_ids": [
-          "evb-5"
-        ]
+        "value": 1,
+        "evidence_ids": ["evb-6"]
       },
       {
         "question_id": "pm5",
         "value": 1,
-        "evidence_ids": [
-          "evb-5"
-        ]
+        "evidence_ids": ["evb-9"]
       },
       {
         "question_id": "pm6",
         "value": 2,
-        "evidence_ids": [
-          "evb-5"
-        ]
+        "evidence_ids": ["evb-6"]
       }
     ],
     "pedmidas_trend": [
       {
-        "date": "2026-07-18",
-        "score": 32,
-        "evidence_ids": [
-          "evb-1"
-        ]
+        "date": "2026-02-05",
+        "score": 44,
+        "evidence_ids": ["evb-1"]
       },
       {
-        "date": "2026-09-12",
-        "score": 11,
-        "evidence_ids": [
-          "evb-2",
-          "evb-5"
-        ]
+        "date": "2026-03-12",
+        "score": 40,
+        "evidence_ids": ["evb-1"]
+      },
+      {
+        "date": "2026-04-30",
+        "score": 38,
+        "evidence_ids": ["evb-1"]
+      },
+      {
+        "date": "2026-06-05",
+        "score": 34,
+        "evidence_ids": ["evb-1"]
+      },
+      {
+        "date": "2026-07-18",
+        "score": 18,
+        "evidence_ids": ["evb-6", "evb-9"]
       }
     ],
     "medication_events": [
       {
-        "date": "2026-07-18",
-        "label": "Lifestyle plan + headache diary started",
+        "date": "2026-06-20",
+        "label": "Gabapentin 100 mg nightly started (specialist)",
         "kind": "start",
-        "evidence_ids": [
-          "evb-1"
-        ]
+        "evidence_ids": ["evb-2"]
       },
       {
-        "date": "2026-07-22",
-        "label": "Riboflavin started (clinician-reviewed)",
+        "date": "2026-06-24",
+        "label": "Chiropractic care started",
         "kind": "start",
-        "evidence_ids": [
-          "evb-5"
-        ]
+        "evidence_ids": ["evb-3"]
+      },
+      {
+        "date": "2026-06-27",
+        "label": "Physical therapy started",
+        "kind": "start",
+        "evidence_ids": ["evb-4"]
+      },
+      {
+        "date": "2026-07-01",
+        "label": "CBT (psychology) started",
+        "kind": "start",
+        "evidence_ids": ["evb-5"]
       }
     ],
     "changes_since_last_visit": [
-      "Headache frequency down from ~8 to ~4 days/month [evb-1, evb-2]",
-      "PedMIDAS improved 32 → 11 (moderate → mild disability) [evb-1, evb-2]",
-      "Ibuprofen use reduced from ~3x/week to ~1x/week — overuse concern resolved [evb-3]",
-      "Riboflavin tolerated, adherent [evb-5]",
-      "Red-flag screen remains negative [evb-4]"
+      "PedMIDAS improved 34 → 18 since pre-specialist visit [evb-1, evb-6, evb-9]",
+      "Headache frequency down to ~4 days/month — patient feeling better [evb-6]",
+      "Adherent to specialist plan: gabapentin nightly, chiropractic, PT, CBT all underway [evb-2, evb-3, evb-4, evb-5, evb-7]",
+      "Lifestyle improved — regular ~9 h sleep, hydration maintained, PE resumed [evb-9]",
+      "Red-flag screen remains negative [evb-8]"
     ],
     "missing_questions": [
-      "Confirm diary review with family",
-      "Re-check aura symptoms",
-      "School accommodations still needed?"
+      "Any gabapentin side effects since the first week — sleepiness, dizziness, mood change?",
+      "Keeping up with PT and CBT home exercises between sessions?",
+      "How is school reintegration going — full days back yet?"
     ]
   },
-  "chunks": [],
+  "chunks": [
+    {
+      "turns": [
+        {
+          "id": "tb-1",
+          "speaker": "clinician",
+          "text": "Hola Maya. ¿Cómo han estado los dolores de cabeza desde que vieron a la Dra. Lin?",
+          "timestamp": "00:00:10"
+        },
+        {
+          "id": "tb-2",
+          "speaker": "patient",
+          "text": "Mucho mejor. Casi no me duele la cabeza ahora.",
+          "timestamp": "00:00:16"
+        },
+        {
+          "id": "tb-3",
+          "speaker": "interpreter",
+          "text": "She says much better — only about four headache days in the last month.",
+          "timestamp": "00:00:21"
+        }
+      ],
+      "delta": {
+        "agent_status": "Comparing against pre-specialist baseline",
+        "profile": {
+          "frequency_days_per_month": {
+            "value": 4,
+            "status": "present",
+            "evidence_ids": ["evb-6"]
+          },
+          "progression": {
+            "value": "Improving since specialist plan started 06/20",
+            "status": "present",
+            "evidence_ids": ["evb-1", "evb-6"]
+          }
+        },
+        "missing_questions_remove": []
+      }
+    },
+    {
+      "turns": [
+        {
+          "id": "tb-4",
+          "speaker": "clinician",
+          "text": "Is she taking the gabapentin from Dr. Lin every night? Any dizziness or sleepiness?",
+          "timestamp": "00:00:48"
+        },
+        {
+          "id": "tb-5",
+          "speaker": "interpreter",
+          "text": "Taking gabapentin every night; a little sleepy the first week, nothing since.",
+          "timestamp": "00:00:55"
+        },
+        {
+          "id": "tb-6",
+          "speaker": "parent",
+          "text": "We kept the diary; ibuprofen only twice this month.",
+          "timestamp": "00:01:04"
+        }
+      ],
+      "delta": {
+        "agent_status": "Updating medication and adherence picture",
+        "profile": {
+          "preventive_medication_use": {
+            "value": [
+              "Gabapentin 100 mg (specialist-managed, started 06/20)"
+            ],
+            "status": "present",
+            "evidence_ids": ["evb-2", "evb-7"]
+          },
+          "acute_medication_use": {
+            "value": [
+              "Ibuprofen ~2 days/month"
+            ],
+            "status": "present",
+            "evidence_ids": ["evb-10"]
+          },
+          "treatment_response": {
+            "value": "Improving on gabapentin + chiropractic/PT/CBT; tolerated well (mild first-week sleepiness resolved)",
+            "status": "present",
+            "evidence_ids": ["evb-3", "evb-7"]
+          },
+          "medication_overuse_risk": {
+            "value": "Ibuprofen ~2 days/month — well below 10 days/month threshold",
+            "status": "negative",
+            "evidence_ids": ["evb-10"]
+          }
+        },
+        "missing_questions_remove": [
+          "Any gabapentin side effects since the first week — sleepiness, dizziness, mood change?"
+        ]
+      }
+    },
+    {
+      "turns": [
+        {
+          "id": "tb-7",
+          "speaker": "clinician",
+          "text": "Any headaches that wake her at night, morning vomiting, or vision changes?",
+          "timestamp": "00:01:38"
+        },
+        {
+          "id": "tb-8",
+          "speaker": "interpreter",
+          "text": "No night waking, no vomiting, no vision changes — nothing scary.",
+          "timestamp": "00:01:45"
+        },
+        {
+          "id": "tb-9",
+          "speaker": "clinician",
+          "text": "And school, sleep, and activity since the therapies started?",
+          "timestamp": "00:01:58"
+        },
+        {
+          "id": "tb-10",
+          "speaker": "interpreter",
+          "text": "One partial school day missed since June; back in PE and sleeping nine hours.",
+          "timestamp": "00:02:06"
+        },
+        {
+          "id": "tb-11",
+          "speaker": "patient",
+          "text": "Ya juego en educación física otra vez.",
+          "timestamp": "00:02:11"
+        }
+      ],
+      "delta": {
+        "agent_status": "Re-checking red flags and school reintegration",
+        "red_flags": [
+          {
+            "key": "waking_headache",
+            "status": "absent",
+            "evidence_ids": ["evb-8"]
+          },
+          {
+            "key": "vomiting_am",
+            "status": "absent",
+            "evidence_ids": ["evb-8"]
+          },
+          {
+            "key": "vision_change",
+            "status": "absent",
+            "evidence_ids": ["evb-8"]
+          }
+        ],
+        "profile": {
+          "school_impact": {
+            "value": "One partial school day missed since June — reintegrating well",
+            "status": "present",
+            "evidence_ids": ["evb-9"]
+          },
+          "habits": {
+            "value": [
+              "Regular sleep ~9 h",
+              "Hydration plan maintained",
+              "PE resumed"
+            ],
+            "status": "present",
+            "evidence_ids": ["evb-9"]
+          }
+        },
+        "missing_questions_remove": [
+          "How is school reintegration going — full days back yet?"
+        ]
+      }
+    }
+  ],
+  "previsit": {
+    "headline": "Post-Specialist Review",
+    "documents_count": 16,
+    "sources_count": 6,
+    "assembled_seconds": 6.8,
+    "confidence": "high",
+    "evidence": [
+      {
+        "id": "pevb-1",
+        "source_type": "history",
+        "source_label": "Neurology consult - 06/20",
+        "quote": "Gabapentin 100 mg nightly started. Advised chiropractic care, CBT with psychology, and physical therapy."
+      },
+      {
+        "id": "pevb-2",
+        "source_type": "history",
+        "source_label": "Neurology consult - 06/20",
+        "quote": "Neurology follow-up in 3 months (approx 2026-09-20)."
+      },
+      {
+        "id": "pevb-3",
+        "source_type": "history",
+        "source_label": "Prior PCP visits summary - 06/05",
+        "quote": "PedMIDAS 44 (02/05) → 40 (03/12) → 38 (04/30) → 34 (06/05)."
+      },
+      {
+        "id": "pevb-4",
+        "source_type": "history",
+        "source_label": "Chiropractic note - 07/10",
+        "quote": "Cervical tension reduced; patient reports fewer headache days."
+      },
+      {
+        "id": "pevb-5",
+        "source_type": "history",
+        "source_label": "Physical therapy note - 07/14",
+        "quote": "Posture and neck-strengthening program; home exercises done most days."
+      },
+      {
+        "id": "pevb-6",
+        "source_type": "history",
+        "source_label": "Psychology / CBT note - 07/08",
+        "quote": "Learning relaxation and coping strategies; using them at school. Mood improved."
+      }
+    ],
+    "brief_lines": [
+      {
+        "id": "blb-1",
+        "text": "Seen by pediatric neurology (Dr. Lin, Children's Neuro Clinic) on 06/20 — chronic migraine without aura confirmed.",
+        "source_label": "Neuro consult - 06/20",
+        "evidence_ids": ["pevb-1"]
+      },
+      {
+        "id": "blb-2",
+        "text": "Gabapentin 100 mg nightly added by specialist 06/20.",
+        "source_label": "Neuro consult - 06/20",
+        "evidence_ids": ["pevb-1"]
+      },
+      {
+        "id": "blb-3",
+        "text": "Multimodal therapy underway per specialist plan: chiropractic (since 06/24), PT (since 06/27), CBT (since 07/01) — progress notes favorable.",
+        "source_label": "Therapy notes - 07/08 to 07/14",
+        "evidence_ids": ["pevb-1", "pevb-4", "pevb-5", "pevb-6"]
+      },
+      {
+        "id": "blb-4",
+        "text": "PedMIDAS improving across 4 prior PCP visits: 44 → 40 → 38 → 34; re-score today expected lower.",
+        "source_label": "PCP visits summary - 06/05",
+        "evidence_ids": ["pevb-3"]
+      },
+      {
+        "id": "blb-5",
+        "text": "Specialist follow-up in 3 months (~09/20); PCP 1-month progress check suggested for mid-August.",
+        "source_label": "Neuro consult - 06/20",
+        "evidence_ids": ["pevb-2"]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-02-05",
+        "label": "PCP visit 1",
+        "sublabel": "First headache visit · PedMIDAS 44",
+        "kind": "visit"
+      },
+      {
+        "date": "2026-03-12",
+        "label": "PCP visit 2",
+        "sublabel": "PedMIDAS 40 · lifestyle plan",
+        "kind": "visit"
+      },
+      {
+        "date": "2026-04-30",
+        "label": "PCP visit 3",
+        "sublabel": "PedMIDAS 38 · riboflavin continued",
+        "kind": "visit"
+      },
+      {
+        "date": "2026-06-05",
+        "label": "PCP visit 4",
+        "sublabel": "PedMIDAS 34 · neurology referral placed",
+        "kind": "visit"
+      },
+      {
+        "date": "2026-06-20",
+        "label": "Neurology consult",
+        "sublabel": "Dr. Lin · gabapentin 100 mg started",
+        "kind": "visit"
+      },
+      {
+        "date": "2026-06-24",
+        "label": "Chiropractic care started",
+        "sublabel": "Weekly sessions per specialist plan",
+        "kind": "visit"
+      },
+      {
+        "date": "2026-06-27",
+        "label": "Physical therapy started",
+        "sublabel": "2x/week posture + neck program",
+        "kind": "visit"
+      },
+      {
+        "date": "2026-07-01",
+        "label": "CBT started",
+        "sublabel": "Psychology · relaxation and coping strategies",
+        "kind": "visit"
+      },
+      {
+        "date": "2026-07-16",
+        "label": "Records assembled",
+        "sublabel": "Specialist + therapy notes pulled by Bridge",
+        "kind": "records"
+      },
+      {
+        "date": "2026-07-18",
+        "label": "Today",
+        "sublabel": "Post-specialist PCP follow-up (visit 5)",
+        "kind": "today"
+      }
+    ],
+    "referral_snapshot": {
+      "reason": "Chronic headache — post-specialist co-management",
+      "duration": "Since February 2026",
+      "prior_workup": "Neurology consult 06/20 · gabapentin started",
+      "family_history": "Not restated in specialist records"
+    },
+    "prior_evaluations": [
+      {
+        "id": "peb-1",
+        "title": "Neurology consult · Jun 20",
+        "detail": "Chronic migraine without aura; gabapentin 100 mg + chiropractic/CBT/PT plan",
+        "evidence_ids": ["pevb-1"]
+      },
+      {
+        "id": "peb-2",
+        "title": "Four prior PCP headache visits (Feb–Jun)",
+        "detail": "PedMIDAS 44 → 34 on lifestyle plan + riboflavin before referral",
+        "evidence_ids": ["pevb-3"]
+      },
+      {
+        "id": "peb-3",
+        "title": "Therapy progress notes on file",
+        "detail": "Chiropractic, PT, and CBT all attending with favorable notes",
+        "evidence_ids": ["pevb-4", "pevb-5", "pevb-6"]
+      }
+    ],
+    "family_developmental_history": [
+      "Development on track; school participation recovering with therapy plan",
+      "Family engaged — attending all specialist-advised therapy visits"
+    ],
+    "draft_plan": [
+      {
+        "id": "dpb-1",
+        "title": "Continue gabapentin 100 mg nightly per specialist",
+        "detail": "No PCP dose changes — specialist-managed (clinician review required)",
+        "evidence_ids": ["pevb-1"]
+      },
+      {
+        "id": "dpb-2",
+        "title": "Continue chiropractic, CBT, and PT schedule",
+        "detail": "All advised by neurology 06/20; progress notes favorable",
+        "evidence_ids": ["pevb-1", "pevb-4", "pevb-5", "pevb-6"]
+      },
+      {
+        "id": "dpb-3",
+        "title": "PCP follow-up in 1 month (mid-August)",
+        "detail": "Check progress and overall well-being of the child",
+        "evidence_ids": []
+      },
+      {
+        "id": "dpb-4",
+        "title": "Specialist follow-up in 3 months (~09/20)",
+        "detail": "Dr. Lin · Children's Neuro Clinic — confirmed",
+        "evidence_ids": ["pevb-2"]
+      },
+      {
+        "id": "dpb-5",
+        "title": "Re-score PedMIDAS at next visit",
+        "detail": "Track trend against today's score",
+        "evidence_ids": ["pevb-3"]
+      }
+    ],
+    "ask_during_visit": [
+      "Any gabapentin side effects since the first week — sleepiness, dizziness, mood change?",
+      "Keeping up with PT and CBT home exercises between sessions?",
+      "How is school reintegration going — full days back yet?"
+    ],
+    "handoff_items": [
+      {
+        "id": "hob-1",
+        "title": "PCP follow-up — 1 month (mid-Aug)",
+        "detail": "Progress + overall well-being check; re-score PedMIDAS",
+        "status": "pending_decision"
+      },
+      {
+        "id": "hob-2",
+        "title": "Neurology follow-up · ~09/20",
+        "detail": "Dr. Lin · Children's Neuro Clinic — confirmed",
+        "status": "sent"
+      },
+      {
+        "id": "hob-3",
+        "title": "Family migraine action plan",
+        "detail": "Spanish · updated with gabapentin + therapy schedule",
+        "status": "draft_ready"
+      }
+    ],
+    "unresolved_items": [
+      {
+        "id": "urb-1",
+        "text": "Physical therapy progress note page 2 missing from fax — home-exercise adherence detail incomplete.",
+        "requested_from": "Physical therapy clinic",
+        "date": "2026-07-16"
+      }
+    ],
+    "suggested_questions": [
+      "Ask about this chart...",
+      "What did the specialist recommend?",
+      "When is the next follow-up?"
+    ]
+  },
   "emr_summary": {
     "headline": "Agent-assembled chart summary",
     "evidence": [
       {
         "id": "emrb-ev-1",
         "source_type": "history",
-        "source_label": "First visit summary - 07/18",
-        "quote": "Plan: lifestyle changes, headache diary, limit ibuprofen <3 days/week, riboflavin discussed and started after clinician review."
+        "source_label": "Neurology consult - 06/20",
+        "quote": "Gabapentin 100 mg nightly started. Advised chiropractic care, CBT with psychology, and physical therapy."
       },
       {
         "id": "emrb-ev-2",
         "source_type": "history",
-        "source_label": "Nurse follow-up call - 08/14",
-        "quote": "Family reports diary being kept most days. Headaches somewhat less frequent. Riboflavin tolerated well."
+        "source_label": "Prior PCP visits summary - 06/05",
+        "quote": "Referral to pediatric neurology placed 06/05 for persistent disability despite lifestyle plan and riboflavin."
+      },
+      {
+        "id": "emrb-ev-3",
+        "source_type": "history",
+        "source_label": "Neurology consult - 06/20",
+        "quote": "Neurology follow-up in 3 months (approx 2026-09-20)."
       }
     ],
     "items": [
       {
         "id": "emrb-1",
         "category": "medication",
-        "label": "Riboflavin daily (preventive)",
-        "detail": "Started 07/22 after clinician review; tolerated well",
-        "flag": "adherent per nurse call",
-        "date": "2026-07-22",
-        "evidence_ids": [
-          "emrb-ev-1",
-          "emrb-ev-2"
-        ]
+        "label": "Gabapentin 100 mg nightly (preventive)",
+        "detail": "Started 06/20 by pediatric neurology — specialist-managed, do not adjust at PCP level",
+        "flag": "specialist-managed",
+        "date": "2026-06-20",
+        "evidence_ids": ["emrb-ev-1"]
       },
       {
         "id": "emrb-2",
-        "category": "medication",
-        "label": "Ibuprofen PRN — use reduced",
-        "detail": "~3x/week at first visit, ~1x/week now",
-        "flag": "overuse concern resolved",
-        "date": "2026-09-12",
-        "evidence_ids": [
-          "emrb-ev-1"
-        ]
+        "category": "visit_note",
+        "label": "Chiropractic care — weekly since 06/24",
+        "detail": "Cervical tension reduced; fewer headache days per 07/10 note",
+        "flag": "specialist-advised",
+        "date": "2026-07-10",
+        "evidence_ids": ["emrb-ev-1"]
       },
       {
         "id": "emrb-3",
-        "category": "allergy",
-        "label": "Amoxicillin — rash",
-        "detail": "Childhood reaction documented",
-        "flag": "confirm before any prescription",
-        "date": "",
-        "evidence_ids": []
+        "category": "visit_note",
+        "label": "CBT with psychology — since 07/01",
+        "detail": "Relaxation and coping strategies in use at school; mood improved per 07/08 note",
+        "flag": "specialist-advised",
+        "date": "2026-07-08",
+        "evidence_ids": ["emrb-ev-1"]
       },
       {
         "id": "emrb-4",
-        "category": "referral",
-        "label": "Neurology referral — not sent (watch item)",
-        "detail": "Hold while improving; escalate on trend reversal or red flag",
-        "flag": "escalation trigger retained",
-        "date": "2026-07-18",
-        "evidence_ids": [
-          "emrb-ev-1"
-        ]
+        "category": "visit_note",
+        "label": "Physical therapy — 2x/week since 06/27",
+        "detail": "Posture and neck-strengthening program; home exercises done most days per 07/14 note",
+        "flag": "specialist-advised",
+        "date": "2026-07-14",
+        "evidence_ids": ["emrb-ev-1"]
       },
       {
         "id": "emrb-5",
-        "category": "imaging",
-        "label": "No head imaging on file",
-        "detail": "No trigger met to date",
-        "flag": "",
-        "date": "",
-        "evidence_ids": []
+        "category": "medication",
+        "label": "Riboflavin — prior preventive trial (Feb–Jun)",
+        "detail": "Trialed with lifestyle plan across four PCP visits before referral; insufficient alone",
+        "flag": "historical preventive",
+        "date": "2026-06-05",
+        "evidence_ids": ["emrb-ev-2"]
       },
       {
         "id": "emrb-6",
         "category": "no_show",
-        "label": "No missed appointments; follow-up kept on schedule",
-        "detail": "Nurse call completed 08/14",
+        "label": "No missed appointments",
+        "detail": "All specialist and therapy visits kept since referral",
         "flag": "",
-        "date": "2026-08-14",
-        "evidence_ids": [
-          "emrb-ev-2"
-        ]
+        "date": "2026-07-16",
+        "evidence_ids": []
+      },
+      {
+        "id": "emrb-7",
+        "category": "wait_status",
+        "label": "Neurology follow-up confirmed ~2026-09-20",
+        "detail": "Dr. Lin · Children's Neuro Clinic, 3 months after consult",
+        "flag": "confirmed",
+        "date": "2026-09-20",
+        "evidence_ids": ["emrb-ev-3"]
       }
     ]
   },
   "care_plan": {
     "summary": [
-      "8-week follow-up: headache frequency down ~8 → ~4 days/month on lifestyle plan + riboflavin. [evb-1, evb-2]",
-      "PedMIDAS improved 32 → 11; school and activity participation recovering. [evb-1, evb-2, evb-5]",
-      "Acute ibuprofen use reduced to ~1x/week; overuse concern resolved. [evb-3]",
-      "Red-flag screen remains negative at follow-up. [evb-4]"
+      "Visit 5, first PCP check-in after pediatric neurology: PedMIDAS 34 → 18 since specialist plan started 06/20. [evb-1, evb-6, evb-9]",
+      "Gabapentin 100 mg nightly tolerated — mild first-week sleepiness resolved; family adherent. [evb-2, evb-7]",
+      "Chiropractic, physical therapy, and CBT all underway per specialist plan with favorable progress notes. [evb-3, evb-4, evb-5]",
+      "Headache frequency ~4 days/month; ibuprofen ~2 days/month — no overuse concern. [evb-6, evb-10]",
+      "Lifestyle improved (regular sleep, hydration, PE resumed); red-flag screen negative today. [evb-8, evb-9]"
     ],
     "questions_to_ask": [
-      "Confirm diary completeness and pattern",
-      "Any aura or new symptom types since last visit?"
+      "Any gabapentin side effects to report to neurology?",
+      "Adherence to PT and CBT home exercises between sessions?",
+      "School reintegration — target for full attendance?"
     ],
     "suggested_pathway": [
-      "Continue current lifestyle plan and riboflavin (clinician review required)",
-      "Continue diary; reassess PedMIDAS at next follow-up",
-      "Maintain acute-use limit counseling"
+      "Continue gabapentin 100 mg nightly per specialist plan — no PCP dose changes (clinician review required)",
+      "Continue chiropractic, physical therapy, and CBT as advised by neurology",
+      "PCP follow-up in 1 month (mid-August) — progress and overall well-being check, re-score PedMIDAS",
+      "Keep specialist follow-up with Dr. Lin in 3 months (~09/20)",
+      "Reinforce sleep, hydration, and activity routine"
     ],
     "referral_considerations": [
-      "Neurology referral not indicated while improving (clinician to confirm)",
-      "Escalate if trend reverses, disability rises, or red flags appear"
+      "Already specialist-connected — neurology follow-up confirmed ~09/20 (clinician to confirm cadence)",
+      "Contact neurology sooner if trend reverses, red flags appear, or gabapentin side effects emerge"
     ],
     "patient_instructions": [
-      "Keep going — the plan is working",
-      "Continue diary and riboflavin as reviewed with your clinician",
-      "Return sooner for night waking headaches, morning vomiting, or sudden changes"
+      "The plan is working — keep going",
+      "Give gabapentin every night exactly as Dr. Lin prescribed",
+      "Keep the chiropractic, physical therapy, and CBT appointments and home exercises",
+      "Keep the headache diary going until the next visit",
+      "Return sooner for night-waking headaches, morning vomiting, or sudden changes"
     ],
     "disclaimer": "Draft for clinician review. Final clinical decisions remain with the clinician.",
     "evidence_ids": [
@@ -524,107 +968,103 @@
       "evb-2",
       "evb-3",
       "evb-4",
-      "evb-5"
+      "evb-5",
+      "evb-6",
+      "evb-7",
+      "evb-8",
+      "evb-9",
+      "evb-10"
     ]
   },
   "canned_qa": [
     {
-      "match": [
-        "changed",
-        "change",
-        "since last",
-        "progress",
-        "improv"
-      ],
-      "answer": "Since the July 18 visit: headache frequency dropped from ~8 to ~4 days/month, PedMIDAS improved from 32 to 11, ibuprofen use fell from ~3x/week to ~1x/week, and riboflavin has been tolerated well. The red-flag screen remains negative.",
-      "citations": [
-        "evb-1",
-        "evb-2",
-        "evb-3",
-        "evb-4",
-        "evb-5"
-      ]
+      "match": ["changed", "change", "since last", "progress", "improv"],
+      "answer": "Since the June 5 pre-specialist visit: neurology started gabapentin 100 mg nightly and a multimodal plan (chiropractic, CBT, physical therapy). PedMIDAS improved 34 → 18, headache frequency is down to ~4 days/month, lifestyle has improved (regular sleep, hydration, PE resumed), and the red-flag screen remains negative.",
+      "citations": ["evb-1", "evb-2", "evb-6", "evb-8", "evb-9"]
     },
     {
-      "match": [
-        "referral",
-        "neurology",
-        "escalat"
-      ],
-      "answer": "No neurology referral is suggested while the trend is improving — this remains a clinician decision. The draft plan retains an escalation trigger: refer if the trend reverses, disability rises, or any red flag appears.",
-      "citations": [
-        "evb-2",
-        "evb-4"
-      ]
+      "match": ["specialist", "neurolog", "recommend", "lin", "consult"],
+      "answer": "At the 06/20 consult, Dr. Lin (Children's Neuro Clinic) confirmed chronic migraine without aura, started gabapentin 100 mg nightly, and advised chiropractic care, CBT with psychology, and physical therapy, with neurology follow-up in 3 months. All three therapies are underway with favorable progress notes.",
+      "citations": ["evb-2", "evb-3", "evb-4", "evb-5"]
+    },
+    {
+      "match": ["follow-up", "follow up", "next visit", "when", "appointment"],
+      "answer": "Two follow-ups are on the plan: the neurology follow-up with Dr. Lin is confirmed for about 3 months after the consult (~2026-09-20), and the draft PCP plan suggests a 1-month check-in (mid-August) to review progress and the overall well-being of the child — clinician to confirm.",
+      "citations": ["evb-2"]
+    },
+    {
+      "match": ["gabapentin", "side effect", "medication", "tolera"],
+      "answer": "Gabapentin 100 mg nightly was started by neurology on 06/20 and is specialist-managed. The family reports she takes it every night; she was a little sleepy in the first week but has had no side effects since. Any dose changes should go through Dr. Lin.",
+      "citations": ["evb-2", "evb-7"]
     }
   ],
   "insights": {
-    "note": "Established migraine, improving trajectory on current plan — optimize continuity. Clinician review required.",
+    "note": "Established migraine, clearly improving on specialist-led multimodal plan — protect continuity. Clinician review required.",
     "dxs": [
       {
-        "dx": "Migraine without aura (established)",
-        "confidence": 0.88,
+        "dx": "Chronic migraine without aura (established, improving)",
+        "confidence": 0.9,
         "tone": "teal",
         "guideline": "ICHD-3 · 1.1",
         "guideline_url": "https://ichd-3.org/1-migraine/1-1-migraine-without-aura/",
         "criteria": [
           {
+            "text": "Specialist-confirmed diagnosis (neurology, 06/20)",
+            "met": "met"
+          },
+          {
             "text": "≥5 attacks meeting duration criterion",
             "met": "met"
           },
           {
-            "text": "≥2 pain characteristics (pulsating, mod–severe, activity-aggravated)",
-            "met": "met"
-          },
-          {
-            "text": "Associated N/V or photo/phonophobia",
+            "text": "Disability trend responding to preventive + behavioral plan",
             "met": "met"
           }
         ],
-        "rationale": "Phenotype stable; PedMIDAS trending down (32 → 11) under current plan."
+        "rationale": "Neurology-confirmed diagnosis; PedMIDAS 44 → 18 across five visits with clear inflection after the 06/20 specialist plan."
       },
       {
-        "dx": "Tension-type headache (co-existing)",
-        "confidence": 0.25,
+        "dx": "Cervicogenic contribution (co-existing)",
+        "confidence": 0.2,
         "tone": "neutral",
-        "guideline": "ICHD-3 · 2",
-        "guideline_url": "https://ichd-3.org/2-tension-type-headache/",
+        "guideline": "ICHD-3 · 11.2.1",
+        "guideline_url": "https://ichd-3.org/11-headache-or-facial-pain-attributed-to-disorder-of-the-cranium-neck-eyes-ears-nose-sinuses-teeth-mouth-or-other-facial-or-cervical-structure/",
         "criteria": [
           {
-            "text": "Bilateral, pressing, mild–moderate",
+            "text": "Cervical tension noted; improves with chiropractic/PT",
             "met": "partial"
           },
           {
-            "text": "No N/V; ≤1 of photo/phonophobia",
+            "text": "Clinical evidence of cervical source",
             "met": "partial"
           }
         ],
-        "rationale": "Some lower-intensity days fit TTH pattern — track separately in diary."
+        "rationale": "Chiropractic and PT notes report reduced cervical tension alongside fewer headache days — track as contributing factor, not primary."
       }
     ],
     "txs": [
       {
         "step": "Continue",
-        "rec": "Maintain current lifestyle bundle + riboflavin",
-        "detail": "PedMIDAS improving — do not change regimen prematurely.",
+        "rec": "Gabapentin 100 mg nightly per specialist — no PCP changes",
+        "detail": "Specialist-managed preventive; route any dose questions to Dr. Lin before the ~09/20 follow-up.",
         "evidence": "AAN/AHS 2019 · Pediatric prevention",
         "evidence_url": "https://www.aan.com/Guidelines/",
         "tone": "teal"
       },
       {
-        "step": "Acute",
-        "rec": "Ibuprofen early at onset; keep ≤3 days/week",
-        "detail": "Reinforce early treatment window (<1 h from onset); overuse resolved — keep logging.",
-        "evidence": "AAN/AHS 2019 · Level A",
-        "evidence_url": "https://www.aan.com/Guidelines/",
+        "step": "Behavioral",
+        "rec": "Maintain CBT and PT adherence, including home exercises",
+        "detail": "Behavioral + physical components support durable response; reinforce between-session practice.",
+        "evidence": "CHAMP · NEJM 2017",
+        "evidence_url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1610384",
         "tone": "teal"
       },
       {
-        "step": "Behavioral",
-        "rec": "Reinforce sleep/hydration routine + diary continuation",
-        "detail": "CHAMP supports behavioral components for durable response.",
-        "evidence": "CHAMP · NEJM 2017",
-        "evidence_url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1610384",
+        "step": "Lifestyle",
+        "rec": "Reinforce sleep, hydration, and activity routine",
+        "detail": "Regular ~9 h sleep, hydration plan, and PE resumed — protect these gains through the school year.",
+        "evidence": "AAN/AHS 2019 · Lifestyle counseling",
+        "evidence_url": "https://www.aan.com/Guidelines/",
         "tone": "teal"
       }
     ]

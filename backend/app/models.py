@@ -145,7 +145,7 @@ class CarePlanDraft(BaseModel):
 
 class TranscriptTurn(BaseModel):
     id: str
-    speaker: Literal["clinician", "patient", "parent"]
+    speaker: Literal["clinician", "patient", "parent", "interpreter"]
     text: str
     timestamp: Optional[str] = None
 

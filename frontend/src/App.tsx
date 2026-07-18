@@ -580,7 +580,7 @@ function AgentRail({
   );
 }
 
-const SPEAKER_LABEL: Record<string, string> = { clinician: 'PCP', parent: 'Parent', patient: 'Patient' };
+const SPEAKER_LABEL: Record<string, string> = { clinician: 'PCP', parent: 'Parent', patient: 'Patient', interpreter: 'Interpreter' };
 
 function TranscriptCard({ state }: { state: VisitState }) {
   const endRef = useRef<HTMLDivElement>(null);

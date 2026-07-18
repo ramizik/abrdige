@@ -161,7 +161,7 @@ export interface CarePlanDraft {
 
 export interface TranscriptTurn {
   id: string;
-  speaker: 'clinician' | 'patient' | 'parent';
+  speaker: 'clinician' | 'patient' | 'parent' | 'interpreter';
   text: string;
   timestamp?: string | null;
 }
