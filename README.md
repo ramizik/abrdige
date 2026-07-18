@@ -1,8 +1,8 @@
-# Bridge — Pediatric Headache Copilot
+# ByeByeHeadache — Pediatric Headache Copilot
 
 **Hackathon: The Future of Agentic AI in Healthcare (Abridge)**
 
-> Bridge turns a pediatric headache visit — the live conversation plus a fragmented chart history — into a structured, evidence-linked clinical picture and a clinician-reviewed plan, **while the visit is still happening**.
+> ByeByeHeadache turns a pediatric headache visit — the live conversation plus a fragmented chart history — into a structured, evidence-linked clinical picture and a clinician-reviewed plan, **while the visit is still happening**.
 
 ***
 
@@ -20,14 +20,14 @@ In reality, the conversation disappears into free-text notes, the disability sco
 
 ## The solution
 
-Bridge is a **live visit copilot**. While the doctor and family talk, an AI agent (built on Anthropic's Claude Agent SDK) listens to the visit and continuously turns the conversation — plus the patient's chart — into a structured picture the doctor can glance at:
+ByeByeHeadache is a **live visit copilot**. While the doctor and family talk, an AI agent (built on Anthropic's Claude Agent SDK) listens to the visit and continuously turns the conversation — plus the patient's chart — into a structured picture the doctor can glance at:
 
-1. **Before the visit starts**, Bridge has already read the chart (stored in a real FHIR electronic health record — Medplum) and assembled what matters: past conditions, allergies, family history, prior visits, medication warnings. The doctor never re-asks what the record already knows.
+1. **Before the visit starts**, ByeByeHeadache has already read the chart (stored in a real FHIR electronic health record — Medplum) and assembled what matters: past conditions, allergies, family history, prior visits, medication warnings. The doctor never re-asks what the record already knows.
 2. **As the conversation happens**, the agent fills in a live headache profile — when the headaches started, how often, where, what they feel like, what makes them worse, how much school is being missed — with every fact linked to the exact sentence it came from.
 3. **Safety runs in the background**: a fixed 14-item red-flag checklist (the signs that suggest something more serious) is tracked as *present / absent / not asked yet* — never guessed. If a red flag appears, the routine pathway visibly pauses and escalation drafts appear.
-4. **At the end**, Bridge drafts the visit summary, a next-step plan, and a family-friendly PDF action plan — all marked "draft, for clinician review" — and writes the summary back to the health record so the next visit starts informed.
+4. **At the end**, ByeByeHeadache drafts the visit summary, a next-step plan, and a family-friendly PDF action plan — all marked "draft, for clinician review" — and writes the summary back to the health record so the next visit starts informed.
 
-**The clinician stays the decision-maker.** Bridge never diagnoses, never prescribes, never sends anything on its own. Every output is a draft with evidence attached.
+**The clinician stays the decision-maker.** ByeByeHeadache never diagnoses, never prescribes, never sends anything on its own. Every output is a draft with evidence attached.
 
 ## What you'll see in the demo
 
@@ -55,11 +55,11 @@ Bridge is a **live visit copilot**. While the doctor and family talk, an AI agen
 
 - **The Analyze action is a real agent call**: Claude receives the chart summary, the prior history, and the accumulated transcript, and returns a schema-validated structured re-assessment — profile facts, red-flag states, PedMIDAS answers, missing questions — each with self-generated evidence quotes. No free text, no chat. Output is validated before it touches the screen.
 - **Grounding is enforced**: the agent's instructions forbid invented values; anything unsupported surfaces as *unknown* in the UI.
-- **A real EHR round-trip**: case data lives in Medplum (a FHIR-standard health record server) as a proper longitudinal record — patient, encounters, coded vital signs, questionnaires, documents. Bridge reads it at case open and writes the visit summary back at completion.
+- **A real EHR round-trip**: case data lives in Medplum (a FHIR-standard health record server) as a proper longitudinal record — patient, encounters, coded vital signs, questionnaires, documents. ByeByeHeadache reads it at case open and writes the visit summary back at completion.
 - **The frontend never fabricates**: every value on screen originates from the backend state. If the backend didn't extract it, the UI shows *unknown*.
 
 ### Honest prototype boundaries
-Synthetic data only. The transcript is a simulated speech-to-text feed (pre-scripted chunks — production STT was out of scope; the agentic processing of it is not). Ask-Bridge Q&A is deterministic grounded retrieval over the case with real citations. A demo mode replays precomputed extraction deltas for stage-safe determinism; the Analyze button runs the real agent in either mode. Every external dependency (Medplum, Anthropic API) fails soft to bundled deterministic state — the demo cannot blank-screen.
+Synthetic data only. The transcript is a simulated speech-to-text feed (pre-scripted chunks — production STT was out of scope; the agentic processing of it is not). Ask-ByeByeHeadache Q&A is deterministic grounded retrieval over the case with real citations. A demo mode replays precomputed extraction deltas for stage-safe determinism; the Analyze button runs the real agent in either mode. Every external dependency (Medplum, Anthropic API) fails soft to bundled deterministic state — the demo cannot blank-screen.
 
 ***
 
@@ -118,4 +118,4 @@ cd backend && .venv/bin/python -m scripts.seed_medplum
 
 ## Clinical safety position
 
-Bridge is decision **support**, not a decision maker. Every output is labeled draft / clinician-review-required; unsupported fields are marked unknown rather than filled; pathway suggestions are visually separated from patient facts and sourced from a constrained demo reference informed by ICHD-3-style feature capture. Synthetic PHI only — no real patient data anywhere in the system.
+ByeByeHeadache is decision **support**, not a decision maker. Every output is labeled draft / clinician-review-required; unsupported fields are marked unknown rather than filled; pathway suggestions are visually separated from patient facts and sourced from a constrained demo reference informed by ICHD-3-style feature capture. Synthetic PHI only — no real patient data anywhere in the system.

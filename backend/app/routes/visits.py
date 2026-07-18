@@ -89,6 +89,6 @@ def export_pdf(visit_id: str) -> Response:
         content=content,
         media_type="application/pdf",
         headers={
-            "Content-Disposition": f'inline; filename="bridge-visit-{visit_id}.pdf"'
+            "Content-Disposition": f'inline; filename="byebyeheadache-visit-{visit_id}.pdf"'
         },
     )

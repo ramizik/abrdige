@@ -9,7 +9,7 @@ load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 from .routes import cases, visits  # noqa: E402
 from .services import store  # noqa: E402
 
-app = FastAPI(title="Bridge API", version="0.1.0")
+app = FastAPI(title="ByeByeHeadache API", version="0.1.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -26,7 +26,7 @@ def startup() -> None:
 
 @app.get("/health")
 def health() -> dict:
-    return {"status": "ok", "service": "bridge-api"}
+    return {"status": "ok", "service": "byebyeheadache-api"}
 
 
 app.include_router(cases.router)

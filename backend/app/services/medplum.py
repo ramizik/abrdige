@@ -1,4 +1,4 @@
-"""Narrow Medplum FHIR client for Bridge.
+"""Narrow Medplum FHIR client for ByeByeHeadache.
 
 Scope (per CLAUDE.md): case-load reads + visit-completion write-back only.
 Every read must fail soft — callers fall back to the bundled JSON snapshot.
@@ -110,10 +110,10 @@ def push_case_def(case_id: str, case_raw: dict[str, Any]) -> str | None:
     resource = {
         "resourceType": "DocumentReference",
         "status": "current",
-        "type": {"text": "Bridge case definition (synthetic demo data)"},
+        "type": {"text": "ByeByeHeadache case definition (synthetic demo data)"},
         "date": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "identifier": [{"system": CASE_DEF_SYSTEM, "value": case_id}],
-        "description": f"Full Bridge case definition for {case_id}",
+        "description": f"Full ByeByeHeadache case definition for {case_id}",
         "content": [
             {
                 "attachment": {
@@ -141,10 +141,10 @@ def push_visit_summary(case_id: str, patient_name: str, summary_lines: list[str]
     resource = {
         "resourceType": "DocumentReference",
         "status": "current",
-        "type": {"text": "Bridge visit summary (draft, clinician review required)"},
+        "type": {"text": "ByeByeHeadache visit summary (draft, clinician review required)"},
         "date": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "identifier": [{"system": IDENT_SYSTEM + "/summary", "value": case_id}],
-        "description": f"Bridge visit summary for {patient_name} ({case_id})",
+        "description": f"ByeByeHeadache visit summary for {patient_name} ({case_id})",
         "content": [
             {
                 "attachment": {

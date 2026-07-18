@@ -1,4 +1,4 @@
-"""Pydantic schemas for Bridge. Mirrors frontend/src/types/bridge.ts — keep in sync."""
+"""Pydantic schemas for ByeByeHeadache. Mirrors frontend/src/types/bridge.ts — keep in sync."""
 
 from __future__ import annotations
 

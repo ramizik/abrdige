@@ -1,5 +1,5 @@
 /**
- * Bridge — Pediatric Headache Copilot.
+ * ByeByeHeadache — Pediatric Headache Copilot.
  * UI ported from the Lovable design; every rendered value originates from the
  * backend `VisitState` (Medplum-sourced case data + agent extraction deltas).
  */
@@ -187,7 +187,7 @@ function TopBar({
           />
         </div>
         <div className="flex flex-col leading-tight">
-          <div className="text-[16px] font-bold tracking-tight display text-gradient-clinical">Bridge</div>
+          <div className="text-[16px] font-bold tracking-tight display text-gradient-clinical">ByeByeHeadache</div>
           <div className="text-[10px] mono" style={{ color: 'var(--color-muted-foreground)' }}>
             Pediatric Headache Copilot
           </div>
@@ -1133,7 +1133,7 @@ function AskBridgeCard({ state }: { state: VisitState }) {
 
   return (
     <Card
-      eyebrow="Ask Bridge"
+      eyebrow="Ask ByeByeHeadache"
       right={<span className="mono text-[9.5px]" style={{ color: 'var(--color-muted-foreground)' }}>answers cite chart sources</span>}
     >
       <form

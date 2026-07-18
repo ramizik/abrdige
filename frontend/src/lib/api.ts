@@ -1,4 +1,4 @@
-/** Typed client for the Bridge backend. One function per endpoint. */
+/** Typed client for the ByeByeHeadache backend. One function per endpoint. */
 
 import type {
   AnalyzeResponse,

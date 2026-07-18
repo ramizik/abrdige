@@ -1,4 +1,4 @@
-"""Seed Medplum with synthetic FHIR data for Bridge demo cases.
+"""Seed Medplum with synthetic FHIR data for ByeByeHeadache demo cases.
 
 Builds a browsable EHR graph, not just blobs:
 - one shared Patient (Maya R.) referenced by every resource
