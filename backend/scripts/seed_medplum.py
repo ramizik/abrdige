@@ -1,7 +1,8 @@
 """Seed Medplum with synthetic FHIR data for ByeByeHeadache demo cases.
 
 Builds a browsable EHR graph, not just blobs:
-- one shared Patient (Maya R.) referenced by every resource
+- one Patient per demo case (Elena / Maya / Jordan / Noah), referenced by
+  every resource of that case
 - one Encounter per prior-visit history entry
 - vitals parsed out of the vitals notes into LOINC-coded Observations
 - PedMIDAS: one shared Questionnaire + trend scores as Observations
@@ -37,6 +38,9 @@ SYS = medplum.IDENT_SYSTEM  # https://bridge.demo/case
 PATIENT_SYS = "https://bridge.demo/patient"
 MRN_SYS = "https://bridge.demo/mrn"
 
+# Demo reference date: every case's "today" visit is 2026-07-18.
+TODAY_YEAR = 2026
+
 LOINC = "http://loinc.org"
 VITAL_PATTERNS: list[tuple[str, str, str, str, str]] = [
     # (regex over note text, loinc code, display, unit, ucum)
@@ -59,6 +63,10 @@ def upsert(resource_type: str, ident_system: str, ident_value: str, resource: di
 
 
 def seed_patient(patient: dict) -> str | None:
+    parts = patient["name"].split()
+    given, family = parts[:-1], parts[-1]
+    # Synthetic fixed birthday (Mar 4) so the stated age is exact on 2026-07-18.
+    birth_date = f"{TODAY_YEAR - patient['age']}-03-04"
     res = upsert(
         "Patient",
         PATIENT_SYS,
@@ -66,10 +74,9 @@ def seed_patient(patient: dict) -> str | None:
         {
             "resourceType": "Patient",
             "identifier": [{"system": MRN_SYS, "value": patient["mrn"].replace("MRN ", "")}],
-            "name": [{"given": ["Maya"], "family": "R."}],
+            "name": [{"given": given, "family": family}],
             "gender": "female" if patient.get("sex") == "F" else "male",
-            # age 12 at the July 2026 first visit
-            "birthDate": "2014-03-04",
+            "birthDate": birth_date,
         },
     )
     if res is None:
@@ -79,7 +86,7 @@ def seed_patient(patient: dict) -> str | None:
     return ref
 
 
-def seed_vitals(hx: dict, case_id: str, patient_ref: str, encounter_ref: str) -> None:
+def seed_vitals(hx: dict, case_id: str, patient_ref: str, patient_name: str, encounter_ref: str) -> None:
     for pattern, code, display, unit, ucum in VITAL_PATTERNS:
         m = re.search(pattern, hx["text"])
         if not m:
@@ -98,7 +105,7 @@ def seed_vitals(hx: dict, case_id: str, patient_ref: str, encounter_ref: str) ->
                 }
             ],
             "code": {"coding": [{"system": LOINC, "code": code, "display": display}], "text": display},
-            "subject": {"reference": patient_ref, "display": "Maya R."},
+            "subject": {"reference": patient_ref, "display": patient_name},
             "encounter": {"reference": encounter_ref},
             "effectiveDateTime": hx["date"],
             "valueQuantity": {
@@ -114,6 +121,7 @@ def seed_vitals(hx: dict, case_id: str, patient_ref: str, encounter_ref: str) ->
 
 def seed_case(raw: dict, patient_ref: str) -> None:
     case_id = raw["case_id"]
+    patient_name = raw["patient"]["name"]
 
     for hx in raw["history"]:
         enc = upsert(
@@ -129,9 +137,9 @@ def seed_case(raw: dict, patient_ref: str) -> None:
                     "display": "ambulatory",
                 },
                 "type": [{"text": hx["label"]}],
-                "subject": {"reference": patient_ref, "display": "Maya R."},
+                "subject": {"reference": patient_ref, "display": patient_name},
                 "period": {"start": hx["date"] + "T09:00:00Z"},
-                "serviceProvider": {"display": "Eastside Community Pediatrics"},
+                "serviceProvider": {"display": raw["patient"].get("clinic", "Eastside Pediatrics")},
             },
         )
         if enc is None:
@@ -143,7 +151,7 @@ def seed_case(raw: dict, patient_ref: str) -> None:
         doc = {
             "resourceType": "DocumentReference",
             "status": "current",
-            "subject": {"reference": patient_ref, "display": "Maya R."},
+            "subject": {"reference": patient_ref, "display": patient_name},
             "context": {"encounter": [{"reference": encounter_ref}]},
             "type": {"text": hx["label"]},
             "date": hx["date"] + "T00:00:00Z",
@@ -162,9 +170,9 @@ def seed_case(raw: dict, patient_ref: str) -> None:
         print(f"    note -> {'ok' if res else 'FAILED'}")
 
         if "Vitals" in hx["label"]:
-            seed_vitals(hx, case_id, patient_ref, encounter_ref)
+            seed_vitals(hx, case_id, patient_ref, patient_name, encounter_ref)
 
-    # PedMIDAS trend points (follow-up case) as scored Observations
+    # PedMIDAS trend points (follow-up cases) as scored Observations
     trend = raw.get("precomputed_state", {}).get("pedmidas_trend", [])
     for point in trend:
         obs = {
@@ -172,7 +180,7 @@ def seed_case(raw: dict, patient_ref: str) -> None:
             "status": "final",
             "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "survey"}]}],
             "code": {"text": "PedMIDAS total score"},
-            "subject": {"reference": patient_ref, "display": "Maya R."},
+            "subject": {"reference": patient_ref, "display": patient_name},
             "effectiveDateTime": point["date"],
             "valueQuantity": {"value": point["score"], "unit": "score"},
         }
@@ -204,11 +212,13 @@ def seed_questionnaire(raw: dict) -> None:
 
 
 def cleanup_legacy() -> None:
-    """Remove resources from the old per-case seeding scheme (dup patients etc.)."""
+    """Remove resources from earlier seeding schemes (shared Maya R. patient etc.)."""
     for case_id in ("case-a", "case-b"):
         medplum.fhir("DELETE", f"Patient?identifier={SYS}|{case_id}")
         medplum.fhir("DELETE", f"Questionnaire?identifier={SYS}/pedmidas|{case_id}")
-    print("Legacy per-case Patients/Questionnaires removed.")
+    # Old single shared patient ("Maya R.", pt-001) from the 2-case scheme.
+    medplum.fhir("DELETE", f"Patient?identifier={PATIENT_SYS}|pt-001")
+    print("Legacy patients/questionnaires removed.")
 
 
 def main() -> None:
@@ -216,12 +226,12 @@ def main() -> None:
         sys.exit("MEDPLUM_CLIENT_ID / MEDPLUM_CLIENT_SECRET not set")
     cleanup_legacy()
     cases = [json.loads(p.read_text()) for p in sorted(DEMO_DATA_DIR.glob("case_*.json"))]
-    patient_ref = seed_patient(cases[0]["patient"])
-    if patient_ref is None:
-        sys.exit("Patient upsert failed")
     seed_questionnaire(cases[0])
     for raw in cases:
         print(f"Seeding {raw['case_id']} — {raw['title']}")
+        patient_ref = seed_patient(raw["patient"])
+        if patient_ref is None:
+            sys.exit(f"Patient upsert failed for {raw['case_id']}")
         seed_case(raw, patient_ref)
     print("Done.")
 
