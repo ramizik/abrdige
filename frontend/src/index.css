@@ -1,1 +1,218 @@
-@import "tailwindcss";
+@import "tailwindcss" source(none);
+@source "../src";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-soft-border: var(--primary-soft-border);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-soft: var(--destructive-soft);
+  --color-destructive-soft-border: var(--destructive-soft-border);
+  --color-warning: var(--warning);
+  --color-warning-strong: var(--warning-strong);
+  --color-warning-soft: var(--warning-soft);
+  --color-warning-soft-border: var(--warning-soft-border);
+  --color-border: var(--border);
+  --color-border-soft: var(--border-soft);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink-1: var(--ink-1);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-violet: var(--violet);
+  --color-pink: var(--pink);
+  --color-lime: var(--lime);
+  --color-cyan: var(--cyan);
+}
+
+/*
+ * Bridge palette — bright clinical daylight.
+ * Crisp white canvas + saturated cyan / violet / pink / lime signal accents.
+ */
+:root {
+  --radius: 0.75rem;
+
+  /* canvas — bright */
+  --background: oklch(0.995 0.003 240);          /* near-white */
+  --foreground: oklch(0.20 0.03 260);            /* deep navy ink */
+  --ink-1: oklch(0.20 0.03 260);
+  --ink-2: oklch(0.34 0.03 260);
+  --ink-3: oklch(0.52 0.025 260);
+
+  /* surfaces — white cards on a soft tinted page */
+  --surface: oklch(1 0 0);                       /* pure white card */
+  --surface-2: oklch(0.975 0.012 230);           /* subtle blue-tinted inset */
+
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --popover: var(--surface);
+  --popover-foreground: var(--foreground);
+
+  /* signal accents — vivid, hospital-friendly */
+  --cyan: oklch(0.68 0.14 210);                  /* #0EA5E9-ish sky */
+  --violet: oklch(0.58 0.20 295);                /* #7C3AED */
+  --pink: oklch(0.66 0.22 350);                  /* #EC4899 */
+  --lime: oklch(0.72 0.20 145);                  /* #10B981 emerald */
+
+  --primary: var(--cyan);
+  --primary-foreground: oklch(1 0 0);
+  --primary-soft: oklch(0.95 0.05 210);          /* pale cyan wash */
+  --primary-soft-border: oklch(0.82 0.10 210);
+
+  --secondary: oklch(0.96 0.01 250);
+  --secondary-foreground: var(--foreground);
+
+  --muted: oklch(0.96 0.008 250);
+  --muted-foreground: oklch(0.50 0.03 260);
+
+  --accent: oklch(0.95 0.06 295);                /* pale violet wash */
+  --accent-foreground: var(--violet);
+
+  --destructive: oklch(0.60 0.22 25);            /* clinical red */
+  --destructive-foreground: oklch(1 0 0);
+  --destructive-soft: oklch(0.95 0.06 25);
+  --destructive-soft-border: oklch(0.80 0.14 25);
+
+  --warning: oklch(0.62 0.16 65);                /* amber text */
+  --warning-strong: oklch(0.72 0.19 70);
+  --warning-soft: oklch(0.96 0.06 80);
+  --warning-soft-border: oklch(0.82 0.14 75);
+
+  --border: oklch(0.90 0.012 250);
+  --border-soft: oklch(0.94 0.008 250);
+  --input: oklch(0.90 0.012 250);
+  --ring: var(--cyan);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    /* Soft daylight wash — pale cyan/violet/pink halos on white */
+    background-image:
+      radial-gradient(1100px 640px at 6% -8%, oklch(0.90 0.09 210 / 0.55), transparent 60%),
+      radial-gradient(900px 520px at 100% 0%, oklch(0.90 0.10 295 / 0.45), transparent 55%),
+      radial-gradient(900px 600px at 50% 110%, oklch(0.92 0.09 350 / 0.35), transparent 55%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.01em; }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in oklab, var(--color-primary) 40%, transparent);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::selection { background: color-mix(in oklab, var(--color-primary) 30%, transparent); color: var(--color-foreground); }
+}
+
+
+@utility mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum" 1, "zero" 1;
+}
+@utility display { font-family: var(--font-display); }
+@utility eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+  font-family: var(--font-mono);
+}
+
+/* bright card with subtle cyan edge */
+@utility card-surface {
+  background: linear-gradient(180deg, oklch(1 0 0 / 0.96), oklch(0.985 0.008 230 / 0.96));
+  border: 1px solid color-mix(in oklab, var(--color-border) 80%, var(--color-primary) 20%);
+  border-radius: 14px;
+  box-shadow:
+    0 1px 0 0 oklch(1 0 0 / 0.7) inset,
+    0 10px 28px -20px oklch(0.30 0.08 260 / 0.35),
+    0 2px 6px -3px oklch(0.30 0.08 260 / 0.10);
+  backdrop-filter: blur(6px);
+}
+
+
+@utility card-glow-cyan {
+  box-shadow:
+    0 0 0 1px oklch(0.65 0.18 200 / 0.35),
+    0 10px 40px -8px oklch(0.65 0.20 200 / 0.35);
+}
+@utility card-glow-violet {
+  box-shadow:
+    0 0 0 1px oklch(0.65 0.18 300 / 0.35),
+    0 10px 40px -8px oklch(0.65 0.20 300 / 0.35);
+}
+@utility card-glow-pink {
+  box-shadow:
+    0 0 0 1px oklch(0.65 0.22 350 / 0.4),
+    0 10px 40px -8px oklch(0.65 0.22 350 / 0.4);
+}
+
+@utility text-gradient-clinical {
+  background: linear-gradient(90deg, var(--cyan), var(--violet) 55%, var(--pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility pulse-ring {
+  position: relative;
+}
+@utility pulse-ring {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 9999px;
+    border: 1px solid var(--color-primary);
+    opacity: 0.6;
+    animation: bridge-pulse 1.8s ease-out infinite;
+  }
+}
+
+@keyframes bridge-pulse {
+  0%   { transform: scale(0.9); opacity: 0.6; }
+  70%  { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+@utility grid-bg {
+  background-image:
+    linear-gradient(oklch(0.55 0.13 200 / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.55 0.13 200 / 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+}

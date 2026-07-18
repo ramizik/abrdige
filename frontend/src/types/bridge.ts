@@ -271,6 +271,40 @@ export interface PrevisitBrief {
   suggested_questions: string[];
 }
 
+/** --- Guideline-linked decision support (draft, clinician review required) --- */
+
+export type InsightTone = 'neutral' | 'teal' | 'amber' | 'red';
+
+export interface InsightCriterion {
+  text: string;
+  met: 'met' | 'partial' | 'unmet';
+}
+
+export interface InsightDx {
+  dx: string;
+  confidence: number;
+  tone: InsightTone;
+  guideline: string;
+  guideline_url: string;
+  criteria: InsightCriterion[];
+  rationale: string;
+}
+
+export interface InsightTx {
+  step: string;
+  rec: string;
+  detail: string;
+  evidence: string;
+  evidence_url: string;
+  tone: InsightTone;
+}
+
+export interface InsightPack {
+  note: string | null;
+  dxs: InsightDx[];
+  txs: InsightTx[];
+}
+
 export interface VisitState {
   visit_id: string;
   case_id: string;
@@ -295,6 +329,7 @@ export interface VisitState {
   pedmidas_trend: PedMIDASPoint[];
   medication_events: MedicationEvent[];
   changes_since_last_visit: string[];
+  insights: InsightPack | null;
   evidence: Record<string, EvidenceRef>;
 }
 

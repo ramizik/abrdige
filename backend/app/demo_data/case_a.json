@@ -1,6 +1,6 @@
 {
   "case_id": "case-a",
-  "title": "Maya R. \u2014 First headache visit",
+  "title": "Maya R. — First headache visit",
   "mode": "first_visit",
   "description": "12-year-old with 4 months of recurrent headaches. Nonurgent migraine-compatible pattern, school impact, no red flags.",
   "patient": {
@@ -40,7 +40,7 @@
       "id": "hx-4",
       "label": "Medication list & allergies",
       "date": "2026-07-18",
-      "text": "No daily medications. PRN ibuprofen per parent report at check-in. PRN albuterol inhaler (mild intermittent asthma). Allergies: amoxicillin \u2014 rash (childhood)."
+      "text": "No daily medications. PRN ibuprofen per parent report at check-in. PRN albuterol inhaler (mild intermittent asthma). Allergies: amoxicillin — rash (childhood)."
     },
     {
       "id": "hx-5",
@@ -267,13 +267,13 @@
         {
           "id": "t-7",
           "speaker": "patient",
-          "text": "Mostly here on both sides of my forehead. It's like pounding, like a drum. Pretty bad \u2014 I can't really do homework when it happens.",
+          "text": "Mostly here on both sides of my forehead. It's like pounding, like a drum. Pretty bad — I can't really do homework when it happens.",
           "timestamp": "00:02:14"
         },
         {
           "id": "t-7b",
           "speaker": "clinician",
-          "text": "If you have one and you run around \u2014 gym class, soccer \u2014 does it get worse?",
+          "text": "If you have one and you run around — gym class, soccer — does it get worse?",
           "timestamp": "00:02:25"
         },
         {
@@ -296,7 +296,7 @@
             "id": "ev-4",
             "source_type": "transcript",
             "source_label": "Patient, 00:02:14",
-            "quote": "Mostly here on both sides of my forehead. It's like pounding, like a drum. Pretty bad \u2014 I can't really do homework when it happens."
+            "quote": "Mostly here on both sides of my forehead. It's like pounding, like a drum. Pretty bad — I can't really do homework when it happens."
           },
           {
             "id": "ev-4b",
@@ -327,7 +327,7 @@
             ]
           },
           "severity": {
-            "value": "Moderate\u2013severe (stops homework)",
+            "value": "Moderate–severe (stops homework)",
             "status": "present",
             "evidence_ids": [
               "ev-4"
@@ -364,13 +364,13 @@
         {
           "id": "t-9",
           "speaker": "parent",
-          "text": "Yes, she gets nauseous \u2014 she's thrown up once or twice. And she goes to her room and turns off the lights, says our voices are too loud.",
+          "text": "Yes, she gets nauseous — she's thrown up once or twice. And she goes to her room and turns off the lights, says our voices are too loud.",
           "timestamp": "00:03:11"
         },
         {
           "id": "t-9b",
           "speaker": "clinician",
-          "text": "Maya, right before a headache starts, do you ever see flashing lights, zigzag lines, spots \u2014 or get numbness or tingling?",
+          "text": "Maya, right before a headache starts, do you ever see flashing lights, zigzag lines, spots — or get numbness or tingling?",
           "timestamp": "00:03:24"
         },
         {
@@ -387,7 +387,7 @@
             "id": "ev-5",
             "source_type": "transcript",
             "source_label": "Parent, 00:03:11",
-            "quote": "Yes, she gets nauseous \u2014 she's thrown up once or twice. And she goes to her room and turns off the lights, says our voices are too loud."
+            "quote": "Yes, she gets nauseous — she's thrown up once or twice. And she goes to her room and turns off the lights, says our voices are too loud."
           },
           {
             "id": "ev-5b",
@@ -442,7 +442,7 @@
         {
           "id": "t-11",
           "speaker": "parent",
-          "text": "No, never at night \u2014 they're always afternoon or evening. No morning vomiting. Nothing like weakness or vision problems.",
+          "text": "No, never at night — they're always afternoon or evening. No morning vomiting. Nothing like weakness or vision problems.",
           "timestamp": "00:04:18"
         },
         {
@@ -454,7 +454,7 @@
         {
           "id": "t-13",
           "speaker": "parent",
-          "text": "No seizures, walking is fine, she's always been sharp. Coughing or straining has never started one. And nothing sudden \u2014 they came on gradually, never a worst-headache-of-her-life moment.",
+          "text": "No seizures, walking is fine, she's always been sharp. Coughing or straining has never started one. And nothing sudden — they came on gradually, never a worst-headache-of-her-life moment.",
           "timestamp": "00:04:44"
         },
         {
@@ -467,7 +467,7 @@
           "id": "t-4y",
           "speaker": "parent",
           "timestamp": "00:05:02",
-          "text": "No, speech is normal, no fevers or stiff neck, no head injuries, and none of that medical history \u2014 she's been healthy."
+          "text": "No, speech is normal, no fevers or stiff neck, no head injuries, and none of that medical history — she's been healthy."
         }
       ],
       "delta": {
@@ -477,19 +477,19 @@
             "id": "ev-6",
             "source_type": "transcript",
             "source_label": "Parent, 00:04:18",
-            "quote": "No, never at night \u2014 they're always afternoon or evening. No morning vomiting. Nothing like weakness or vision problems."
+            "quote": "No, never at night — they're always afternoon or evening. No morning vomiting. Nothing like weakness or vision problems."
           },
           {
             "id": "ev-7",
             "source_type": "transcript",
             "source_label": "Parent, 00:04:44",
-            "quote": "No seizures, walking is fine, she's always been sharp. Coughing or straining has never started one. And nothing sudden \u2014 they came on gradually, never a worst-headache-of-her-life moment."
+            "quote": "No seizures, walking is fine, she's always been sharp. Coughing or straining has never started one. And nothing sudden — they came on gradually, never a worst-headache-of-her-life moment."
           },
           {
             "id": "ev-7b",
             "source_type": "transcript",
             "source_label": "Parent, 00:05:02",
-            "quote": "No, speech is normal, no fevers or stiff neck, no head injuries, and none of that medical history \u2014 she's been healthy."
+            "quote": "No, speech is normal, no fevers or stiff neck, no head injuries, and none of that medical history — she's been healthy."
           }
         ],
         "red_flags": [
@@ -620,7 +620,7 @@
         ],
         "profile": {
           "progression": {
-            "value": "Rose in spring, plateaued last 2 months \u2014 non-progressive",
+            "value": "Rose in spring, plateaued last 2 months — non-progressive",
             "status": "present",
             "evidence_ids": [
               "ev-8"
@@ -725,7 +725,7 @@
         {
           "id": "t-19",
           "speaker": "clinician",
-          "text": "Outside school \u2014 days she couldn't do things at home, chores, homework? And days she skipped soccer or hanging out with friends, or went but wasn't really herself?",
+          "text": "Outside school — days she couldn't do things at home, chores, homework? And days she skipped soccer or hanging out with friends, or went but wasn't really herself?",
           "timestamp": "00:07:12"
         },
         {
@@ -887,7 +887,7 @@
             ]
           },
           "medication_overuse_risk": {
-            "value": "Ibuprofen ~3 days/week (~12 days/month) \u2014 meets \u226510 days/month overuse threshold",
+            "value": "Ibuprofen ~3 days/week (~12 days/month) — meets ≥10 days/month overuse threshold",
             "status": "present",
             "evidence_ids": [
               "ev-13"
@@ -986,13 +986,13 @@
           "id": "t-9x",
           "speaker": "clinician",
           "timestamp": "00:10:05",
-          "text": "Her exam today is reassuring \u2014 she's well-appearing, neuro exam is completely normal: eye movements, strength, coordination and gait all fine. I got a good look at her optic discs and there's no papilledema."
+          "text": "Her exam today is reassuring — she's well-appearing, neuro exam is completely normal: eye movements, strength, coordination and gait all fine. I got a good look at her optic discs and there's no papilledema."
         },
         {
           "id": "t-9y",
           "speaker": "clinician",
           "timestamp": "00:10:30",
-          "text": "Putting it together, this looks most like migraine \u2014 my concern level today is low. Plan: start a headache diary, work on sleep and hydration, keep ibuprofen to no more than two days a week so we don't get rebound headaches, and I'll see her back in eight weeks. No imaging needed today."
+          "text": "Putting it together, this looks most like migraine — my concern level today is low. Plan: start a headache diary, work on sleep and hydration, keep ibuprofen to no more than two days a week so we don't get rebound headaches, and I'll see her back in eight weeks. No imaging needed today."
         }
       ],
       "delta": {
@@ -1020,7 +1020,7 @@
             "id": "ev-17",
             "source_type": "transcript",
             "source_label": "Clinician, 00:10:30",
-            "quote": "this looks most like migraine \u2014 my concern level today is low. Plan: start a headache diary, work on sleep and hydration, keep ibuprofen to no more than two days a week"
+            "quote": "this looks most like migraine — my concern level today is low. Plan: start a headache diary, work on sleep and hydration, keep ibuprofen to no more than two days a week"
           }
         ],
         "missing_questions_remove": [
@@ -1036,7 +1036,7 @@
             ]
           },
           "diary_available": {
-            "value": "Not yet \u2014 starting today per plan",
+            "value": "Not yet — starting today per plan",
             "status": "negative",
             "evidence_ids": [
               "ev-17"
@@ -1053,7 +1053,7 @@
           },
           "neuro_exam": {
             "value": [
-              "Normal \u2014 eye movements, strength, coordination, gait"
+              "Normal — eye movements, strength, coordination, gait"
             ],
             "status": "present",
             "evidence_ids": [
@@ -1061,7 +1061,7 @@
             ]
           },
           "funduscopic": {
-            "value": "Normal \u2014 no papilledema",
+            "value": "Normal — no papilledema",
             "status": "present",
             "evidence_ids": [
               "ev-16"
@@ -1094,7 +1094,7 @@
             "value": [
               "Headache diary + follow-up (8 weeks)",
               "Lifestyle counseling (sleep, hydration)",
-              "Acute treatment guidance (ibuprofen \u22642 days/week)",
+              "Acute treatment guidance (ibuprofen ≤2 days/week)",
               "No imaging today"
             ],
             "status": "present",
@@ -1113,7 +1113,7 @@
         "id": "emr-ev-1",
         "source_type": "history",
         "source_label": "Medication list & allergies - 07/18",
-        "quote": "No daily medications. PRN ibuprofen per parent report at check-in. PRN albuterol inhaler (mild intermittent asthma). Allergies: amoxicillin \u2014 rash (childhood)."
+        "quote": "No daily medications. PRN ibuprofen per parent report at check-in. PRN albuterol inhaler (mild intermittent asthma). Allergies: amoxicillin — rash (childhood)."
       },
       {
         "id": "emr-ev-2",
@@ -1149,7 +1149,7 @@
       {
         "id": "emr-2",
         "category": "allergy",
-        "label": "Amoxicillin \u2014 rash",
+        "label": "Amoxicillin — rash",
         "detail": "Childhood reaction documented",
         "flag": "confirm before any prescription",
         "date": "",
@@ -1173,7 +1173,7 @@
         "category": "medication",
         "label": "Ibuprofen PRN (parent-reported)",
         "detail": "Frequency not quantified in chart",
-        "flag": "overuse watch \u2014 quantify at visit",
+        "flag": "overuse watch — quantify at visit",
         "date": "2026-07-18",
         "evidence_ids": [
           "emr-ev-1",
@@ -1194,7 +1194,7 @@
       {
         "id": "emr-6",
         "category": "visit_note",
-        "label": "Urgent care visit \u2014 headache + nausea",
+        "label": "Urgent care visit — headache + nausea",
         "detail": "Normal neuro exam, no imaging, discharged same day, PCP follow-up advised",
         "flag": "repeat acute-care use for headache",
         "date": "2026-05-15",
@@ -1205,7 +1205,7 @@
       {
         "id": "emr-7",
         "category": "visit_note",
-        "label": "Well-child visit \u2014 headaches first mentioned",
+        "label": "Well-child visit — headaches first mentioned",
         "detail": "Not evaluated at the time; normal neuro screen",
         "flag": "",
         "date": "2026-02-10",
@@ -1247,7 +1247,7 @@
       {
         "id": "emr-11",
         "category": "wait_status",
-        "label": "Pediatric neurology wait ~10\u201312 weeks (regional)",
+        "label": "Pediatric neurology wait ~10–12 weeks (regional)",
         "detail": "Informs timing if escalation needed",
         "flag": "plan around wait if referring",
         "date": "2026-07-17",
@@ -1269,8 +1269,8 @@
       "12-year-old with ~4 months of recurrent bilateral frontal pounding headaches, ~8 days/month, lasting hours; rose in spring, non-progressive last 2 months. [ev-1, ev-2, ev-3, ev-4, ev-8]",
       "Phenotype: worse with routine activity, nausea with occasional vomiting, photophobia and phonophobia, no aura; family history of migraine (mother, grandmother). [ev-4b, ev-5, ev-5b, ev-14]",
       "Red-flag screen negative today: no thunderclap onset, morning vomiting, sleep awakening, focal deficits, seizures, gait change, altered mental status, or exertional/Valsalva trigger; normal vitals. [ev-6, ev-7, ev-15]",
-      "Functional burden: PedMIDAS 32 (moderate) \u2014 4 full + 6 partial school days missed, soccer skipped/limited 7x, one urgent-care visit in May. [ev-9, ev-10, ev-11, ev-3b]",
-      "Treatment response: ibuprofen ~3x/week with partial relief only when taken early \u2014 approaching overuse range; lifestyle contributors present (late sleep, skipped breakfast, low hydration). [ev-13, ev-12]"
+      "Functional burden: PedMIDAS 32 (moderate) — 4 full + 6 partial school days missed, soccer skipped/limited 7x, one urgent-care visit in May. [ev-9, ev-10, ev-11, ev-3b]",
+      "Treatment response: ibuprofen ~3x/week with partial relief only when taken early — approaching overuse range; lifestyle contributors present (late sleep, skipped breakfast, low hydration). [ev-13, ev-12]"
     ],
     "questions_to_ask": [
       "Confirm exact ibuprofen dose and count per week",
@@ -1285,10 +1285,10 @@
     ],
     "referral_considerations": [
       "No urgent neurology referral indicated today based on negative red-flag screen (clinician to confirm)",
-      "Refer if red flags emerge, pattern progresses, or disability remains moderate-high despite 8\u201312 weeks of initial plan"
+      "Refer if red flags emerge, pattern progresses, or disability remains moderate-high despite 8–12 weeks of initial plan"
     ],
     "patient_instructions": [
-      "Keep the headache diary daily \u2014 one tap per day",
+      "Keep the headache diary daily — one tap per day",
       "Same bedtime every night, phone out of the bedroom",
       "Eat breakfast; carry a water bottle at school",
       "Take ibuprofen early in an attack, but not more than 3 days per week",
@@ -1322,7 +1322,7 @@
         "school",
         "impact"
       ],
-      "answer": "The family reported Maya missed 4 full school days and left early 6 times in the last 3 months, plus about 10 days where she was present but got almost nothing done. This is captured in PedMIDAS items 1\u20133.",
+      "answer": "The family reported Maya missed 4 full school days and left early 6 times in the last 3 months, plus about 10 days where she was present but got almost nothing done. This is captured in PedMIDAS items 1–3.",
       "citations": [
         "ev-9",
         "ev-10"
@@ -1349,7 +1349,7 @@
         "ct",
         "scan"
       ],
-      "answer": "The chart shows no head imaging has ever been performed \u2014 none at the May urgent-care visit (normal neuro exam, discharged same day) and none since. With today's negative red-flag screen, no imaging trigger is currently met; this remains a clinician decision.",
+      "answer": "The chart shows no head imaging has ever been performed — none at the May urgent-care visit (normal neuro exam, discharged same day) and none since. With today's negative red-flag screen, no imaging trigger is currently met; this remains a clinician decision.",
       "citations": [
         "emr-ev-2"
       ]
@@ -1614,6 +1614,111 @@
       "Ask about this chart...",
       "Any red flags on intake screen?",
       "What happened at the well-child visit?"
+    ]
+  },
+  "insights": {
+    "note": "First visit — phenotype consistent with primary migraine; confirm criteria & rule out secondary features. Clinician review required.",
+    "dxs": [
+      {
+        "dx": "Migraine without aura (probable)",
+        "confidence": 0.7,
+        "tone": "teal",
+        "guideline": "ICHD-3 · 1.1",
+        "guideline_url": "https://ichd-3.org/1-migraine/1-1-migraine-without-aura/",
+        "criteria": [
+          {
+            "text": "≥5 attacks, 2–72 h (pediatric)",
+            "met": "partial"
+          },
+          {
+            "text": "≥2 of: unilateral, pulsating, mod–severe, activity-aggravated",
+            "met": "met"
+          },
+          {
+            "text": "N/V OR photo+phonophobia",
+            "met": "met"
+          },
+          {
+            "text": "Not better accounted for by another ICHD-3 dx",
+            "met": "met"
+          }
+        ],
+        "rationale": "Attack features fit 1.1; total attack count still being clarified in visit."
+      },
+      {
+        "dx": "Tension-type headache",
+        "confidence": 0.3,
+        "tone": "neutral",
+        "guideline": "ICHD-3 · 2",
+        "guideline_url": "https://ichd-3.org/2-tension-type-headache/",
+        "criteria": [
+          {
+            "text": "Bilateral, pressing quality",
+            "met": "partial"
+          },
+          {
+            "text": "Not aggravated by routine activity",
+            "met": "unmet"
+          }
+        ],
+        "rationale": "Less likely given photophobia + activity aggravation."
+      },
+      {
+        "dx": "Secondary headache screen",
+        "confidence": 0.08,
+        "tone": "amber",
+        "guideline": "Red-flag screen · ICHD-3 · 5–12",
+        "guideline_url": "https://ichd-3.org/",
+        "criteria": [
+          {
+            "text": "Systemic sx / fever",
+            "met": "unmet"
+          },
+          {
+            "text": "Neuro deficit / papilledema",
+            "met": "unmet"
+          },
+          {
+            "text": "Onset thunderclap / progressive",
+            "met": "unmet"
+          }
+        ],
+        "rationale": "Red-flag screen negative so far today — continue monitoring at follow-up."
+      }
+    ],
+    "txs": [
+      {
+        "step": "Acute · first-line",
+        "rec": "Ibuprofen 10 mg/kg (max 600 mg) at onset",
+        "detail": "Treat early; hydrate; dark quiet room.",
+        "evidence": "AAN/AHS 2019 · Level A",
+        "evidence_url": "https://www.aan.com/Guidelines/",
+        "tone": "teal"
+      },
+      {
+        "step": "Acute · rescue",
+        "rec": "Consider triptan if NSAID inadequate at 1 h",
+        "detail": "Rizatriptan (age ≥6) or almotriptan (age ≥12) FDA-approved.",
+        "evidence": "AAN/AHS 2019 · Level A",
+        "evidence_url": "https://www.aan.com/Guidelines/",
+        "tone": "teal"
+      },
+      {
+        "step": "Preventive · lifestyle",
+        "rec": "Sleep regularization, hydration, trigger diary × 8 wk",
+        "detail": "Reassess PedMIDAS at follow-up before pharm prevention.",
+        "evidence": "AAP · Pediatric migraine care",
+        "evidence_url": "https://publications.aap.org/",
+        "tone": "teal"
+      },
+      {
+        "step": "If frequency rises",
+        "rec": "Discuss preventive: topiramate or amitriptyline+CBT",
+        "detail": "Shared decision; CHAMP data supports combined approach.",
+        "evidence": "CHAMP · NEJM 2017",
+        "evidence_url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1610384",
+        "tone": "amber"
+      }
     ]
   }
 }

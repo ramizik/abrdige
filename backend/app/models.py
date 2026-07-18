@@ -298,6 +298,43 @@ class EmrSummary(BaseModel):
     items: list[EmrItem] = Field(default_factory=list)
 
 
+Tone = Literal["neutral", "teal", "amber", "red"]
+
+
+class InsightCriterion(BaseModel):
+    text: str
+    met: Literal["met", "partial", "unmet"] = "partial"
+
+
+class InsightDx(BaseModel):
+    """Differential-diagnosis candidate for clinician review (never autonomous)."""
+
+    dx: str
+    confidence: float
+    tone: Tone = "neutral"
+    guideline: str
+    guideline_url: str
+    criteria: list[InsightCriterion] = Field(default_factory=list)
+    rationale: str = ""
+
+
+class InsightTx(BaseModel):
+    """Guideline-linked treatment consideration for clinician review."""
+
+    step: str
+    rec: str
+    detail: str = ""
+    evidence: str = ""
+    evidence_url: str = ""
+    tone: Tone = "neutral"
+
+
+class InsightPack(BaseModel):
+    note: Optional[str] = None
+    dxs: list[InsightDx] = Field(default_factory=list)
+    txs: list[InsightTx] = Field(default_factory=list)
+
+
 class VisitState(BaseModel):
     """Aggregate state returned to the frontend after every update."""
 
@@ -327,6 +364,8 @@ class VisitState(BaseModel):
     pedmidas_trend: list[PedMIDASPoint] = Field(default_factory=list)
     medication_events: list[MedicationEvent] = Field(default_factory=list)
     changes_since_last_visit: list[str] = Field(default_factory=list)
+    # Guideline-linked decision support (draft, clinician review required)
+    insights: Optional[InsightPack] = None
     evidence: dict[str, EvidenceRef] = Field(default_factory=dict)
 
 

@@ -1,6 +1,6 @@
 {
   "case_id": "case-b",
-  "title": "Maya R. \u2014 Follow-up visit (8 weeks)",
+  "title": "Maya R. — Follow-up visit (8 weeks)",
   "mode": "follow_up",
   "description": "Follow-up state: PedMIDAS improving after lifestyle plan + riboflavin, ibuprofen use reduced, referral watch item retained.",
   "patient": {
@@ -146,7 +146,7 @@
         "id": "evb-4",
         "source_type": "transcript",
         "source_label": "Parent, follow-up visit",
-        "quote": "Nothing new \u2014 no night headaches, no vomiting, nothing scary."
+        "quote": "Nothing new — no night headaches, no vomiting, nothing scary."
       },
       {
         "id": "evb-5",
@@ -189,7 +189,7 @@
         ]
       },
       "progression": {
-        "value": "Improving \u2014 frequency down ~8 to ~4 days/month since July plan",
+        "value": "Improving — frequency down ~8 to ~4 days/month since July plan",
         "status": "present",
         "evidence_ids": [
           "evb-2"
@@ -212,14 +212,14 @@
         ]
       },
       "medication_overuse_risk": {
-        "value": "Ibuprofen ~1 day/week (~4 days/month) \u2014 below overuse threshold, improved from ~12",
+        "value": "Ibuprofen ~1 day/week (~4 days/month) — below overuse threshold, improved from ~12",
         "status": "negative",
         "evidence_ids": [
           "evb-3"
         ]
       },
       "diary_available": {
-        "value": "Yes \u2014 kept most days since first visit",
+        "value": "Yes — kept most days since first visit",
         "status": "present",
         "evidence_ids": [
           "evb-5"
@@ -399,8 +399,8 @@
     ],
     "changes_since_last_visit": [
       "Headache frequency down from ~8 to ~4 days/month [evb-1, evb-2]",
-      "PedMIDAS improved 32 \u2192 11 (moderate \u2192 mild disability) [evb-1, evb-2]",
-      "Ibuprofen use reduced from ~3x/week to ~1x/week \u2014 overuse concern resolved [evb-3]",
+      "PedMIDAS improved 32 → 11 (moderate → mild disability) [evb-1, evb-2]",
+      "Ibuprofen use reduced from ~3x/week to ~1x/week — overuse concern resolved [evb-3]",
       "Riboflavin tolerated, adherent [evb-5]",
       "Red-flag screen remains negative [evb-4]"
     ],
@@ -443,7 +443,7 @@
       {
         "id": "emrb-2",
         "category": "medication",
-        "label": "Ibuprofen PRN \u2014 use reduced",
+        "label": "Ibuprofen PRN — use reduced",
         "detail": "~3x/week at first visit, ~1x/week now",
         "flag": "overuse concern resolved",
         "date": "2026-09-12",
@@ -454,7 +454,7 @@
       {
         "id": "emrb-3",
         "category": "allergy",
-        "label": "Amoxicillin \u2014 rash",
+        "label": "Amoxicillin — rash",
         "detail": "Childhood reaction documented",
         "flag": "confirm before any prescription",
         "date": "",
@@ -463,7 +463,7 @@
       {
         "id": "emrb-4",
         "category": "referral",
-        "label": "Neurology referral \u2014 not sent (watch item)",
+        "label": "Neurology referral — not sent (watch item)",
         "detail": "Hold while improving; escalate on trend reversal or red flag",
         "flag": "escalation trigger retained",
         "date": "2026-07-18",
@@ -495,8 +495,8 @@
   },
   "care_plan": {
     "summary": [
-      "8-week follow-up: headache frequency down ~8 \u2192 ~4 days/month on lifestyle plan + riboflavin. [evb-1, evb-2]",
-      "PedMIDAS improved 32 \u2192 11; school and activity participation recovering. [evb-1, evb-2, evb-5]",
+      "8-week follow-up: headache frequency down ~8 → ~4 days/month on lifestyle plan + riboflavin. [evb-1, evb-2]",
+      "PedMIDAS improved 32 → 11; school and activity participation recovering. [evb-1, evb-2, evb-5]",
       "Acute ibuprofen use reduced to ~1x/week; overuse concern resolved. [evb-3]",
       "Red-flag screen remains negative at follow-up. [evb-4]"
     ],
@@ -514,7 +514,7 @@
       "Escalate if trend reverses, disability rises, or red flags appear"
     ],
     "patient_instructions": [
-      "Keep going \u2014 the plan is working",
+      "Keep going — the plan is working",
       "Continue diary and riboflavin as reviewed with your clinician",
       "Return sooner for night waking headaches, morning vomiting, or sudden changes"
     ],
@@ -551,11 +551,82 @@
         "neurology",
         "escalat"
       ],
-      "answer": "No neurology referral is suggested while the trend is improving \u2014 this remains a clinician decision. The draft plan retains an escalation trigger: refer if the trend reverses, disability rises, or any red flag appears.",
+      "answer": "No neurology referral is suggested while the trend is improving — this remains a clinician decision. The draft plan retains an escalation trigger: refer if the trend reverses, disability rises, or any red flag appears.",
       "citations": [
         "evb-2",
         "evb-4"
       ]
     }
-  ]
+  ],
+  "insights": {
+    "note": "Established migraine, improving trajectory on current plan — optimize continuity. Clinician review required.",
+    "dxs": [
+      {
+        "dx": "Migraine without aura (established)",
+        "confidence": 0.88,
+        "tone": "teal",
+        "guideline": "ICHD-3 · 1.1",
+        "guideline_url": "https://ichd-3.org/1-migraine/1-1-migraine-without-aura/",
+        "criteria": [
+          {
+            "text": "≥5 attacks meeting duration criterion",
+            "met": "met"
+          },
+          {
+            "text": "≥2 pain characteristics (pulsating, mod–severe, activity-aggravated)",
+            "met": "met"
+          },
+          {
+            "text": "Associated N/V or photo/phonophobia",
+            "met": "met"
+          }
+        ],
+        "rationale": "Phenotype stable; PedMIDAS trending down (32 → 11) under current plan."
+      },
+      {
+        "dx": "Tension-type headache (co-existing)",
+        "confidence": 0.25,
+        "tone": "neutral",
+        "guideline": "ICHD-3 · 2",
+        "guideline_url": "https://ichd-3.org/2-tension-type-headache/",
+        "criteria": [
+          {
+            "text": "Bilateral, pressing, mild–moderate",
+            "met": "partial"
+          },
+          {
+            "text": "No N/V; ≤1 of photo/phonophobia",
+            "met": "partial"
+          }
+        ],
+        "rationale": "Some lower-intensity days fit TTH pattern — track separately in diary."
+      }
+    ],
+    "txs": [
+      {
+        "step": "Continue",
+        "rec": "Maintain current lifestyle bundle + riboflavin",
+        "detail": "PedMIDAS improving — do not change regimen prematurely.",
+        "evidence": "AAN/AHS 2019 · Pediatric prevention",
+        "evidence_url": "https://www.aan.com/Guidelines/",
+        "tone": "teal"
+      },
+      {
+        "step": "Acute",
+        "rec": "Ibuprofen early at onset; keep ≤3 days/week",
+        "detail": "Reinforce early treatment window (<1 h from onset); overuse resolved — keep logging.",
+        "evidence": "AAN/AHS 2019 · Level A",
+        "evidence_url": "https://www.aan.com/Guidelines/",
+        "tone": "teal"
+      },
+      {
+        "step": "Behavioral",
+        "rec": "Reinforce sleep/hydration routine + diary continuation",
+        "detail": "CHAMP supports behavioral components for durable response.",
+        "evidence": "CHAMP · NEJM 2017",
+        "evidence_url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1610384",
+        "tone": "teal"
+      }
+    ]
+  }
 }

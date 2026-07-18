@@ -14,6 +14,7 @@ from ..models import (
     EvidenceRef,
     HeadacheDiary,
     HistoryEntry,
+    InsightPack,
     MedicationEvent,
     Patient,
     PrevisitBrief,
@@ -86,6 +87,7 @@ def create_visit(case_id: str) -> VisitState | None:
         emr_summary=(
             EmrSummary(**raw["emr_summary"]) if raw.get("emr_summary") else None
         ),
+        insights=(InsightPack(**raw["insights"]) if raw.get("insights") else None),
         history=[HistoryEntry(**h) for h in raw["history"]],
         history_source=_case_source.get(case_id, "local"),
         chunks_total=len(raw.get("chunks", [])),
