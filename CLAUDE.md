@@ -621,7 +621,7 @@ Do not build:
 ***
 
 ## Working Under Time Pressure — Read This First
-Core build is complete (see Implementation Status). Current phase: polish, demo hardening, deployment. Still work fast — every response should move the demo forward, not discuss it.
+**⏰ ~20 MINUTES LEFT BEFORE SUBMISSION.** Act with maximum speed. No exploration beyond what the task strictly needs, no optional refactors, no scope additions, no lengthy verification — smallest safe change, quick smoke check, commit, push. If a fix is risky vs. cosmetic, skip it: a working demo beats a perfect one. Prefer editing over rewriting; never break the happy path (Case A live visit → complete → PDFs).
 
 - Do not ask user to choose between minor implementation options — pick reasonable default, build, move on.
 - Only interrupt user for irreversible/destructive actions (force-push, drop data) or true scope-defining decisions (e.g. cutting a Tier 1 feature).
