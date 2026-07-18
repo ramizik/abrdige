@@ -926,28 +926,63 @@ function HistoryCard({ state }: { state: VisitState }) {
 function Timeline({ state }: { state: VisitState }) {
   const nodes = state.previsit?.timeline ?? [];
   if (nodes.length === 0) return null;
+  const hasAlert = state.red_flags.some((r) => r.status === 'present');
+  // Infer specialty bucket from the label + sub text so dots visually match the legend
+  const classify = (n: (typeof nodes)[number]): { color: string; label: string } => {
+    const s = `${n.label} ${n.sublabel}`.toLowerCase();
+    if (/\bmri|imaging|ct\b|scan/.test(s)) return { color: '#0EA5E9', label: 'Imaging' };
+    if (/\ber\b|emergency/.test(s) || n.kind === 'er_visit') return { color: 'var(--color-warning-strong)', label: 'ER' };
+    if (/neuro/.test(s)) return { color: '#8B5CF6', label: 'Neurology' };
+    if (/pcp|peds|primary|interval|first pcp|today|records|visit/.test(s) || n.kind === 'visit' || n.kind === 'today')
+      return { color: 'var(--color-primary)', label: 'PCP / Peds' };
+    return { color: 'var(--color-muted-foreground)', label: 'Other' };
+  };
   return (
-    <div className="relative mt-3">
-      <div className="absolute left-9 right-9 top-[5px] h-[2px]" style={{ background: 'var(--color-border)' }} />
+    <div className="relative mt-3 pb-1">
+      <div className="absolute left-9 right-9 top-[14px] h-[2px] rounded-full" style={{ background: 'var(--color-border)' }} />
       <div className="flex relative">
         {nodes.map((n, i) => {
-          const teal = 'var(--color-primary)';
-          const amber = 'var(--color-warning-strong)';
+          const spec = classify(n);
           const isToday = n.kind === 'today';
-          const fill =
-            isToday ? 'var(--color-foreground)' : n.kind === 'er_visit' ? amber : n.kind === 'visit' ? teal : 'var(--color-surface)';
-          const border =
-            isToday ? 'var(--color-foreground)' : n.kind === 'er_visit' ? amber : n.kind === 'visit' ? teal
-            : 'color-mix(in oklab, var(--color-muted-foreground) 60%, transparent)';
+          const alert = isToday && hasAlert;
+          const dotFill = isToday ? (alert ? 'var(--color-destructive)' : spec.color) : 'var(--color-surface)';
+          const dotBorder = alert ? 'var(--color-destructive)' : spec.color;
           return (
-            <div key={i} className="flex-1 flex flex-col items-center gap-1.5 text-center">
+            <div key={i} className="flex-1 flex flex-col items-center gap-1 text-center px-1 relative">
               <span
-                className="w-[11px] h-[11px] rounded-full"
-                style={{ background: fill, border: `2.5px solid ${border}`, boxShadow: isToday ? '0 0 0 3px var(--color-border)' : 'none' }}
-              />
-              <span className="mono text-[9.5px]" style={{ color: 'var(--color-muted-foreground)' }}>{n.date}</span>
-              <span className="text-[11.5px]" style={{ fontWeight: isToday ? 700 : 600 }}>{n.label}</span>
-              <span className="text-[10.5px]" style={{ color: 'var(--color-muted-foreground)' }}>{n.sublabel}</span>
+                className="relative flex items-center justify-center rounded-full"
+                style={{
+                  width: isToday ? 18 : 14,
+                  height: isToday ? 18 : 14,
+                  background: dotFill,
+                  border: `2.5px solid ${dotBorder}`,
+                  boxShadow: isToday
+                    ? `0 0 0 4px color-mix(in oklab, ${dotBorder} 22%, transparent), 0 2px 6px color-mix(in oklab, ${dotBorder} 40%, transparent)`
+                    : `0 1px 3px color-mix(in oklab, ${spec.color} 30%, transparent)`,
+                }}
+              >
+                {isToday && (
+                  <span className="absolute inset-0 rounded-full animate-ping" style={{ background: dotBorder, opacity: 0.35 }} />
+                )}
+              </span>
+              <span
+                className="mono px-1.5 py-[1px] rounded-full text-[8.5px] font-semibold tracking-wide uppercase mt-0.5"
+                style={{
+                  color: spec.color,
+                  background: `color-mix(in oklab, ${spec.color} 12%, transparent)`,
+                  border: `1px solid color-mix(in oklab, ${spec.color} 30%, transparent)`,
+                }}
+              >
+                {spec.label}
+              </span>
+              <span className="mono text-[10px] mt-0.5" style={{ color: 'var(--color-muted-foreground)' }}>{n.date}</span>
+              <span
+                className="text-[11.5px] leading-tight"
+                style={{ fontWeight: isToday ? 700 : 600, color: alert ? 'var(--color-destructive)' : 'var(--color-foreground)' }}
+              >
+                {n.label}
+              </span>
+              <span className="text-[10.5px] leading-snug" style={{ color: 'var(--color-ink-3)' }}>{n.sublabel}</span>
             </div>
           );
         })}
@@ -1412,6 +1447,7 @@ function HeadacheView({ state }: { state: VisitState }) {
       <div className="overflow-y-auto flex flex-col gap-2.5 min-h-0 min-w-0">
         <Banner state={state} />
         <HeadacheKPIs state={state} />
+        <MedicationOveruseCard state={state} />
         <div className="grid gap-2.5" style={{ gridTemplateColumns: state.pedmidas_trend.length >= 2 && state.diary.days.length > 0 ? '1.45fr 1fr' : '1fr' }}>
           {state.pedmidas_trend.length >= 2 && <PedMidasChart state={state} />}
           {state.diary.days.length > 0 && <HeadacheHeatmap state={state} />}
@@ -1587,6 +1623,69 @@ function HeadacheKPIs({ state }: { state: VisitState }) {
   );
 }
 
+function MedicationOveruseCard({ state }: { state: VisitState }) {
+  const fact = state.profile.medication_overuse_risk;
+  const meds = state.profile.acute_medication_use;
+  if (fact.status === 'unknown' && !fact.value) return null;
+  // Parse "≈ N days/month" style arithmetic the backend embeds in the fact value
+  const m = (fact.value ?? '').match(/(\d+(?:\.\d+)?)\s*(?:-\s*\d+\s*)?(?:days?|d)\s*(?:\/|per\s*)mo/i);
+  const days = m ? parseFloat(m[1]) : null;
+  const limit = 10; // demo threshold: acute meds ≥10 d/mo
+  const over = fact.status === 'present';
+  const tone: Tone = over ? 'red' : fact.status === 'needs_confirmation' ? 'amber' : 'teal';
+  const tv = toneVars(tone);
+  const label = over ? 'Overuse threshold met' : fact.status === 'needs_confirmation' ? 'Needs confirmation' : 'Within safe range';
+  return (
+    <Card
+      eyebrow="Medication Overuse · Rescue Med Audit"
+      right={fact.evidence_ids.length > 0 ? <EvidenceChip ids={fact.evidence_ids} title="Medication overuse risk" /> : undefined}
+    >
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <div className="text-[13.5px] font-semibold" style={{ color: tv.fg }}>{label}</div>
+          <div className="text-[11.5px] mt-[2px]" style={{ color: 'var(--color-ink-3)' }}>{fact.value ?? 'Acute medication days not yet captured'}</div>
+        </div>
+        {days !== null && (
+          <div className="text-right flex-none">
+            <div className="mono text-[9.5px] uppercase tracking-wider" style={{ color: 'var(--color-muted-foreground)' }}>Acute meds</div>
+            <div className="text-[20px] font-bold leading-tight" style={{ color: tv.fg }}>
+              {days}<span className="text-[11px] font-medium" style={{ color: 'var(--color-ink-3)' }}> d/30</span>
+            </div>
+          </div>
+        )}
+      </div>
+      {days !== null && (
+        <div className="mt-2.5">
+          <div className="h-2 rounded-full relative overflow-hidden" style={{ background: 'var(--color-border-soft)' }}>
+            <div
+              className="absolute inset-y-0 left-0 rounded-full"
+              style={{
+                width: `${Math.min(100, (days / limit) * 100)}%`,
+                background: over ? 'var(--color-destructive)' : days >= limit * 0.66 ? 'var(--color-warning)' : 'var(--color-primary)',
+              }}
+            />
+          </div>
+          <div className="mono text-[9.5px] mt-1" style={{ color: 'var(--color-muted-foreground)' }}>demo threshold ≥{limit} d/mo · computed from patient report</div>
+        </div>
+      )}
+      {meds.value.length > 0 && (
+        <div className="flex flex-col gap-1.5 mt-2.5 pt-2" style={{ borderTop: '1px solid var(--color-border-soft)' }}>
+          {meds.value.map((mv, i) => (
+            <div key={i} className="flex items-center gap-2.5">
+              <span className="w-2 h-2 rounded-full flex-none" style={{ background: 'var(--color-cyan, #22D3EE)' }} />
+              <span className="text-[12px] font-semibold flex-1">{mv}</span>
+            </div>
+          ))}
+        </div>
+      )}
+      <div className="mt-2.5 flex flex-wrap gap-1.5">
+        <Chip tone="neutral">ICHD-3 · 8.2</Chip>
+        <Chip tone={tone}>{over ? 'Taper + counseling — clinician review' : 'Diary + limit setting'}</Chip>
+      </div>
+    </Card>
+  );
+}
+
 function PedMidasChart({ state }: { state: VisitState }) {
   const { open } = useContext(EvidenceContext);
   const points = state.pedmidas_trend;
@@ -1599,7 +1698,16 @@ function PedMidasChart({ state }: { state: VisitState }) {
   const xs = (i: number) => x0 + (i * (x1 - x0)) / Math.max(1, points.length - 1);
   const ys = (s: number) => +(164 - (s / maxScore) * 135).toFixed(1);
   const pts = points.map((p, i) => ({ x: xs(i), y: ys(p.score), v: p.score, d: p.date, ids: p.evidence_ids }));
-  const poly = pts.map((pt) => `${pt.x},${pt.y}`).join(' ');
+  // Catmull-Rom → cubic bezier for a natural trend line
+  let smoothPath = `M ${pts[0].x} ${pts[0].y}`;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = pts[i - 1] || pts[i];
+    const p1 = pts[i];
+    const p2 = pts[i + 1];
+    const p3 = pts[i + 2] || p2;
+    const t = 0.18;
+    smoothPath += ` C ${p1.x + (p2.x - p0.x) * t} ${p1.y + (p2.y - p0.y) * t}, ${p2.x - (p3.x - p1.x) * t} ${p2.y - (p3.y - p1.y) * t}, ${p2.x} ${p2.y}`;
+  }
   const delta = points[points.length - 1].score - points[0].score;
   const intervention = state.medication_events[0];
   return (
@@ -1612,12 +1720,21 @@ function PedMidasChart({ state }: { state: VisitState }) {
       }
     >
       <svg viewBox="0 0 460 202" className="w-full h-auto block mt-1.5">
-        <line x1="30" y1="164" x2="450" y2="164" stroke="var(--color-border-soft)" />
-        <line x1="30" y1="96.5" x2="450" y2="96.5" stroke="var(--color-border-soft)" />
-        <line x1="30" y1="29" x2="450" y2="29" stroke="var(--color-border-soft)" />
+        <defs>
+          <linearGradient id="pmFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={tone.fg} stopOpacity="0.28" />
+            <stop offset="100%" stopColor={tone.fg} stopOpacity="0.02" />
+          </linearGradient>
+        </defs>
+        <line x1="30" y1="164" x2="450" y2="164" stroke="var(--color-border)" strokeWidth="1.25" />
+        <line x1="30" y1="96.5" x2="450" y2="96.5" stroke="var(--color-border-soft)" strokeDasharray="3 5" />
+        <line x1="30" y1="29" x2="450" y2="29" stroke="var(--color-border-soft)" strokeDasharray="3 5" />
         <text x="24" y="167" textAnchor="end" fill="var(--color-muted-foreground)" style={{ fontFamily: 'var(--font-mono)', fontSize: 9 }}>0</text>
         <text x="24" y="99" textAnchor="end" fill="var(--color-muted-foreground)" style={{ fontFamily: 'var(--font-mono)', fontSize: 9 }}>{Math.round(maxScore / 2)}</text>
         <text x="24" y="32" textAnchor="end" fill="var(--color-muted-foreground)" style={{ fontFamily: 'var(--font-mono)', fontSize: 9 }}>{maxScore}</text>
+        {pts.map((pt, i) => (
+          <line key={`g-${i}`} x1={pt.x} y1={22} x2={pt.x} y2={164} stroke="var(--color-border-soft)" strokeDasharray="2 5" />
+        ))}
         {intervention && (
           <>
             <line x1="140" y1="18" x2="140" y2="168" stroke="color-mix(in oklab, var(--color-muted-foreground) 45%, transparent)" strokeDasharray="3 3" />
@@ -1626,15 +1743,41 @@ function PedMidasChart({ state }: { state: VisitState }) {
             </text>
           </>
         )}
-        <polyline points={poly} fill="none" stroke={tone.fg} strokeWidth={2.5} strokeLinejoin="round" strokeLinecap="round" />
-        {pts.map((pt, i) => (
-          <g key={i} onClick={() => pt.ids.length > 0 && open(`PedMIDAS ${pt.v} · ${pt.d}`, pt.ids)} style={{ cursor: pt.ids.length > 0 ? 'pointer' : 'default' }}>
-            <circle cx={pt.x} cy={pt.y} r={4.5} fill="var(--color-surface)" stroke={tone.fg} strokeWidth={2.5} />
-            <text x={pt.x} y={pt.y - 12} textAnchor="middle" fill="var(--color-foreground)" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600 }}>{pt.v}</text>
-            <text x={pt.x} y={194} textAnchor="middle" fill="var(--color-muted-foreground)" style={{ fontFamily: 'var(--font-mono)', fontSize: 9.5 }}>{pt.d}</text>
-          </g>
-        ))}
+        <path d={`${smoothPath} L ${pts[pts.length - 1].x} 164 L ${pts[0].x} 164 Z`} fill="url(#pmFill)" />
+        <path d={smoothPath} fill="none" stroke={tone.fg} strokeWidth={3} strokeLinejoin="round" strokeLinecap="round" />
+        {pts.map((pt, i) => {
+          const isLast = i === pts.length - 1;
+          return (
+            <g key={i} onClick={() => pt.ids.length > 0 && open(`PedMIDAS ${pt.v} · ${pt.d}`, pt.ids)} style={{ cursor: pt.ids.length > 0 ? 'pointer' : 'default' }}>
+              {isLast && (
+                <circle cx={pt.x} cy={pt.y} r={12} fill="none" stroke={tone.fg} strokeWidth={1.25} opacity={0.4}>
+                  <animate attributeName="r" values="9;15;9" dur="2.4s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="0.55;0;0.55" dur="2.4s" repeatCount="indefinite" />
+                </circle>
+              )}
+              <circle cx={pt.x} cy={pt.y} r={isLast ? 8 : 6.5} fill="var(--color-surface)" stroke={tone.fg} strokeWidth={2.5} />
+              <circle cx={pt.x} cy={pt.y} r={isLast ? 4 : 3} fill={tone.fg} />
+              <rect x={pt.x - 16} y={pt.y - 32} width={32} height={19} rx={9.5} fill="var(--color-surface)" stroke={tone.fg} strokeWidth={1.5} />
+              <text x={pt.x} y={pt.y - 18.5} textAnchor="middle" fill={tone.fg} style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, fontWeight: 800 }}>{pt.v}</text>
+              <text x={pt.x} y={194} textAnchor="middle" fill="var(--color-muted-foreground)" style={{ fontFamily: 'var(--font-mono)', fontSize: 9.5 }}>{pt.d}</text>
+            </g>
+          );
+        })}
       </svg>
+      {state.medication_events.length > 0 && (
+        <div className="mt-2 flex flex-col gap-1 pt-2" style={{ borderTop: '1px solid var(--color-border-soft)' }}>
+          {state.medication_events.map((ev, i) => {
+            const c = ev.kind === 'start' ? '#EC4899' : ev.kind === 'change' ? '#8B5CF6' : 'var(--color-muted-foreground)';
+            return (
+              <div key={i} className="flex items-center gap-2 text-[11px]">
+                <span className="inline-flex items-center justify-center rounded-full flex-none" style={{ width: 14, height: 14, background: c, color: '#fff', fontFamily: 'var(--font-mono)', fontSize: 8.5, fontWeight: 700 }}>℞</span>
+                <span className="font-semibold" style={{ color: 'var(--color-ink-2)' }}>{ev.label}</span>
+                <span className="mono text-[9.5px] ml-auto" style={{ color: 'var(--color-muted-foreground)' }}>{ev.date}</span>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </Card>
   );
 }
