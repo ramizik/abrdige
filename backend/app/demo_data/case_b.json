@@ -10,7 +10,7 @@
     "sex": "F",
     "preferred_language": "English",
     "clinic": "Eastside Community Pediatrics",
-    "mrn": "MRN 118-4402",
+    "mrn": "MRN 204-8817",
     "provider": "Dr. Okafor",
     "visit_length": "20 min",
     "visit_type": "Follow-up headache visit",
@@ -39,32 +39,36 @@
   ],
   "red_flag_catalog": [
     {
-      "key": "waking_headache",
-      "label": "Headache waking from sleep / worst on waking"
+      "key": "thunderclap",
+      "label": "Thunderclap onset (sudden worst-ever headache)"
     },
     {
       "key": "vomiting_am",
-      "label": "Early-morning or persistent vomiting"
+      "label": "Early-morning vomiting"
+    },
+    {
+      "key": "waking_headache",
+      "label": "Headache waking from sleep"
     },
     {
       "key": "neuro_deficit",
-      "label": "Focal neurologic deficit / weakness"
+      "label": "Focal neurologic deficit"
     },
     {
-      "key": "vision_change",
-      "label": "Persistent visual change / papilledema concern"
+      "key": "seizures",
+      "label": "Seizures"
     },
     {
-      "key": "thunderclap",
-      "label": "Sudden severe (thunderclap) onset"
+      "key": "gait_change",
+      "label": "Gait change / ataxia"
     },
     {
-      "key": "worsening_pattern",
-      "label": "Progressively worsening pattern"
+      "key": "altered_mental_status",
+      "label": "Altered mental status / confusion"
     },
     {
-      "key": "fever_stiff_neck",
-      "label": "Fever with neck stiffness"
+      "key": "exertional_valsalva",
+      "label": "Triggered by exertion / cough / Valsalva"
     }
   ],
   "pedmidas_questions": [
@@ -151,11 +155,33 @@
         "evidence_ids": [
           "evb-2"
         ]
+      },
+      "treatment_response": {
+        "value": "Ibuprofen effective at ~1x/week; riboflavin tolerated, adherent",
+        "status": "present",
+        "evidence_ids": [
+          "evb-3",
+          "evb-5"
+        ]
+      },
+      "progression": {
+        "value": "Improving — frequency down ~8 to ~4 days/month since July plan",
+        "status": "present",
+        "evidence_ids": [
+          "evb-2"
+        ]
+      },
+      "repeat_visits": {
+        "value": "No ED/urgent-care visits since last visit",
+        "status": "negative",
+        "evidence_ids": [
+          "evb-4"
+        ]
       }
     },
     "red_flags": [
       {
-        "key": "waking_headache",
+        "key": "thunderclap",
         "status": "absent",
         "evidence_ids": [
           "evb-4"
@@ -169,6 +195,13 @@
         ]
       },
       {
+        "key": "waking_headache",
+        "status": "absent",
+        "evidence_ids": [
+          "evb-4"
+        ]
+      },
+      {
         "key": "neuro_deficit",
         "status": "absent",
         "evidence_ids": [
@@ -176,30 +209,24 @@
         ]
       },
       {
-        "key": "vision_change",
+        "key": "seizures",
         "status": "unknown",
         "evidence_ids": []
       },
       {
-        "key": "thunderclap",
-        "status": "absent",
-        "evidence_ids": [
-          "evb-4"
-        ]
+        "key": "gait_change",
+        "status": "unknown",
+        "evidence_ids": []
       },
       {
-        "key": "worsening_pattern",
-        "status": "absent",
-        "evidence_ids": [
-          "evb-2"
-        ]
+        "key": "altered_mental_status",
+        "status": "unknown",
+        "evidence_ids": []
       },
       {
-        "key": "fever_stiff_neck",
-        "status": "absent",
-        "evidence_ids": [
-          "evb-4"
-        ]
+        "key": "exertional_valsalva",
+        "status": "unknown",
+        "evidence_ids": []
       }
     ],
     "pedmidas_responses": [
@@ -295,6 +322,79 @@
     ]
   },
   "chunks": [],
+  "emr_summary": {
+    "headline": "Agent-assembled chart summary",
+    "evidence": [
+      {
+        "id": "emrb-ev-1",
+        "source_type": "history",
+        "source_label": "First visit summary - 07/18",
+        "quote": "Plan: lifestyle changes, headache diary, limit ibuprofen <3 days/week, riboflavin discussed and started after clinician review."
+      },
+      {
+        "id": "emrb-ev-2",
+        "source_type": "history",
+        "source_label": "Nurse follow-up call - 08/14",
+        "quote": "Family reports diary being kept most days. Headaches somewhat less frequent. Riboflavin tolerated well."
+      }
+    ],
+    "items": [
+      {
+        "id": "emrb-1",
+        "category": "medication",
+        "label": "Riboflavin daily (preventive)",
+        "detail": "Started 07/22 after clinician review; tolerated well",
+        "flag": "adherent per nurse call",
+        "date": "2026-07-22",
+        "evidence_ids": ["emrb-ev-1", "emrb-ev-2"]
+      },
+      {
+        "id": "emrb-2",
+        "category": "medication",
+        "label": "Ibuprofen PRN — use reduced",
+        "detail": "~3x/week at first visit, ~1x/week now",
+        "flag": "overuse concern resolved",
+        "date": "2026-09-12",
+        "evidence_ids": ["emrb-ev-1"]
+      },
+      {
+        "id": "emrb-3",
+        "category": "allergy",
+        "label": "Amoxicillin — rash",
+        "detail": "Childhood reaction documented",
+        "flag": "confirm before any prescription",
+        "date": "",
+        "evidence_ids": []
+      },
+      {
+        "id": "emrb-4",
+        "category": "referral",
+        "label": "Neurology referral — not sent (watch item)",
+        "detail": "Hold while improving; escalate on trend reversal or red flag",
+        "flag": "escalation trigger retained",
+        "date": "2026-07-18",
+        "evidence_ids": ["emrb-ev-1"]
+      },
+      {
+        "id": "emrb-5",
+        "category": "imaging",
+        "label": "No head imaging on file",
+        "detail": "No trigger met to date",
+        "flag": "",
+        "date": "",
+        "evidence_ids": []
+      },
+      {
+        "id": "emrb-6",
+        "category": "no_show",
+        "label": "No missed appointments; follow-up kept on schedule",
+        "detail": "Nurse call completed 08/14",
+        "flag": "",
+        "date": "2026-08-14",
+        "evidence_ids": ["emrb-ev-2"]
+      }
+    ]
+  },
   "care_plan": {
     "summary": [
       "8-week follow-up: headache frequency down ~8 \u2192 ~4 days/month on lifestyle plan + riboflavin. [evb-1, evb-2]",

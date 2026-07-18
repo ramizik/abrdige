@@ -32,18 +32,61 @@ export interface ListFact {
   evidence_ids: string[];
 }
 
+/** Intake capture: what the EMR does not reliably structure for headache decisions. */
 export interface HeadacheProfile {
+  // current headache pattern
   onset: ExtractedFact;
   frequency_days_per_month: NumericFact;
   episode_duration: ExtractedFact;
+  progression: ExtractedFact;
+  // headache phenotype
   location: ExtractedFact;
   quality: ExtractedFact;
   severity: ExtractedFact;
+  activity_worsening: ExtractedFact;
   associated_symptoms: ListFact;
+  aura: ExtractedFact;
+  // context
   triggers: ListFact;
   habits: ListFact;
+  // recent treatment response
   acute_medication_use: ListFact;
+  treatment_response: ExtractedFact;
+  // functional burden
   school_impact: ExtractedFact;
+  activity_impact: ExtractedFact;
+  repeat_visits: ExtractedFact;
+}
+
+/** --- Agent-built EMR summary (auto-extracted from chart, not asked at intake) --- */
+
+export type EmrCategory =
+  | 'pmh'
+  | 'allergy'
+  | 'family_history'
+  | 'medication'
+  | 'visit_note'
+  | 'imaging'
+  | 'lab'
+  | 'referral'
+  | 'no_show'
+  | 'wait_status';
+
+export interface EmrItem {
+  id: string;
+  category: EmrCategory;
+  label: string;
+  detail: string;
+  /** headache-relevance flag, e.g. "overuse watch", "contraindication" */
+  flag: string;
+  date: string;
+  evidence_ids: string[];
+}
+
+export interface EmrSummary {
+  headline: string;
+  evidence: EvidenceRef[]; // merged into VisitState.evidence by the backend
+  items: EmrItem[];
 }
 
 export interface RedFlag {
@@ -207,6 +250,7 @@ export interface VisitState {
   phase: VisitPhase;
   patient: Patient;
   previsit: PrevisitBrief | null;
+  emr_summary: EmrSummary | null;
   history: HistoryEntry[];
   transcript: TranscriptTurn[];
   chunks_processed: number;

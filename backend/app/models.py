@@ -40,17 +40,31 @@ class ListFact(BaseModel):
 
 
 class HeadacheProfile(BaseModel):
+    """Intake capture: what the EMR does not reliably structure for headache
+    decision-making — pattern, phenotype, functional burden, treatment response."""
+
+    # current headache pattern
     onset: ExtractedFact = Field(default_factory=ExtractedFact)
     frequency_days_per_month: NumericFact = Field(default_factory=NumericFact)
     episode_duration: ExtractedFact = Field(default_factory=ExtractedFact)
+    progression: ExtractedFact = Field(default_factory=ExtractedFact)
+    # headache phenotype
     location: ExtractedFact = Field(default_factory=ExtractedFact)
     quality: ExtractedFact = Field(default_factory=ExtractedFact)
     severity: ExtractedFact = Field(default_factory=ExtractedFact)
+    activity_worsening: ExtractedFact = Field(default_factory=ExtractedFact)
     associated_symptoms: ListFact = Field(default_factory=ListFact)
+    aura: ExtractedFact = Field(default_factory=ExtractedFact)
+    # context
     triggers: ListFact = Field(default_factory=ListFact)
     habits: ListFact = Field(default_factory=ListFact)
+    # recent treatment response
     acute_medication_use: ListFact = Field(default_factory=ListFact)
+    treatment_response: ExtractedFact = Field(default_factory=ExtractedFact)
+    # functional burden
     school_impact: ExtractedFact = Field(default_factory=ExtractedFact)
+    activity_impact: ExtractedFact = Field(default_factory=ExtractedFact)
+    repeat_visits: ExtractedFact = Field(default_factory=ExtractedFact)
 
 
 class RedFlag(BaseModel):
@@ -214,6 +228,44 @@ class PrevisitBrief(BaseModel):
     suggested_questions: list[str] = Field(default_factory=list)
 
 
+# --- Agent-built EMR summary (auto-extracted from chart, not asked at intake) ---
+
+
+EmrCategory = Literal[
+    "pmh",
+    "allergy",
+    "family_history",
+    "medication",
+    "visit_note",
+    "imaging",
+    "lab",
+    "referral",
+    "no_show",
+    "wait_status",
+]
+
+
+class EmrItem(BaseModel):
+    id: str
+    category: EmrCategory
+    label: str
+    detail: str = ""
+    # headache-relevance flag, e.g. "overuse watch", "contraindication", "none on file"
+    flag: str = ""
+    date: str = ""
+    evidence_ids: list[str] = Field(default_factory=list)
+
+
+class EmrSummary(BaseModel):
+    """What the agent pulled and summarized from the EMR at case load:
+    PMH/allergies/family hx, prior PCP/ED/urgent-care/specialty notes,
+    imaging, labs, referrals, no-shows, wait status, headache-relevant meds."""
+
+    headline: str = "Agent-assembled chart summary"
+    evidence: list[EvidenceRef] = Field(default_factory=list)  # merged into state.evidence
+    items: list[EmrItem] = Field(default_factory=list)
+
+
 class VisitState(BaseModel):
     """Aggregate state returned to the frontend after every update."""
 
@@ -223,6 +275,7 @@ class VisitState(BaseModel):
     phase: VisitPhase = "not_started"
     patient: Patient
     previsit: Optional[PrevisitBrief] = None
+    emr_summary: Optional[EmrSummary] = None
     history: list[HistoryEntry] = Field(default_factory=list)
     # "medplum" when prior history came live from the FHIR server, else "local"
     history_source: str = "local"
@@ -292,14 +345,20 @@ class ProfileDelta(BaseModel):
     onset: Optional[ExtractedFact] = None
     frequency_days_per_month: Optional[NumericFact] = None
     episode_duration: Optional[ExtractedFact] = None
+    progression: Optional[ExtractedFact] = None
     location: Optional[ExtractedFact] = None
     quality: Optional[ExtractedFact] = None
     severity: Optional[ExtractedFact] = None
+    activity_worsening: Optional[ExtractedFact] = None
     associated_symptoms: Optional[ListFact] = None
+    aura: Optional[ExtractedFact] = None
     triggers: Optional[ListFact] = None
     habits: Optional[ListFact] = None
     acute_medication_use: Optional[ListFact] = None
+    treatment_response: Optional[ExtractedFact] = None
     school_impact: Optional[ExtractedFact] = None
+    activity_impact: Optional[ExtractedFact] = None
+    repeat_visits: Optional[ExtractedFact] = None
 
 
 class AnalysisDelta(BaseModel):

@@ -46,6 +46,11 @@ async def analyze_visit(
         from claude_agent_sdk import ClaudeAgentOptions, ResultMessage, query
 
         payload = {
+            "emr_summary": (
+                [i.model_dump() for i in state.emr_summary.items]
+                if state.emr_summary
+                else []
+            ),
             "history": [h.model_dump() for h in state.history],
             "transcript": [t.model_dump() for t in state.transcript],
             "red_flag_catalog": case_raw["red_flag_catalog"],

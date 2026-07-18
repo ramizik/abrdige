@@ -14,9 +14,9 @@ A primary-care pediatrician in a safety-net clinic gets ~20 minutes with a child
 
 During the visit, a **Visit Intelligence Agent** (built on the Claude Agent SDK) continuously converts the encounter into structured clinical state:
 
-- pulls the patient's prior history from a **Medplum FHIR server** at case open
-- extracts headache features (onset, frequency, quality, severity, triggers, school impact…) from the transcript into a strict typed schema
-- screens a fixed red-flag catalog — every flag explicitly `present` / `absent` / `unknown`, never guessed
+- pulls and summarizes the chart from a **Medplum FHIR server** at case open: PMH, allergies, family history, prior PCP/ED/urgent-care/specialty notes, imaging, labs, referrals, no-shows, specialist wait status, and headache-relevant meds (overuse / contraindication flags) — so the visit never re-asks what the EMR already knows
+- captures at intake exactly what the EMR does **not** structure: headache pattern (onset, frequency, duration, progression), phenotype (location, quality, severity, activity worsening, nausea/vomiting, photo/phonophobia, aura), functional burden (missed school, sports limitation, repeat PCP/ED visits), and recent treatment response (what was taken, how often, did it help) — into a strict typed schema
+- screens a fixed 8-item red-flag catalog for secondary headache / imaging escalation (thunderclap, morning vomiting, sleep awakening, focal deficits, seizures, gait change, altered mental status, exertional/Valsalva trigger) — every flag explicitly `present` / `absent` / `unknown`, never guessed
 - captures PedMIDAS items as concrete day-counts surface in conversation, and scores only when complete
 - drafts a patient-reported headache diary
 - tells the clinician **what hasn't been asked yet** (missing high-value questions)
@@ -31,7 +31,7 @@ Bridge is a support tool for clinician review — it never diagnoses or prescrib
 
 The core demo path exercises a real agent doing real work:
 
-1. **Mid-visit "Analyze" (`POST /visits/{id}/analyze`)** — the flagship agentic action. The Claude Agent SDK (`claude-agent-sdk`, model `claude-sonnet-5`) receives the full visit-so-far (Medplum-sourced history + accumulated transcript + red-flag catalog + PedMIDAS items) and returns a **schema-validated structured re-assessment**: profile facts, red-flag states, PedMIDAS responses, diary sketch, missing questions, and self-generated evidence quotes. Output is enforced via JSON-schema structured output and validated with Pydantic (`AnalysisDelta`) before it touches the dashboard. No free text, no chat.
+1. **Mid-visit "Analyze" (`POST /visits/{id}/analyze`)** — the flagship agentic action. The Claude Agent SDK (`claude-agent-sdk`, model `claude-sonnet-5`) receives the full visit-so-far (agent-built EMR summary + Medplum-sourced history + accumulated transcript + red-flag catalog + PedMIDAS items) and returns a **schema-validated structured re-assessment**: profile facts, red-flag states, PedMIDAS responses, diary sketch, missing questions, and self-generated evidence quotes. Output is enforced via JSON-schema structured output and validated with Pydantic (`AnalysisDelta`) before it touches the dashboard. No free text, no chat.
 2. **Per-chunk live extraction (`BRIDGE_DEMO_MODE=0`)** — the same agent extracts a structured delta from each transcript chunk as it arrives.
 3. **Grounding is enforced, not decorative** — the agent's system prompt forbids invented values; every fact carries `evidence_ids` pointing to exact quotes with speaker + timestamp; unsupported fields are omitted and surface as `unknown` in the UI. The prompt contract lives in `backend/app/prompts/analysis.md`.
 4. **Real EHR round-trip via Medplum FHIR** — case data is fetched from Medplum at load, and the completed visit summary is written back as a FHIR `DocumentReference`. The agent operates on EHR-sourced state, not hardcoded fixtures.
@@ -51,7 +51,7 @@ Synthetic data only. The transcript stream is a simulated STT feed (pre-scripted
 
 ### 2. Medplum FHIR server (synthetic-data EHR)
 - OAuth2 client-credentials against `https://api.medplum.com`; token cached in-process, 3s timeout on every call (`app/services/medplum.py`, stdlib-only client).
-- **Seeded per case** (`scripts/seed_medplum.py`, idempotent conditional PUTs): `Patient`, one `DocumentReference` per prior-history note, a PedMIDAS `Questionnaire`, and the full case definition as a `DocumentReference`.
+- **Seeded FHIR graph** (`scripts/seed_medplum.py`, idempotent conditional PUTs): one shared `Patient`, an `Encounter` per prior visit, LOINC-coded vital-sign `Observation`s parsed from the notes, PedMIDAS trend scores as `Observation`s, a PedMIDAS `Questionnaire`, one `DocumentReference` per history note (linked to its encounter), and the full case definition as a `DocumentReference` — a browsable longitudinal record, not a blob dump.
 - **Read**: backend fetches case definitions from Medplum at case load; `VisitState.history_source` reports `"medplum"` vs `"local"` fallback.
 - **Write-back**: visit completion pushes the summary to Medplum, closing the loop for the follow-up visit.
 

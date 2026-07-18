@@ -38,39 +38,49 @@
     },
     {
       "id": "hx-4",
-      "label": "Medication list",
+      "label": "Medication list & allergies",
       "date": "2026-07-18",
-      "text": "No daily medications. PRN ibuprofen per parent report at check-in."
+      "text": "No daily medications. PRN ibuprofen per parent report at check-in. PRN albuterol inhaler (mild intermittent asthma). Allergies: amoxicillin — rash (childhood)."
+    },
+    {
+      "id": "hx-5",
+      "label": "Urgent care visit note",
+      "date": "2026-05-15",
+      "text": "Presented with headache and nausea after school. Neuro exam grossly normal, no imaging performed. Discharged same day with ibuprofen advice; PCP follow-up recommended."
     }
   ],
   "red_flag_catalog": [
     {
-      "key": "waking_headache",
-      "label": "Headache waking from sleep / worst on waking"
+      "key": "thunderclap",
+      "label": "Thunderclap onset (sudden worst-ever headache)"
     },
     {
       "key": "vomiting_am",
-      "label": "Early-morning or persistent vomiting"
+      "label": "Early-morning vomiting"
+    },
+    {
+      "key": "waking_headache",
+      "label": "Headache waking from sleep"
     },
     {
       "key": "neuro_deficit",
-      "label": "Focal neurologic deficit / weakness"
+      "label": "Focal neurologic deficit"
     },
     {
-      "key": "vision_change",
-      "label": "Persistent visual change / papilledema concern"
+      "key": "seizures",
+      "label": "Seizures"
     },
     {
-      "key": "thunderclap",
-      "label": "Sudden severe (thunderclap) onset"
+      "key": "gait_change",
+      "label": "Gait change / ataxia"
     },
     {
-      "key": "worsening_pattern",
-      "label": "Progressively worsening pattern"
+      "key": "altered_mental_status",
+      "label": "Altered mental status / confusion"
     },
     {
-      "key": "fever_stiff_neck",
-      "label": "Fever with neck stiffness"
+      "key": "exertional_valsalva",
+      "label": "Triggered by exertion / cough / Valsalva"
     }
   ],
   "pedmidas_questions": [
@@ -163,6 +173,12 @@
           "speaker": "patient",
           "text": "They last a really long time too, like most of the afternoon until I sleep.",
           "timestamp": "00:01:21"
+        },
+        {
+          "id": "t-5b",
+          "speaker": "parent",
+          "text": "It got bad enough in May that we took her to urgent care once after school. They checked her and sent us home, told us to see you.",
+          "timestamp": "00:01:34"
         }
       ],
       "delta": {
@@ -179,6 +195,12 @@
             "source_type": "transcript",
             "source_label": "Patient, 00:01:21",
             "quote": "They last a really long time too, like most of the afternoon until I sleep."
+          },
+          {
+            "id": "ev-3b",
+            "source_type": "transcript",
+            "source_label": "Parent, 00:01:34",
+            "quote": "It got bad enough in May that we took her to urgent care once after school."
           }
         ],
         "profile": {
@@ -194,6 +216,13 @@
             "status": "present",
             "evidence_ids": [
               "ev-3"
+            ]
+          },
+          "repeat_visits": {
+            "value": "1 urgent-care visit for headache (May 2026); no ED visits reported",
+            "status": "present",
+            "evidence_ids": [
+              "ev-3b"
             ]
           }
         },
@@ -216,6 +245,18 @@
           "speaker": "patient",
           "text": "Mostly here on both sides of my forehead. It's like pounding, like a drum. Pretty bad \u2014 I can't really do homework when it happens.",
           "timestamp": "00:02:14"
+        },
+        {
+          "id": "t-7b",
+          "speaker": "clinician",
+          "text": "If you have one and you run around \u2014 gym class, soccer \u2014 does it get worse?",
+          "timestamp": "00:02:25"
+        },
+        {
+          "id": "t-7c",
+          "speaker": "patient",
+          "text": "Yeah, way worse. If I run at practice with a headache it pounds harder and I have to stop.",
+          "timestamp": "00:02:31"
         }
       ],
       "delta": {
@@ -226,6 +267,12 @@
             "source_type": "transcript",
             "source_label": "Patient, 00:02:14",
             "quote": "Mostly here on both sides of my forehead. It's like pounding, like a drum. Pretty bad \u2014 I can't really do homework when it happens."
+          },
+          {
+            "id": "ev-4b",
+            "source_type": "transcript",
+            "source_label": "Patient, 00:02:31",
+            "quote": "Yeah, way worse. If I run at practice with a headache it pounds harder and I have to stop."
           }
         ],
         "profile": {
@@ -249,6 +296,13 @@
             "evidence_ids": [
               "ev-4"
             ]
+          },
+          "activity_worsening": {
+            "value": "Worse with routine physical activity (running at practice)",
+            "status": "present",
+            "evidence_ids": [
+              "ev-4b"
+            ]
           }
         },
         "missing_questions_remove": [
@@ -269,6 +323,18 @@
           "speaker": "parent",
           "text": "Yes, she gets nauseous \u2014 she's thrown up once or twice. And she goes to her room and turns off the lights, says our voices are too loud.",
           "timestamp": "00:03:11"
+        },
+        {
+          "id": "t-9b",
+          "speaker": "clinician",
+          "text": "Maya, right before a headache starts, do you ever see flashing lights, zigzag lines, spots \u2014 or get numbness or tingling?",
+          "timestamp": "00:03:24"
+        },
+        {
+          "id": "t-9c",
+          "speaker": "patient",
+          "text": "No, nothing like that. It just starts hurting.",
+          "timestamp": "00:03:31"
         }
       ],
       "delta": {
@@ -279,6 +345,12 @@
             "source_type": "transcript",
             "source_label": "Parent, 00:03:11",
             "quote": "Yes, she gets nauseous \u2014 she's thrown up once or twice. And she goes to her room and turns off the lights, says our voices are too loud."
+          },
+          {
+            "id": "ev-5b",
+            "source_type": "transcript",
+            "source_label": "Patient, 00:03:31",
+            "quote": "No, nothing like that. It just starts hurting."
           }
         ],
         "profile": {
@@ -293,6 +365,13 @@
             "evidence_ids": [
               "ev-5"
             ]
+          },
+          "aura": {
+            "value": "No visual or sensory aura reported",
+            "status": "negative",
+            "evidence_ids": [
+              "ev-5b"
+            ]
           }
         },
         "missing_questions_remove": [
@@ -305,7 +384,7 @@
         {
           "id": "t-10",
           "speaker": "clinician",
-          "text": "Important questions: do headaches ever wake her up from sleep, or are they worst first thing in the morning? Any vomiting in the early morning? Weakness, numbness, trouble seeing or walking?",
+          "text": "Important safety questions. Do headaches ever wake her up from sleep? Any vomiting first thing in the morning? Any weakness, numbness, or trouble seeing?",
           "timestamp": "00:04:02"
         },
         {
@@ -317,14 +396,14 @@
         {
           "id": "t-12",
           "speaker": "clinician",
-          "text": "And they came on gradually? No sudden worst-headache-of-her-life moment? No fevers or stiff neck?",
+          "text": "Any seizures or staring spells? Changes in how she walks or her balance? Times she seemed confused or not herself? And does coughing, straining, or hard exercise ever set a headache off suddenly?",
           "timestamp": "00:04:31"
         },
         {
           "id": "t-13",
           "speaker": "parent",
-          "text": "Gradual, yes. No, nothing sudden, no fevers.",
-          "timestamp": "00:04:40"
+          "text": "No seizures, walking is fine, she's always been sharp. Coughing or straining has never started one. And nothing sudden \u2014 they came on gradually, never a worst-headache-of-her-life moment.",
+          "timestamp": "00:04:44"
         }
       ],
       "delta": {
@@ -339,8 +418,8 @@
           {
             "id": "ev-7",
             "source_type": "transcript",
-            "source_label": "Parent, 00:04:40",
-            "quote": "Gradual, yes. No, nothing sudden, no fevers."
+            "source_label": "Parent, 00:04:44",
+            "quote": "No seizures, walking is fine, she's always been sharp. Coughing or straining has never started one. And nothing sudden — they came on gradually, never a worst-headache-of-her-life moment."
           }
         ],
         "red_flags": [
@@ -366,21 +445,35 @@
             ]
           },
           {
-            "key": "vision_change",
-            "status": "absent",
-            "evidence_ids": [
-              "ev-6"
-            ]
-          },
-          {
-            "key": "thunderclap",
+            "key": "seizures",
             "status": "absent",
             "evidence_ids": [
               "ev-7"
             ]
           },
           {
-            "key": "fever_stiff_neck",
+            "key": "gait_change",
+            "status": "absent",
+            "evidence_ids": [
+              "ev-7"
+            ]
+          },
+          {
+            "key": "altered_mental_status",
+            "status": "absent",
+            "evidence_ids": [
+              "ev-7"
+            ]
+          },
+          {
+            "key": "exertional_valsalva",
+            "status": "absent",
+            "evidence_ids": [
+              "ev-7"
+            ]
+          },
+          {
+            "key": "thunderclap",
             "status": "absent",
             "evidence_ids": [
               "ev-7"
@@ -411,7 +504,7 @@
         }
       ],
       "delta": {
-        "agent_status": "Checking red flags",
+        "agent_status": "Capturing headache pattern",
         "evidence": [
           {
             "id": "ev-8",
@@ -420,15 +513,15 @@
             "quote": "They went up in the spring but the last two months it's been about the same. Not really worse."
           }
         ],
-        "red_flags": [
-          {
-            "key": "worsening_pattern",
-            "status": "absent",
+        "profile": {
+          "progression": {
+            "value": "Rose in spring, plateaued last 2 months — non-progressive",
+            "status": "present",
             "evidence_ids": [
               "ev-8"
             ]
           }
-        ],
+        },
         "missing_questions_remove": [
           "Is the overall pattern stable or worsening month to month?"
         ]
@@ -538,6 +631,15 @@
             "quote": "Maybe five days she just went straight to bed and did nothing at home. She skipped soccer practice three times, and probably four more where she played but badly and came off early."
           }
         ],
+        "profile": {
+          "activity_impact": {
+            "value": "Skipped soccer 3x, limited participation 4x; ~5 days no home activities in 3 months",
+            "status": "present",
+            "evidence_ids": [
+              "ev-11"
+            ]
+          }
+        },
         "pedmidas_responses": [
           {
             "question_id": "pm4",
@@ -628,8 +730,15 @@
           },
           "acute_medication_use": {
             "value": [
-              "Ibuprofen ~3x/week"
+              "Ibuprofen ~3x/week (OTC, parent-administered)"
             ],
+            "status": "needs_confirmation",
+            "evidence_ids": [
+              "ev-13"
+            ]
+          },
+          "treatment_response": {
+            "value": "Partial relief when ibuprofen taken early in attack; inconsistent otherwise",
             "status": "needs_confirmation",
             "evidence_ids": [
               "ev-13"
@@ -752,17 +861,155 @@
       }
     }
   ],
+  "emr_summary": {
+    "headline": "Agent-assembled chart summary",
+    "evidence": [
+      {
+        "id": "emr-ev-1",
+        "source_type": "history",
+        "source_label": "Medication list & allergies - 07/18",
+        "quote": "No daily medications. PRN ibuprofen per parent report at check-in. PRN albuterol inhaler (mild intermittent asthma). Allergies: amoxicillin — rash (childhood)."
+      },
+      {
+        "id": "emr-ev-2",
+        "source_type": "history",
+        "source_label": "Urgent care visit note - 05/15",
+        "quote": "Presented with headache and nausea after school. Neuro exam grossly normal, no imaging performed. Discharged same day with ibuprofen advice; PCP follow-up recommended."
+      },
+      {
+        "id": "emr-ev-3",
+        "source_type": "history",
+        "source_label": "Well-child note - 02/10",
+        "quote": "Mother mentions occasional headaches over the winter, not evaluated. Normal growth, normal neuro screening exam."
+      },
+      {
+        "id": "emr-ev-4",
+        "source_type": "document",
+        "source_label": "Intake form - 07/18",
+        "quote": "PRN ibuprofen with minimal relief per parent report. No prior neurology contact. Mother: migraine."
+      }
+    ],
+    "items": [
+      {
+        "id": "emr-1",
+        "category": "pmh",
+        "label": "Mild intermittent asthma",
+        "detail": "Albuterol PRN, well controlled",
+        "flag": "",
+        "date": "",
+        "evidence_ids": ["emr-ev-1"]
+      },
+      {
+        "id": "emr-2",
+        "category": "allergy",
+        "label": "Amoxicillin — rash",
+        "detail": "Childhood reaction documented",
+        "flag": "confirm before any prescription",
+        "date": "",
+        "evidence_ids": ["emr-ev-1"]
+      },
+      {
+        "id": "emr-3",
+        "category": "family_history",
+        "label": "Mother: migraine",
+        "detail": "Per intake form; confirm degree/severity at visit",
+        "flag": "migraine risk factor",
+        "date": "2026-07-18",
+        "evidence_ids": ["emr-ev-4"]
+      },
+      {
+        "id": "emr-4",
+        "category": "medication",
+        "label": "Ibuprofen PRN (parent-reported)",
+        "detail": "Frequency not quantified in chart",
+        "flag": "overuse watch — quantify at visit",
+        "date": "2026-07-18",
+        "evidence_ids": ["emr-ev-1", "emr-ev-4"]
+      },
+      {
+        "id": "emr-5",
+        "category": "medication",
+        "label": "Albuterol inhaler PRN",
+        "detail": "For asthma",
+        "flag": "no headache contraindication identified",
+        "date": "",
+        "evidence_ids": ["emr-ev-1"]
+      },
+      {
+        "id": "emr-6",
+        "category": "visit_note",
+        "label": "Urgent care visit — headache + nausea",
+        "detail": "Normal neuro exam, no imaging, discharged same day, PCP follow-up advised",
+        "flag": "repeat acute-care use for headache",
+        "date": "2026-05-15",
+        "evidence_ids": ["emr-ev-2"]
+      },
+      {
+        "id": "emr-7",
+        "category": "visit_note",
+        "label": "Well-child visit — headaches first mentioned",
+        "detail": "Not evaluated at the time; normal neuro screen",
+        "flag": "",
+        "date": "2026-02-10",
+        "evidence_ids": ["emr-ev-3"]
+      },
+      {
+        "id": "emr-8",
+        "category": "imaging",
+        "label": "No head imaging on file",
+        "detail": "No CT/MRI ever performed",
+        "flag": "baseline for escalation decision",
+        "date": "",
+        "evidence_ids": ["emr-ev-2"]
+      },
+      {
+        "id": "emr-9",
+        "category": "lab",
+        "label": "No headache-relevant labs",
+        "detail": "Nothing in past 12 months",
+        "flag": "",
+        "date": "",
+        "evidence_ids": []
+      },
+      {
+        "id": "emr-10",
+        "category": "referral",
+        "label": "No prior neurology or ophthalmology referral",
+        "detail": "First structured headache evaluation",
+        "flag": "",
+        "date": "",
+        "evidence_ids": ["emr-ev-4"]
+      },
+      {
+        "id": "emr-11",
+        "category": "wait_status",
+        "label": "Pediatric neurology wait ~10–12 weeks (regional)",
+        "detail": "Informs timing if escalation needed",
+        "flag": "plan around wait if referring",
+        "date": "2026-07-17",
+        "evidence_ids": []
+      },
+      {
+        "id": "emr-12",
+        "category": "no_show",
+        "label": "No missed appointments on record",
+        "detail": "Family engaged with care",
+        "flag": "",
+        "date": "",
+        "evidence_ids": []
+      }
+    ]
+  },
   "care_plan": {
     "summary": [
-      "12-year-old with ~4 months of recurrent bilateral frontal pounding headaches, ~8 days/month, lasting hours. [ev-1, ev-2, ev-3, ev-4]",
-      "Attacks with nausea, occasional vomiting, photophobia and phonophobia; family history of migraine (mother, grandmother). [ev-5, ev-14]",
-      "Red-flag screen negative today: no waking headaches, no morning vomiting, no focal deficits, non-progressive pattern, normal vitals. [ev-6, ev-7, ev-8, ev-15]",
-      "PedMIDAS 32 (moderate disability): 4 full + 6 partial school days missed, reduced function at school, home, and sports. [ev-9, ev-10, ev-11]",
-      "Ibuprofen use ~3x/week \u2014 approaching medication-overuse range; lifestyle contributors present (late sleep, skipped breakfast, low hydration). [ev-13, ev-12]"
+      "12-year-old with ~4 months of recurrent bilateral frontal pounding headaches, ~8 days/month, lasting hours; rose in spring, non-progressive last 2 months. [ev-1, ev-2, ev-3, ev-4, ev-8]",
+      "Phenotype: worse with routine activity, nausea with occasional vomiting, photophobia and phonophobia, no aura; family history of migraine (mother, grandmother). [ev-4b, ev-5, ev-5b, ev-14]",
+      "Red-flag screen negative today: no thunderclap onset, morning vomiting, sleep awakening, focal deficits, seizures, gait change, altered mental status, or exertional/Valsalva trigger; normal vitals. [ev-6, ev-7, ev-15]",
+      "Functional burden: PedMIDAS 32 (moderate) \u2014 4 full + 6 partial school days missed, soccer skipped/limited 7x, one urgent-care visit in May. [ev-9, ev-10, ev-11, ev-3b]",
+      "Treatment response: ibuprofen ~3x/week with partial relief only when taken early \u2014 approaching overuse range; lifestyle contributors present (late sleep, skipped breakfast, low hydration). [ev-13, ev-12]"
     ],
     "questions_to_ask": [
       "Confirm exact ibuprofen dose and count per week",
-      "Any aura symptoms (visual changes before headache)?",
       "Menstrual pattern relationship, if applicable"
     ],
     "suggested_pathway": [
@@ -788,7 +1035,10 @@
       "ev-1",
       "ev-2",
       "ev-3",
+      "ev-3b",
       "ev-4",
+      "ev-4b",
+      "ev-5b",
       "ev-5",
       "ev-6",
       "ev-7",
@@ -821,11 +1071,47 @@
         "concerning",
         "safety"
       ],
-      "answer": "All screened red flags are marked absent based on today's interview: no waking/morning headaches, no early-morning vomiting, no focal neurologic symptoms, no thunderclap onset, no fever/stiff neck, and a non-progressive pattern over the last two months.",
+      "answer": "All eight screened red flags are marked absent based on today's interview: no thunderclap onset, no early-morning vomiting, no headaches waking her from sleep, no focal deficits, no seizures, no gait change, no altered mental status, and no exertional/cough/Valsalva trigger. The overall pattern is also non-progressive over the last two months.",
       "citations": [
         "ev-6",
         "ev-7",
         "ev-8"
+      ]
+    },
+    {
+      "match": [
+        "imaging",
+        "mri",
+        "ct",
+        "scan"
+      ],
+      "answer": "The chart shows no head imaging has ever been performed — none at the May urgent-care visit (normal neuro exam, discharged same day) and none since. With today's negative red-flag screen, no imaging trigger is currently met; this remains a clinician decision.",
+      "citations": [
+        "emr-ev-2"
+      ]
+    },
+    {
+      "match": [
+        "allerg",
+        "asthma",
+        "medical history",
+        "pmh"
+      ],
+      "answer": "From the chart: mild intermittent asthma managed with PRN albuterol (no headache contraindication identified), and a documented childhood amoxicillin rash. No daily medications.",
+      "citations": [
+        "emr-ev-1"
+      ]
+    },
+    {
+      "match": [
+        "urgent care",
+        "emergency",
+        "ed visit"
+      ],
+      "answer": "One urgent-care visit on 2026-05-15 for headache and nausea after school: normal neuro exam, no imaging, discharged the same day with PCP follow-up advised. The parent confirmed this during today's visit. No ED visits on record.",
+      "citations": [
+        "emr-ev-2",
+        "ev-3b"
       ]
     },
     {
@@ -885,7 +1171,7 @@
         "id": "pev-5",
         "source_type": "document",
         "source_label": "Intake questionnaire - 07/18",
-        "quote": "Red-flag screen items all answered 'no': fever/weight loss, focal deficit, thunderclap onset, cough/valsalva worsening, early-morning vomiting, progressive change."
+        "quote": "Red-flag screen items all answered 'no': thunderclap onset, morning vomiting, sleep awakening, focal deficits, seizures, gait change, altered mental status, exertional/Valsalva trigger."
       }
     ],
     "brief_lines": [
@@ -908,10 +1194,18 @@
       },
       {
         "id": "bl-3",
-        "text": "No prior neurology contact; OTC ibuprofen tried with minimal relief.",
+        "text": "No prior neurology contact, no head imaging ever performed; OTC ibuprofen tried with minimal relief.",
         "source_label": "Intake form - 07/18",
         "evidence_ids": [
           "pev-4"
+        ]
+      },
+      {
+        "id": "bl-3b",
+        "text": "One urgent-care visit (05/15) for headache + nausea: normal neuro exam, discharged same day, PCP follow-up advised.",
+        "source_label": "Urgent care note - 05/15",
+        "evidence_ids": [
+          "emr-ev-2"
         ]
       },
       {
@@ -935,6 +1229,12 @@
         "label": "Well-child visit",
         "sublabel": "Headaches mentioned, not evaluated",
         "kind": "visit"
+      },
+      {
+        "date": "2026-05-15",
+        "label": "Urgent care visit",
+        "sublabel": "Headache + nausea; normal neuro exam, no imaging",
+        "kind": "er_visit"
       },
       {
         "date": "2026-05-28",

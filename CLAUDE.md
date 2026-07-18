@@ -221,23 +221,24 @@ Only show compact, user-safe action states.
 ***
 
 ## Data / Extraction Requirements
-Bridge should extract or organize the following when supported by evidence:
-- headache onset
-- duration of problem
-- headache days per month
-- episode duration
-- location
-- quality (e.g. throbbing)
-- severity
-- associated symptoms
-- triggers
-- sleep/hydration/meals/screen time/stress context
-- acute medication use
-- school / disability impact
-- family history if mentioned
-- relevant vitals/context if provided
-- positive and negative red-flag findings
+
+### Intake capture (what the EMR does NOT reliably structure)
+Bridge extracts these from the live encounter when supported by evidence:
+- **Current headache pattern**: onset, frequency (days/month), episode duration, progression
+- **Headache phenotype**: location, quality, severity, activity worsening, nausea/vomiting, photophobia/phonophobia, aura
+- **Red flags for secondary headache / imaging escalation**: thunderclap onset, morning vomiting, sleep awakening, focal deficits, seizures, gait change, altered mental status, exertional/Valsalva trigger
+- **Functional burden**: missed school (PedMIDAS), sports/activity limitation, repeat PCP/ED/urgent-care visits
+- **Recent treatment response**: which OTC/prescribed acute meds were used, how often, whether they helped
+- context: triggers, sleep/hydration/meals/screen time/stress habits
+- family history if mentioned; relevant vitals/context if provided
 - unresolved / unknown fields
+
+### Agent-pulled EMR summary (auto-extracted, never re-asked at intake)
+The agent assembles from Medplum/chart at case load:
+- med history, allergies, PMH, family history
+- prior PCP, ED, urgent care, neurology, ophthalmology notes
+- previous imaging, labs, referrals, no-shows, specialist wait status
+- existing meds relevant to headache risk, contraindications, or overuse
 
 If a field is not supported by transcript/history, mark it as:
 - unknown
@@ -267,17 +268,38 @@ type ExtractedFact<T = string> = {
 };
 
 type HeadacheProfile = {
+  // pattern
   onset: ExtractedFact;
   frequencyDaysPerMonth: ExtractedFact<number>;
   episodeDuration: ExtractedFact;
+  progression: ExtractedFact;
+  // phenotype
   location: ExtractedFact;
   quality: ExtractedFact;
   severity: ExtractedFact;
+  activityWorsening: ExtractedFact;
   associatedSymptoms: ExtractedFact<string[]>;
+  aura: ExtractedFact;
+  // context
   triggers: ExtractedFact<string[]>;
   habits: ExtractedFact<string[]>;
+  // treatment response
   acuteMedicationUse: ExtractedFact<string[]>;
+  treatmentResponse: ExtractedFact;
+  // functional burden
   schoolImpact: ExtractedFact;
+  activityImpact: ExtractedFact;
+  repeatVisits: ExtractedFact;
+};
+
+type EmrItem = {
+  id: string;
+  category: 'pmh' | 'allergy' | 'family_history' | 'medication' | 'visit_note'
+    | 'imaging' | 'lab' | 'referral' | 'no_show' | 'wait_status';
+  label: string;
+  detail: string;
+  flag: string; // headache-relevance, e.g. "overuse watch", "contraindication"
+  evidenceIds: string[];
 };
 
 type RedFlag = {

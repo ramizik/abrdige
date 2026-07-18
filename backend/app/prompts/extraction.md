@@ -23,8 +23,14 @@ Output STRICT JSON matching this delta schema (all keys optional; omit empty one
   "missing_questions_remove": ["..."]
 }
 
-Profile fields: onset, frequency_days_per_month, episode_duration, location, quality, severity, associated_symptoms, triggers, habits, acute_medication_use, school_impact.
+Profile fields (grouped by intake purpose):
+- pattern: onset, frequency_days_per_month, episode_duration, progression
+- phenotype: location, quality, severity, activity_worsening, associated_symptoms, aura
+- context: triggers, habits
+- treatment response: acute_medication_use, treatment_response (did meds help, how often used)
+- functional burden: school_impact, activity_impact (sports/social limitation), repeat_visits (repeat PCP/ED/urgent-care use)
 List-valued fields (associated_symptoms, triggers, habits, acute_medication_use) take arrays as value.
+Distinguish activity_worsening (existing headache worsens with routine activity — migraine feature) from the exertional_valsalva red flag (headache *triggered* by exertion/cough/Valsalva).
 Red flag keys and PedMIDAS question ids are provided in the input.
 
 Return ONLY the JSON object. No prose, no markdown fences.

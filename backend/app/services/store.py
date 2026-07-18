@@ -10,6 +10,7 @@ from ..models import (
     CarePlanDraft,
     CaseSummary,
     DiaryDay,
+    EmrSummary,
     EvidenceRef,
     HeadacheDiary,
     HistoryEntry,
@@ -82,6 +83,9 @@ def create_visit(case_id: str) -> VisitState | None:
         previsit=(
             PrevisitBrief(**raw["previsit"]) if raw.get("previsit") else None
         ),
+        emr_summary=(
+            EmrSummary(**raw["emr_summary"]) if raw.get("emr_summary") else None
+        ),
         history=[HistoryEntry(**h) for h in raw["history"]],
         history_source=_case_source.get(case_id, "local"),
         chunks_total=len(raw.get("chunks", [])),
@@ -93,6 +97,9 @@ def create_visit(case_id: str) -> VisitState | None:
     state.pedmidas.missing_question_ids = [
         q["question_id"] for q in raw["pedmidas_questions"]
     ]
+    if state.emr_summary:
+        for ref in state.emr_summary.evidence:
+            state.evidence[ref.id] = ref
     if state.previsit:
         for ref in state.previsit.evidence:
             state.evidence[ref.id] = ref

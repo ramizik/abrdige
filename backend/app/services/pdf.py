@@ -43,15 +43,21 @@ def build_visit_pdf(state: VisitState) -> bytes:
         ("Frequency", f"{prof.frequency_days_per_month.value} days/month"
          if prof.frequency_days_per_month.value is not None else None),
         ("Episode duration", prof.episode_duration.value),
+        ("Progression", prof.progression.value),
         ("Location", prof.location.value),
         ("Quality", prof.quality.value),
         ("Severity", prof.severity.value),
+        ("Worse with activity", prof.activity_worsening.value),
         ("Associated symptoms", ", ".join(prof.associated_symptoms.value) or None),
+        ("Aura", prof.aura.value),
         ("Triggers (needs confirmation)" if prof.triggers.status == "needs_confirmation"
          else "Triggers", ", ".join(prof.triggers.value) or None),
         ("Habits", ", ".join(prof.habits.value) or None),
         ("Acute medication use", ", ".join(prof.acute_medication_use.value) or None),
+        ("Treatment response", prof.treatment_response.value),
         ("School impact", prof.school_impact.value),
+        ("Sports/activity impact", prof.activity_impact.value),
+        ("Repeat PCP/ED visits", prof.repeat_visits.value),
     ]
     for label, value in rows:
         story.append(Paragraph(f"<b>{label}:</b> {value if value else 'Unknown / not captured'}", body))
@@ -66,6 +72,14 @@ def build_visit_pdf(state: VisitState) -> bytes:
     for r in pm.responses:
         story.append(Paragraph(f"• {r.question}: {r.value:.0f}" if r.value is not None else f"• {r.question}: —", body))
     story.append(Spacer(1, 8))
+
+    if state.emr_summary and state.emr_summary.items:
+        story.append(Paragraph("Chart Summary (agent-extracted from EMR)", h2))
+        for item in state.emr_summary.items:
+            flag = f" — <i>{item.flag}</i>" if item.flag else ""
+            detail = f": {item.detail}" if item.detail else ""
+            story.append(Paragraph(f"• <b>{item.label}</b>{detail}{flag}", body))
+        story.append(Spacer(1, 8))
 
     story.append(Paragraph("Red-Flag Screen", h2))
     for rf in state.red_flags:
