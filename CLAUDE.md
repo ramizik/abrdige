@@ -547,7 +547,7 @@ Use synthetic PHI only.
 ***
 
 ## Build Order
-Follow this order unless explicitly told otherwise:
+**Steps 1–10 complete.** Only step 11 (polish / fallback states / demo hardening) remains active. Original order for reference:
 
 1. scaffold frontend and backend
 2. define schemas and seeded JSON cases

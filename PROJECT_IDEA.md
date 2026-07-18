@@ -1,5 +1,7 @@
 # Bridge — Project Idea & Product Specification
 
+> **Status note (2026-07-18):** this is the original pre-build specification, kept for historical context. The project is now built — see `README.md` for the current state. Two notable deviations from this spec: (1) a real EHR integration *was* added — Medplum FHIR is the source of truth for case data (seed / read / write-back), with the JSON snapshot demoted to deterministic fallback; (2) the backend also serves guideline-linked "Intelligent Insights" (differential-dx + treatment considerations) per case.
+
 ## Executive Summary
 
 **Bridge** is a live visit-intelligence agent for primary care pediatricians managing children with headaches in underserved settings. During a first headache visit, Bridge combines available patient history with a live transcript of the PCP-patient conversation, converts fragmented information into a structured clinical picture, surfaces missing questions and safety signals, and produces a clinician-reviewed end-of-visit plan for the family.
@@ -42,7 +44,7 @@ The International Classification of Headache Disorders, 3rd edition (ICHD-3), de
 ### In scope
 - Pediatric headache / migraine workflow only
 - First visit plus a follow-up (visit 2+) state
-- Synthetic patient history and prior visits stored in JSON for demo
+- Synthetic patient history and prior visits seeded into Medplum FHIR (JSON snapshot as deterministic fallback)
 - Synthetic live transcript chunks simulating STT
 - Structured extraction, visual dashboard, grounded Q&A, summary, plan, and PDF export
 - Clinician review at every action point
@@ -52,7 +54,7 @@ The International Classification of Headache Disorders, 3rd edition (ICHD-3), de
 - Multi-specialty platform
 - Autonomous diagnosis or prescribing
 - Real patient data
-- Real EHR/FHIR/fax integration
+- EHR integrations beyond Medplum (Epic/Cerner); fax integration
 - Real telehealth/STT infrastructure for the MVP
 - Patient portal or messaging system
 
@@ -117,7 +119,7 @@ The **Visit Intelligence Agent** is the engine. It is not a generic chat assista
 
 | Agent action | Input | Visible output |
 |---|---|---|
-| Read context | Seeded history JSON | Prior-history snapshot and cited facts |
+| Read context | Medplum FHIR case data (JSON fallback) | Prior-history snapshot and cited facts |
 | Process conversation | Live transcript chunk | Structured headache profile updates |
 | Capture disability | PedMIDAS-relevant answers | Completion state, missing questions, score when complete |
 | Build pattern | Frequency/severity statements | Patient-reported headache diary draft |
@@ -304,28 +306,29 @@ Option 2: A red flag appears; routine pathway is paused and clinician-reviewed e
 
 ## Technical Architecture
 
-### Frontend
-- React + TypeScript + Vite
-- Tailwind + shadcn/ui
-- Recharts or lightweight chart package
-- Synthetic data / deterministic fallback state
+### Frontend (as built)
+- React 19 + TypeScript + Vite
+- Tailwind v4 (custom Bridge theme; no component library — hand-built cards)
+- Inline SVG charts (PedMIDAS trend, diary heatmap, pain-location diagram)
+- All rendered data originates from backend `VisitState`
 
-### Backend
-- FastAPI + Pydantic
-- Anthropic Agent SDK
-- Agent produces validated structured output
-- Seed data in JSON
+### Backend (as built)
+- FastAPI + Pydantic v2
+- Anthropic Claude Agent SDK (schema-validated structured output)
+- Medplum FHIR: seed script, case-load reads, visit-summary write-back
+- Seed data in JSON as deterministic fallback
 - Local/in-memory state
 
 ### Real vs simulated
 
 | Build as real | Simulate for MVP |
 |---|---|
-| Frontend dashboard | Production EHR / FHIR access |
+| Frontend dashboard | EHR access beyond Medplum (Epic/Cerner) |
+| Medplum FHIR read / write-back | Real patient documents |
 | Transcript-chunk processing interface | Live STT microphone pipeline |
-| Structured agent extraction | Real patient documents |
-| Evidence/citation drawer | Real fax ingestion at scale |
-| PDF generation | Broad guideline database |
+| Structured agent extraction | Real fax ingestion at scale |
+| Evidence/citation drawer | Broad guideline database |
+| PDF generation | Patient portal / messaging |
 | One grounded Q&A path | Long-term production storage |
 | Follow-up visualization | Autonomous actions/orders |
 

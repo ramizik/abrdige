@@ -1,65 +1,69 @@
-# Bridge — Pediatric Headache Visit Intelligence Agent
+# Bridge — Pediatric Headache Copilot
 
 **Hackathon: The Future of Agentic AI in Healthcare (Abridge)**
 
-## What Bridge is
-
-Bridge turns a pediatric headache visit — live conversation plus fragmented chart history — into a structured, evidence-linked clinical picture and a clinician-reviewed next-step plan, while the visit is still happening.
-
-### The problem
-
-A primary-care pediatrician in a safety-net clinic gets ~20 minutes with a child who has headaches. The relevant history is scattered across well-child notes, triage calls, and parent reports; the visit conversation itself never becomes structured data; validated tools like PedMIDAS (pediatric migraine disability score) rarely get captured; and red-flag screening depends on memory under time pressure. The result: incomplete workups, missed escalations, and no longitudinal picture at the follow-up visit.
-
-### What Bridge does about it
-
-During the visit, a **Visit Intelligence Agent** (built on the Claude Agent SDK) continuously converts the encounter into structured clinical state:
-
-- pulls and summarizes the chart from a **Medplum FHIR server** at case open: PMH, allergies, family history, prior PCP/ED/urgent-care/specialty notes, imaging, labs, referrals, no-shows, specialist wait status, and headache-relevant meds (overuse / contraindication flags) — so the visit never re-asks what the EMR already knows
-- captures at intake exactly what the EMR does **not** structure: headache pattern (onset, frequency, duration, progression), phenotype (location, quality, severity, activity worsening, nausea/vomiting, photo/phonophobia, aura), functional burden (missed school, sports limitation, repeat PCP/ED visits), and recent treatment response (what was taken, how often, did it help) — into a strict typed schema
-- screens a fixed 14-item red-flag catalog for secondary headache / imaging escalation (thunderclap, sleep awakening, morning vomiting, cough/Valsalva/exertion trigger, focal deficits, vision changes, speech difficulty, gait change, seizures, altered mental status, fever/stiff neck, cancer/immunosuppression/shunt, head trauma, progressive worsening) — every flag explicitly `present` / `absent` / `unknown`, never guessed
-- flags **medication-overuse risk** with visible arithmetic (acute meds ≥10 days/month, e.g. "ibuprofen 3×/week ≈ 12 days/month")
-- captures the **exam snapshot** (appearance, neuro exam, funduscopic) and the **PCP's stated impression & plan** (concern level, tentative classification, selected plan items) — clinician-stated only, never inferred
-- captures PedMIDAS items as concrete day-counts surface in conversation, and scores only when complete
-- drafts a patient-reported headache diary
-- tells the clinician **what hasn't been asked yet** (missing high-value questions)
-- links every extracted claim to an exact quote (evidence drawer)
-- on completion: generates a clinician-review plan, exports a PDF action plan, and **writes the visit summary back to Medplum** so visit 2 reads real longitudinal state
-
-Bridge is a support tool for clinician review — it never diagnoses or prescribes. All outputs are drafts with evidence attached.
+> Bridge turns a pediatric headache visit — the live conversation plus a fragmented chart history — into a structured, evidence-linked clinical picture and a clinician-reviewed plan, **while the visit is still happening**.
 
 ***
 
-## Real agentic functionality (not staged)
+## The problem
 
-The core demo path exercises a real agent doing real work:
+A pediatrician in a busy safety-net clinic gets about **20 minutes** with a child who keeps getting headaches. In that time they must:
 
-1. **Mid-visit "Analyze" (`POST /visits/{id}/analyze`)** — the flagship agentic action. The Claude Agent SDK (`claude-agent-sdk`, model `claude-sonnet-5`) receives the full visit-so-far (agent-built EMR summary + Medplum-sourced history + accumulated transcript + red-flag catalog + PedMIDAS items) and returns a **schema-validated structured re-assessment**: profile facts, red-flag states, PedMIDAS responses, diary sketch, missing questions, and self-generated evidence quotes. Output is enforced via JSON-schema structured output and validated with Pydantic (`AnalysisDelta`) before it touches the dashboard. No free text, no chat.
-2. **Per-chunk live extraction (`BRIDGE_DEMO_MODE=0`)** — the same agent extracts a structured delta from each transcript chunk as it arrives.
-3. **Grounding is enforced, not decorative** — the agent's system prompt forbids invented values; every fact carries `evidence_ids` pointing to exact quotes with speaker + timestamp; unsupported fields are omitted and surface as `unknown` in the UI. The prompt contract lives in `backend/app/prompts/analysis.md`.
-4. **Real EHR round-trip via Medplum FHIR** — case data is fetched from Medplum at load, and the completed visit summary is written back as a FHIR `DocumentReference`. The agent operates on EHR-sourced state, not hardcoded fixtures.
+- piece together history scattered across well-child notes, urgent-care visits, triage calls, and parent memory;
+- ask the right questions about the headaches themselves — pattern, symptoms, school impact, medications;
+- remember to screen for the rare-but-serious warning signs that mean a headache is not "just a migraine";
+- capture a validated disability score (PedMIDAS) that in practice almost never gets recorded;
+- and leave behind notes good enough that the *next* visit can tell whether the child is getting better or worse.
+
+In reality, the conversation disappears into free-text notes, the disability score never gets captured, red-flag screening depends on memory under time pressure, and the follow-up visit starts from scratch. Children who need escalation get missed; children who don't get over-referred.
+
+## The solution
+
+Bridge is a **live visit copilot**. While the doctor and family talk, an AI agent (built on Anthropic's Claude Agent SDK) listens to the visit and continuously turns the conversation — plus the patient's chart — into a structured picture the doctor can glance at:
+
+1. **Before the visit starts**, Bridge has already read the chart (stored in a real FHIR electronic health record — Medplum) and assembled what matters: past conditions, allergies, family history, prior visits, medication warnings. The doctor never re-asks what the record already knows.
+2. **As the conversation happens**, the agent fills in a live headache profile — when the headaches started, how often, where, what they feel like, what makes them worse, how much school is being missed — with every fact linked to the exact sentence it came from.
+3. **Safety runs in the background**: a fixed 14-item red-flag checklist (the signs that suggest something more serious) is tracked as *present / absent / not asked yet* — never guessed. If a red flag appears, the routine pathway visibly pauses and escalation drafts appear.
+4. **At the end**, Bridge drafts the visit summary, a next-step plan, and a family-friendly PDF action plan — all marked "draft, for clinician review" — and writes the summary back to the health record so the next visit starts informed.
+
+**The clinician stays the decision-maker.** Bridge never diagnoses, never prescribes, never sends anything on its own. Every output is a draft with evidence attached.
+
+## What you'll see in the demo
+
+### Live Visit view
+- **Visit Intelligence Agent rail** — the transcript streams in; a progress bar and status line show the agent working ("Extracting headache characteristics", "Updating PedMIDAS capture"). An **Analyze** button triggers a real Claude re-assessment of everything heard so far.
+- **Headache profile grid** — fills in live as facts surface. Unknown stays *unknown*; nothing is invented.
+- **Evidence drawer** — click any fact and see the exact quote it came from, with source and timestamp. This is the trust feature: every claim is traceable.
+- **PedMIDAS capture** — the six disability questions check off as answers appear in conversation; the score is only computed when all six are captured.
+- **Still to Ask** — the agent tracks which high-value questions haven't been covered yet, so the short visit gets used well.
+- **Intelligent Insights** — guideline-linked differential diagnoses (with the diagnostic criteria shown as met / partial / unmet) and treatment considerations, each citing its source (ICHD-3, AAN/AHS 2019, CHAMP trial). Clearly labeled decision support, not a verdict.
+- **Complete visit** — generates the clinician-review plan and a printable PDF for the family; the summary is written back to the health record.
+
+### Headache Summary view
+- The full **14-item red-flag checklist** with per-item status and evidence.
+- **PedMIDAS trend chart** — at the 8-week follow-up (demo Case B) the score falls 32 → 11, with the intervention marked on the chart. This is the longitudinal payoff: the second visit *knows* what happened in the first.
+- **30-day headache diary heatmap** drafted from what the family reported.
+- **Pain-location diagram** derived from the child's own words.
+- **Changes since last visit** — improving / stable / worsening, at a glance, each line evidence-linked.
+
+### Two demo cases
+- **Case A — first visit**: 12-year-old with four months of worsening headaches. Migraine-compatible pattern, real school impact, no red flags. Watch the picture assemble live.
+- **Case B — 8-week follow-up**: same child after the plan started. Frequency halved, disability score way down, medication-overuse concern resolved — proof the system is longitudinal, not a one-visit transcription toy.
+
+## What makes it genuinely agentic (not AI theater)
+
+- **The Analyze action is a real agent call**: Claude receives the chart summary, the prior history, and the accumulated transcript, and returns a schema-validated structured re-assessment — profile facts, red-flag states, PedMIDAS answers, missing questions — each with self-generated evidence quotes. No free text, no chat. Output is validated before it touches the screen.
+- **Grounding is enforced**: the agent's instructions forbid invented values; anything unsupported surfaces as *unknown* in the UI.
+- **A real EHR round-trip**: case data lives in Medplum (a FHIR-standard health record server) as a proper longitudinal record — patient, encounters, coded vital signs, questionnaires, documents. Bridge reads it at case open and writes the visit summary back at completion.
+- **The frontend never fabricates**: every value on screen originates from the backend state. If the backend didn't extract it, the UI shows *unknown*.
 
 ### Honest prototype boundaries
-
-Synthetic data only. The transcript stream is a simulated STT feed (pre-scripted chunks delivered sequentially — building production speech-to-text was out of scope, the agentic processing of it is not). Ask Bridge Q&A is deterministic grounded retrieval over the seeded case (citations point at real evidence IDs). `BRIDGE_DEMO_MODE=1` replays precomputed extraction deltas for deterministic stage demos; the Analyze button runs the real agent in either mode.
-
-***
-
-## Integrations
-
-### 1. Anthropic Claude Agent SDK
-- `claude_agent_sdk.query()` with `ClaudeAgentOptions`: custom system prompt, `output_format={"type": "json_schema", ...}` generated from the Pydantic model, `allowed_tools=[]`, `max_turns=1` — a constrained single-purpose agent, not an open chatbot.
-- Two pipelines: full-visit re-assessment (`app/services/analysis.py`) and per-chunk extraction (`app/services/extraction.py`).
-- Any SDK/parse failure degrades gracefully to deterministic state — the demo cannot blank-screen.
-
-### 2. Medplum FHIR server (synthetic-data EHR)
-- OAuth2 client-credentials against `https://api.medplum.com`; token cached in-process, 3s timeout on every call (`app/services/medplum.py`, stdlib-only client).
-- **Seeded FHIR graph** (`scripts/seed_medplum.py`, idempotent conditional PUTs): one shared `Patient`, an `Encounter` per prior visit, LOINC-coded vital-sign `Observation`s parsed from the notes, PedMIDAS trend scores as `Observation`s, a PedMIDAS `Questionnaire`, one `DocumentReference` per history note (linked to its encounter), and the full case definition as a `DocumentReference` — a browsable longitudinal record, not a blob dump.
-- **Read**: backend fetches case definitions from Medplum at case load; `VisitState.history_source` reports `"medplum"` vs `"local"` fallback.
-- **Write-back**: visit completion pushes the summary to Medplum, closing the loop for the follow-up visit.
+Synthetic data only. The transcript is a simulated speech-to-text feed (pre-scripted chunks — production STT was out of scope; the agentic processing of it is not). Ask-Bridge Q&A is deterministic grounded retrieval over the case with real citations. A demo mode replays precomputed extraction deltas for stage-safe determinism; the Analyze button runs the real agent in either mode. Every external dependency (Medplum, Anthropic API) fails soft to bundled deterministic state — the demo cannot blank-screen.
 
 ***
 
-## Architecture
+## Under the hood (for the technically curious)
 
 ```
 React + Vite + TS  ──HTTP──►  FastAPI (single service)
@@ -72,57 +76,46 @@ React + Vite + TS  ──HTTP──►  FastAPI (single service)
                                 └── pdf.py          ReportLab visit-plan export
 ```
 
-**Stack**: FastAPI + Pydantic v2 (backend, strict typed `VisitState` contract), React 19 + Vite + TypeScript (frontend, mirrored types in `src/types/bridge.ts`), ReportLab (PDF), `claude-agent-sdk`, Medplum FHIR R4. No database — Medplum is persistence, local JSON is the deterministic fallback.
+- **Backend**: FastAPI + Pydantic v2; strict typed `VisitState` contract shared with the frontend (`backend/app/models.py` ⇄ `frontend/src/types/bridge.ts`). No database — Medplum is persistence, bundled JSON is the deterministic fallback.
+- **Agent**: `claude_agent_sdk.query()` with a custom system prompt, JSON-schema-constrained output generated from the Pydantic model, no tools, single turn — a constrained single-purpose agent, not an open chatbot. Prompt contracts in `backend/app/prompts/`.
+- **Medplum**: OAuth2 client-credentials; idempotent seed script builds a browsable FHIR graph (Patient, Encounters, LOINC-coded Observations, PedMIDAS Questionnaire, DocumentReferences). Every read has a 3-second timeout and a silent local fallback; `history_source` in the API response reports which path served the data.
+- **Frontend**: React 19 + Tailwind v4, single-file dashboard (`frontend/src/App.tsx`), evidence drawer, deep links (`?case=case-b&tab=headache`). Details in `frontend/README.md`.
 
-**Demo reliability engineering**: every external dependency (Medplum, Anthropic API) fails soft to bundled deterministic state with visible source flags. Timeouts everywhere. Two seeded cases: Case A (first visit, migraine-compatible, no red flags) and Case B (8-week follow-up with PedMIDAS trend).
+### Run it
 
-***
-
-## Run
-
-### Backend (port 8000)
 ```bash
+# backend (port 8000)
 cd backend
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt   # once
-cp .env.example .env   # add ANTHROPIC_API_KEY + Medplum creds
+cp .env.example .env   # add ANTHROPIC_API_KEY + Medplum creds (both optional — fallbacks exist)
 .venv/bin/uvicorn app.main:app --reload
-```
 
-### Frontend (port 5173)
-```bash
+# frontend (port 5173)
 cd frontend
 npm install && npm run dev
-```
 
-### Seed Medplum (once, or after editing `backend/app/demo_data/*.json`)
-```bash
+# seed Medplum (once, or after editing backend/app/demo_data/*.json)
 cd backend && .venv/bin/python -m scripts.seed_medplum
 ```
 
-### Env
-| Var | Purpose |
+| Env var | Purpose |
 |---|---|
 | `ANTHROPIC_API_KEY` | Agent SDK pipelines (Analyze always uses it) |
 | `BRIDGE_DEMO_MODE` | `1` = deterministic per-chunk deltas (default), `0` = live per-chunk extraction |
+| `BRIDGE_ANALYSIS_MODEL` | model for the Analyze pipeline (default `claude-sonnet-5`) |
 | `MEDPLUM_BASE_URL` / `MEDPLUM_CLIENT_ID` / `MEDPLUM_CLIENT_SECRET` | FHIR EHR; unset → pure local fallback |
-
-## API
 
 | Endpoint | Purpose |
 |---|---|
-| `GET /health` | liveness |
-| `GET /cases` | list demo cases |
-| `GET /cases/{case_id}` | open case → fetches from Medplum, creates visit, returns `VisitState` |
-| `POST /visits/{id}/transcript-chunk` | next transcript chunk → updated `VisitState`; `?extract=false` appends raw turns only |
-| `POST /visits/{id}/analyze` | **real Agent SDK re-assessment** of the full visit so far |
-| `POST /visits/{id}/complete` | finalize: care plan draft + summary write-back to Medplum |
+| `GET /cases` · `GET /cases/{id}` | list / open a demo case (fetches from Medplum, returns `VisitState`) |
+| `POST /visits/{id}/transcript-chunk` | next transcript chunk → updated state |
+| `POST /visits/{id}/analyze` | **real Agent SDK re-assessment** of the visit so far |
+| `POST /visits/{id}/complete` | finalize: care plan + summary write-back to Medplum |
 | `POST /visits/{id}/ask` | grounded Q&A with evidence citations |
-| `GET /visits/{id}/export.pdf` | end-of-visit PDF action plan |
-
-Shared contract: `backend/app/models.py` ⇄ `frontend/src/types/bridge.ts` (keep in sync).
+| `GET /visits/{id}/export.pdf` | family-facing PDF action plan |
 
 ***
 
 ## Clinical safety position
 
-Bridge is decision **support**, not a decision maker. Every output is labeled draft / clinician-review-required; unsupported fields are marked unknown rather than filled; pathway suggestions are visually separated from patient facts and sourced from a constrained demo reference. Synthetic PHI only.
+Bridge is decision **support**, not a decision maker. Every output is labeled draft / clinician-review-required; unsupported fields are marked unknown rather than filled; pathway suggestions are visually separated from patient facts and sourced from a constrained demo reference informed by ICHD-3-style feature capture. Synthetic PHI only — no real patient data anywhere in the system.
