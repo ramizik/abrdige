@@ -42,6 +42,8 @@ def build_visit_pdf(state: VisitState) -> bytes:
         ("Onset", prof.onset.value),
         ("Frequency", f"{prof.frequency_days_per_month.value} days/month"
          if prof.frequency_days_per_month.value is not None else None),
+        ("Severe attacks", f"{prof.severe_attacks_per_month.value:.0f}/month"
+         if prof.severe_attacks_per_month.value is not None else None),
         ("Episode duration", prof.episode_duration.value),
         ("Progression", prof.progression.value),
         ("Location", prof.location.value),
@@ -50,18 +52,54 @@ def build_visit_pdf(state: VisitState) -> bytes:
         ("Worse with activity", prof.activity_worsening.value),
         ("Associated symptoms", ", ".join(prof.associated_symptoms.value) or None),
         ("Aura", prof.aura.value),
+        ("Aura duration", prof.aura_duration.value),
         ("Triggers (needs confirmation)" if prof.triggers.status == "needs_confirmation"
          else "Triggers", ", ".join(prof.triggers.value) or None),
+        ("Relievers", ", ".join(prof.relievers.value) or None),
         ("Habits", ", ".join(prof.habits.value) or None),
+        ("Headache diary kept", prof.diary_available.value),
+        ("Family history", prof.family_history.value),
         ("Acute medication use", ", ".join(prof.acute_medication_use.value) or None),
+        ("Preventive medication",
+         ", ".join(prof.preventive_medication_use.value)
+         if prof.preventive_medication_use.value
+         else ("None" if prof.preventive_medication_use.status == "negative" else None)),
         ("Treatment response", prof.treatment_response.value),
+        ("Medication overuse risk", prof.medication_overuse_risk.value),
+        ("Non-medical interventions", ", ".join(prof.non_medical_interventions.value) or None),
         ("School impact", prof.school_impact.value),
         ("Sports/activity impact", prof.activity_impact.value),
         ("Repeat PCP/ED visits", prof.repeat_visits.value),
+        ("Daily-life interference", prof.headache_interference.value),
     ]
     for label, value in rows:
         story.append(Paragraph(f"<b>{label}:</b> {value if value else 'Unknown / not captured'}", body))
     story.append(Spacer(1, 8))
+
+    exam = state.exam
+    exam_rows = [
+        ("General appearance", exam.general_appearance.value),
+        ("Neuro exam", ", ".join(exam.neuro_exam.value) or None),
+        ("Funduscopic", exam.funduscopic.value),
+    ]
+    if any(v for _, v in exam_rows):
+        story.append(Paragraph("Exam Snapshot (clinician-reported)", h2))
+        for label, value in exam_rows:
+            story.append(Paragraph(f"<b>{label}:</b> {value if value else 'Not documented'}", body))
+        story.append(Spacer(1, 8))
+
+    ca = state.clinician_assessment
+    if ca.impression.value or ca.tentative_classification.value or ca.plan_selections.value:
+        story.append(Paragraph("PCP Impression & Plan (clinician-stated)", h2))
+        ca_rows = [
+            ("Impression", ca.impression.value),
+            ("Concern level today", ca.concern_level.value),
+            ("Tentative classification", ca.tentative_classification.value),
+            ("Plan selected", ", ".join(ca.plan_selections.value) or None),
+        ]
+        for label, value in ca_rows:
+            story.append(Paragraph(f"<b>{label}:</b> {value if value else '—'}", body))
+        story.append(Spacer(1, 8))
 
     story.append(Paragraph("PedMIDAS", h2))
     pm = state.pedmidas

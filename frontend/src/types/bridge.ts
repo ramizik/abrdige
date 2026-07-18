@@ -37,6 +37,7 @@ export interface HeadacheProfile {
   // current headache pattern
   onset: ExtractedFact;
   frequency_days_per_month: NumericFact;
+  severe_attacks_per_month: NumericFact;
   episode_duration: ExtractedFact;
   progression: ExtractedFact;
   // headache phenotype
@@ -46,16 +47,43 @@ export interface HeadacheProfile {
   activity_worsening: ExtractedFact;
   associated_symptoms: ListFact;
   aura: ExtractedFact;
+  aura_duration: ExtractedFact;
   // context
   triggers: ListFact;
+  relievers: ListFact;
   habits: ListFact;
+  diary_available: ExtractedFact;
+  family_history: ExtractedFact;
   // recent treatment response
   acute_medication_use: ListFact;
+  preventive_medication_use: ListFact;
   treatment_response: ExtractedFact;
+  /** acute meds >= 10 days/month */
+  medication_overuse_risk: ExtractedFact;
+  non_medical_interventions: ListFact;
   // functional burden
   school_impact: ExtractedFact;
   activity_impact: ExtractedFact;
   repeat_visits: ExtractedFact;
+  /** "In the past 4 weeks, how much have headaches interfered with daily life?" */
+  headache_interference: ExtractedFact;
+}
+
+/** PCP exam findings stated during the visit (clinician-reported). */
+export interface ExamSnapshot {
+  general_appearance: ExtractedFact;
+  neuro_exam: ListFact;
+  funduscopic: ExtractedFact;
+}
+
+/** What the PCP explicitly states during the visit — never inferred. */
+export interface ClinicianAssessment {
+  impression: ExtractedFact;
+  /** low / moderate / high */
+  concern_level: ExtractedFact;
+  /** likely migraine / likely tension-type / possible secondary / unsure */
+  tentative_classification: ExtractedFact;
+  plan_selections: ListFact;
 }
 
 /** --- Agent-built EMR summary (auto-extracted from chart, not asked at intake) --- */
@@ -257,6 +285,8 @@ export interface VisitState {
   chunks_total: number;
   agent_status: string;
   profile: HeadacheProfile;
+  exam: ExamSnapshot;
+  clinician_assessment: ClinicianAssessment;
   red_flags: RedFlag[];
   pedmidas: PedMIDASState;
   diary: HeadacheDiary;

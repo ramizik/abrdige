@@ -16,7 +16,9 @@ During the visit, a **Visit Intelligence Agent** (built on the Claude Agent SDK)
 
 - pulls and summarizes the chart from a **Medplum FHIR server** at case open: PMH, allergies, family history, prior PCP/ED/urgent-care/specialty notes, imaging, labs, referrals, no-shows, specialist wait status, and headache-relevant meds (overuse / contraindication flags) — so the visit never re-asks what the EMR already knows
 - captures at intake exactly what the EMR does **not** structure: headache pattern (onset, frequency, duration, progression), phenotype (location, quality, severity, activity worsening, nausea/vomiting, photo/phonophobia, aura), functional burden (missed school, sports limitation, repeat PCP/ED visits), and recent treatment response (what was taken, how often, did it help) — into a strict typed schema
-- screens a fixed 8-item red-flag catalog for secondary headache / imaging escalation (thunderclap, morning vomiting, sleep awakening, focal deficits, seizures, gait change, altered mental status, exertional/Valsalva trigger) — every flag explicitly `present` / `absent` / `unknown`, never guessed
+- screens a fixed 14-item red-flag catalog for secondary headache / imaging escalation (thunderclap, sleep awakening, morning vomiting, cough/Valsalva/exertion trigger, focal deficits, vision changes, speech difficulty, gait change, seizures, altered mental status, fever/stiff neck, cancer/immunosuppression/shunt, head trauma, progressive worsening) — every flag explicitly `present` / `absent` / `unknown`, never guessed
+- flags **medication-overuse risk** with visible arithmetic (acute meds ≥10 days/month, e.g. "ibuprofen 3×/week ≈ 12 days/month")
+- captures the **exam snapshot** (appearance, neuro exam, funduscopic) and the **PCP's stated impression & plan** (concern level, tentative classification, selected plan items) — clinician-stated only, never inferred
 - captures PedMIDAS items as concrete day-counts surface in conversation, and scores only when complete
 - drafts a patient-reported headache diary
 - tells the clinician **what hasn't been asked yet** (missing high-value questions)

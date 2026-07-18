@@ -46,6 +46,7 @@ class HeadacheProfile(BaseModel):
     # current headache pattern
     onset: ExtractedFact = Field(default_factory=ExtractedFact)
     frequency_days_per_month: NumericFact = Field(default_factory=NumericFact)
+    severe_attacks_per_month: NumericFact = Field(default_factory=NumericFact)
     episode_duration: ExtractedFact = Field(default_factory=ExtractedFact)
     progression: ExtractedFact = Field(default_factory=ExtractedFact)
     # headache phenotype
@@ -55,16 +56,47 @@ class HeadacheProfile(BaseModel):
     activity_worsening: ExtractedFact = Field(default_factory=ExtractedFact)
     associated_symptoms: ListFact = Field(default_factory=ListFact)
     aura: ExtractedFact = Field(default_factory=ExtractedFact)
+    aura_duration: ExtractedFact = Field(default_factory=ExtractedFact)
     # context
     triggers: ListFact = Field(default_factory=ListFact)
+    relievers: ListFact = Field(default_factory=ListFact)
     habits: ListFact = Field(default_factory=ListFact)
+    diary_available: ExtractedFact = Field(default_factory=ExtractedFact)
+    family_history: ExtractedFact = Field(default_factory=ExtractedFact)
     # recent treatment response
     acute_medication_use: ListFact = Field(default_factory=ListFact)
+    preventive_medication_use: ListFact = Field(default_factory=ListFact)
     treatment_response: ExtractedFact = Field(default_factory=ExtractedFact)
+    # acute meds >= 10 days/month
+    medication_overuse_risk: ExtractedFact = Field(default_factory=ExtractedFact)
+    non_medical_interventions: ListFact = Field(default_factory=ListFact)
     # functional burden
     school_impact: ExtractedFact = Field(default_factory=ExtractedFact)
     activity_impact: ExtractedFact = Field(default_factory=ExtractedFact)
     repeat_visits: ExtractedFact = Field(default_factory=ExtractedFact)
+    # "In the past 4 weeks, how much have headaches interfered with daily life?"
+    headache_interference: ExtractedFact = Field(default_factory=ExtractedFact)
+
+
+class ExamSnapshot(BaseModel):
+    """PCP exam findings stated during the visit (clinician-reported)."""
+
+    general_appearance: ExtractedFact = Field(default_factory=ExtractedFact)
+    neuro_exam: ListFact = Field(default_factory=ListFact)
+    funduscopic: ExtractedFact = Field(default_factory=ExtractedFact)
+
+
+class ClinicianAssessment(BaseModel):
+    """What the PCP explicitly states during the visit — never inferred."""
+
+    impression: ExtractedFact = Field(default_factory=ExtractedFact)
+    # low / moderate / high
+    concern_level: ExtractedFact = Field(default_factory=ExtractedFact)
+    # likely migraine / likely tension-type / possible secondary / unsure
+    tentative_classification: ExtractedFact = Field(default_factory=ExtractedFact)
+    # acute treatment today, preventive discussion, imaging, routine neurology
+    # referral, expedited neurology/ED referral, headache diary + follow-up
+    plan_selections: ListFact = Field(default_factory=ListFact)
 
 
 class RedFlag(BaseModel):
@@ -284,6 +316,8 @@ class VisitState(BaseModel):
     chunks_total: int = 0
     agent_status: str = "Idle"
     profile: HeadacheProfile = Field(default_factory=HeadacheProfile)
+    exam: ExamSnapshot = Field(default_factory=ExamSnapshot)
+    clinician_assessment: ClinicianAssessment = Field(default_factory=ClinicianAssessment)
     red_flags: list[RedFlag] = Field(default_factory=list)
     pedmidas: PedMIDASState = Field(default_factory=PedMIDASState)
     diary: HeadacheDiary = Field(default_factory=HeadacheDiary)
@@ -344,6 +378,7 @@ class ProfileDelta(BaseModel):
 
     onset: Optional[ExtractedFact] = None
     frequency_days_per_month: Optional[NumericFact] = None
+    severe_attacks_per_month: Optional[NumericFact] = None
     episode_duration: Optional[ExtractedFact] = None
     progression: Optional[ExtractedFact] = None
     location: Optional[ExtractedFact] = None
@@ -352,13 +387,38 @@ class ProfileDelta(BaseModel):
     activity_worsening: Optional[ExtractedFact] = None
     associated_symptoms: Optional[ListFact] = None
     aura: Optional[ExtractedFact] = None
+    aura_duration: Optional[ExtractedFact] = None
     triggers: Optional[ListFact] = None
+    relievers: Optional[ListFact] = None
     habits: Optional[ListFact] = None
+    diary_available: Optional[ExtractedFact] = None
+    family_history: Optional[ExtractedFact] = None
     acute_medication_use: Optional[ListFact] = None
+    preventive_medication_use: Optional[ListFact] = None
     treatment_response: Optional[ExtractedFact] = None
+    medication_overuse_risk: Optional[ExtractedFact] = None
+    non_medical_interventions: Optional[ListFact] = None
     school_impact: Optional[ExtractedFact] = None
     activity_impact: Optional[ExtractedFact] = None
     repeat_visits: Optional[ExtractedFact] = None
+    headache_interference: Optional[ExtractedFact] = None
+
+
+class ExamDelta(BaseModel):
+    """Partial exam snapshot — only clinician-stated findings are set."""
+
+    general_appearance: Optional[ExtractedFact] = None
+    neuro_exam: Optional[ListFact] = None
+    funduscopic: Optional[ExtractedFact] = None
+
+
+class ClinicianAssessmentDelta(BaseModel):
+    """Partial PCP assessment — only explicitly stated items are set."""
+
+    impression: Optional[ExtractedFact] = None
+    concern_level: Optional[ExtractedFact] = None
+    tentative_classification: Optional[ExtractedFact] = None
+    plan_selections: Optional[ListFact] = None
 
 
 class AnalysisDelta(BaseModel):
@@ -367,6 +427,10 @@ class AnalysisDelta(BaseModel):
     agent_status: str = "Analysis complete"
     evidence: list[EvidenceRef] = Field(default_factory=list)
     profile: ProfileDelta = Field(default_factory=ProfileDelta)
+    exam: ExamDelta = Field(default_factory=ExamDelta)
+    clinician_assessment: ClinicianAssessmentDelta = Field(
+        default_factory=ClinicianAssessmentDelta
+    )
     red_flags: list[RedFlagDelta] = Field(default_factory=list)
     pedmidas_responses: list[PedMIDASResponseDelta] = Field(default_factory=list)
     diary_days: list[DiaryDay] = Field(default_factory=list)

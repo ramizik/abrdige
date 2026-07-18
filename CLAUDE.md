@@ -224,12 +224,14 @@ Only show compact, user-safe action states.
 
 ### Intake capture (what the EMR does NOT reliably structure)
 Bridge extracts these from the live encounter when supported by evidence:
-- **Current headache pattern**: onset, frequency (days/month), episode duration, progression
-- **Headache phenotype**: location, quality, severity, activity worsening, nausea/vomiting, photophobia/phonophobia, aura
-- **Red flags for secondary headache / imaging escalation**: thunderclap onset, morning vomiting, sleep awakening, focal deficits, seizures, gait change, altered mental status, exertional/Valsalva trigger
-- **Functional burden**: missed school (PedMIDAS), sports/activity limitation, repeat PCP/ED/urgent-care visits
-- **Recent treatment response**: which OTC/prescribed acute meds were used, how often, whether they helped
-- context: triggers, sleep/hydration/meals/screen time/stress habits
+- **Current headache pattern**: onset, frequency (days/month), severe attacks/month, episode duration, progression (stable / gradually worsening / suddenly worsened / new type)
+- **Headache phenotype**: location, quality, severity, activity worsening, nausea/vomiting, photophobia/phonophobia, aura + aura duration
+- **Red flags for secondary headache / imaging escalation (14-item catalog)**: thunderclap, wakes from sleep / worst on awakening, early-morning vomiting, cough/Valsalva/exertion trigger, focal weakness/numbness, vision changes, speech difficulty, gait/imbalance, seizures, altered mental status, fever/stiff neck/systemic, cancer/immunosuppression/shunt, recent head trauma, progressive worsening
+- **Functional burden**: missed school (PedMIDAS), sports/activity limitation, repeat PCP/ED/urgent-care visits, overall daily-life interference
+- **Treatment**: acute meds (name/frequency/response), preventive meds, non-medical interventions, medication-overuse risk (acute meds ≥10 days/month — computed with visible arithmetic)
+- **Exam snapshot** (clinician-stated only): general appearance, neuro exam findings, funduscopic result
+- **PCP impression & plan** (explicitly stated only, never inferred): impression, concern level (low/mod/high), tentative classification (likely migraine / tension-type / possible secondary / unsure), selected plan items
+- context: triggers, relievers (what helps), sleep/hydration/meals/screen time/stress habits, diary kept?
 - family history if mentioned; relevant vitals/context if provided
 - unresolved / unknown fields
 

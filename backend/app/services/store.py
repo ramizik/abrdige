@@ -180,8 +180,11 @@ def _apply_delta(state: VisitState, delta: dict[str, Any], raw: dict[str, Any]) 
     for ev in delta.get("evidence", []):
         ref = EvidenceRef(**ev)
         state.evidence[ref.id] = ref
-    for field, fact in delta.get("profile", {}).items():
-        setattr(state.profile, field, type(getattr(state.profile, field))(**fact))
+    for target_name in ("profile", "exam", "clinician_assessment"):
+        target = getattr(state, target_name)
+        for field, fact in (delta.get(target_name) or {}).items():
+            if fact is not None:
+                setattr(target, field, type(getattr(target, field))(**fact))
     for rf_delta in delta.get("red_flags", []):
         for rf in state.red_flags:
             if rf.key == rf_delta["key"]:

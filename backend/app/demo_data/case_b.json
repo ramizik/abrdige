@@ -40,35 +40,59 @@
   "red_flag_catalog": [
     {
       "key": "thunderclap",
-      "label": "Thunderclap onset (sudden worst-ever headache)"
-    },
-    {
-      "key": "vomiting_am",
-      "label": "Early-morning vomiting"
+      "label": "Sudden severe (thunderclap) / worst headache of life"
     },
     {
       "key": "waking_headache",
-      "label": "Headache waking from sleep"
+      "label": "Wakes from sleep / worst on awakening"
     },
     {
-      "key": "neuro_deficit",
-      "label": "Focal neurologic deficit"
-    },
-    {
-      "key": "seizures",
-      "label": "Seizures"
-    },
-    {
-      "key": "gait_change",
-      "label": "Gait change / ataxia"
-    },
-    {
-      "key": "altered_mental_status",
-      "label": "Altered mental status / confusion"
+      "key": "vomiting_am",
+      "label": "Early-morning vomiting unrelated to illness"
     },
     {
       "key": "exertional_valsalva",
-      "label": "Triggered by exertion / cough / Valsalva"
+      "label": "Triggered by cough / Valsalva / exertion"
+    },
+    {
+      "key": "neuro_deficit",
+      "label": "Focal weakness or numbness"
+    },
+    {
+      "key": "vision_change",
+      "label": "Vision changes (double vision, non-aura vision loss)"
+    },
+    {
+      "key": "speech_difficulty",
+      "label": "Difficulty speaking or understanding"
+    },
+    {
+      "key": "gait_change",
+      "label": "Imbalance or gait changes"
+    },
+    {
+      "key": "seizures",
+      "label": "Seizure history or recent seizure"
+    },
+    {
+      "key": "altered_mental_status",
+      "label": "Altered mental status / personality change"
+    },
+    {
+      "key": "fever_stiff_neck",
+      "label": "Fever, stiff neck, or systemic infection signs"
+    },
+    {
+      "key": "cancer_immunosuppression_shunt",
+      "label": "History of cancer, immune suppression, or shunt"
+    },
+    {
+      "key": "head_trauma",
+      "label": "Recent significant head trauma"
+    },
+    {
+      "key": "worsening_pattern",
+      "label": "Progressive worsening over weeks/months"
     }
   ],
   "pedmidas_questions": [
@@ -165,7 +189,7 @@
         ]
       },
       "progression": {
-        "value": "Improving — frequency down ~8 to ~4 days/month since July plan",
+        "value": "Improving \u2014 frequency down ~8 to ~4 days/month since July plan",
         "status": "present",
         "evidence_ids": [
           "evb-2"
@@ -176,6 +200,29 @@
         "status": "negative",
         "evidence_ids": [
           "evb-4"
+        ]
+      },
+      "preventive_medication_use": {
+        "value": [
+          "Riboflavin 200 mg daily (clinician-reviewed, started 2026-07-22)"
+        ],
+        "status": "present",
+        "evidence_ids": [
+          "evb-3"
+        ]
+      },
+      "medication_overuse_risk": {
+        "value": "Ibuprofen ~1 day/week (~4 days/month) \u2014 below overuse threshold, improved from ~12",
+        "status": "negative",
+        "evidence_ids": [
+          "evb-3"
+        ]
+      },
+      "diary_available": {
+        "value": "Yes \u2014 kept most days since first visit",
+        "status": "present",
+        "evidence_ids": [
+          "evb-5"
         ]
       }
     },
@@ -227,6 +274,48 @@
         "key": "exertional_valsalva",
         "status": "unknown",
         "evidence_ids": []
+      },
+      {
+        "key": "vision_change",
+        "status": "absent",
+        "evidence_ids": [
+          "evb-4"
+        ]
+      },
+      {
+        "key": "speech_difficulty",
+        "status": "absent",
+        "evidence_ids": [
+          "evb-4"
+        ]
+      },
+      {
+        "key": "fever_stiff_neck",
+        "status": "absent",
+        "evidence_ids": [
+          "evb-4"
+        ]
+      },
+      {
+        "key": "cancer_immunosuppression_shunt",
+        "status": "absent",
+        "evidence_ids": [
+          "evb-4"
+        ]
+      },
+      {
+        "key": "head_trauma",
+        "status": "absent",
+        "evidence_ids": [
+          "evb-4"
+        ]
+      },
+      {
+        "key": "worsening_pattern",
+        "status": "absent",
+        "evidence_ids": [
+          "evb-2"
+        ]
       }
     ],
     "pedmidas_responses": [
@@ -346,21 +435,26 @@
         "detail": "Started 07/22 after clinician review; tolerated well",
         "flag": "adherent per nurse call",
         "date": "2026-07-22",
-        "evidence_ids": ["emrb-ev-1", "emrb-ev-2"]
+        "evidence_ids": [
+          "emrb-ev-1",
+          "emrb-ev-2"
+        ]
       },
       {
         "id": "emrb-2",
         "category": "medication",
-        "label": "Ibuprofen PRN — use reduced",
+        "label": "Ibuprofen PRN \u2014 use reduced",
         "detail": "~3x/week at first visit, ~1x/week now",
         "flag": "overuse concern resolved",
         "date": "2026-09-12",
-        "evidence_ids": ["emrb-ev-1"]
+        "evidence_ids": [
+          "emrb-ev-1"
+        ]
       },
       {
         "id": "emrb-3",
         "category": "allergy",
-        "label": "Amoxicillin — rash",
+        "label": "Amoxicillin \u2014 rash",
         "detail": "Childhood reaction documented",
         "flag": "confirm before any prescription",
         "date": "",
@@ -369,11 +463,13 @@
       {
         "id": "emrb-4",
         "category": "referral",
-        "label": "Neurology referral — not sent (watch item)",
+        "label": "Neurology referral \u2014 not sent (watch item)",
         "detail": "Hold while improving; escalate on trend reversal or red flag",
         "flag": "escalation trigger retained",
         "date": "2026-07-18",
-        "evidence_ids": ["emrb-ev-1"]
+        "evidence_ids": [
+          "emrb-ev-1"
+        ]
       },
       {
         "id": "emrb-5",
@@ -391,7 +487,9 @@
         "detail": "Nurse call completed 08/14",
         "flag": "",
         "date": "2026-08-14",
-        "evidence_ids": ["emrb-ev-2"]
+        "evidence_ids": [
+          "emrb-ev-2"
+        ]
       }
     ]
   },
