@@ -29,7 +29,8 @@ npm run dev
 | `GET /health` | liveness |
 | `GET /cases` | list demo cases (Case A first visit, Case B follow-up) |
 | `GET /cases/{case_id}` | open case → creates visit, returns initial `VisitState` |
-| `POST /visits/{id}/transcript-chunk` | process next chunk → full updated `VisitState` |
+| `POST /visits/{id}/transcript-chunk` | process next chunk → full updated `VisitState`; `?extract=false` appends raw transcript only (STT simulation) |
+| `POST /visits/{id}/analyze` | **real Agent SDK pipeline**: mid-visit "Analyze" button — agent re-reads history + transcript so far, returns validated structured update (profile, red flags, PedMIDAS, evidence, missing questions) |
 | `POST /visits/{id}/complete` | finalize visit, attach care plan draft |
 | `POST /visits/{id}/ask` | grounded Q&A with citations |
 | `GET /visits/{id}/export.pdf` | end-of-visit PDF |

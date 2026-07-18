@@ -1,6 +1,6 @@
 {
   "case_id": "case-b",
-  "title": "Maya R. — Follow-up visit (8 weeks)",
+  "title": "Maya R. \u2014 Follow-up visit (8 weeks)",
   "mode": "follow_up",
   "description": "Follow-up state: PedMIDAS improving after lifestyle plan + riboflavin, ibuprofen use reduced, referral watch item retained.",
   "patient": {
@@ -9,7 +9,13 @@
     "age": 12,
     "sex": "F",
     "preferred_language": "English",
-    "clinic": "Eastside Community Pediatrics"
+    "clinic": "Eastside Community Pediatrics",
+    "mrn": "MRN 118-4402",
+    "provider": "Dr. Okafor",
+    "visit_length": "20 min",
+    "visit_type": "Follow-up headache visit",
+    "chief_complaint": "Headache follow-up",
+    "referral_status": "Established - Follow-up Review"
   },
   "history": [
     {
@@ -32,65 +38,253 @@
     }
   ],
   "red_flag_catalog": [
-    { "key": "waking_headache", "label": "Headache waking from sleep / worst on waking" },
-    { "key": "vomiting_am", "label": "Early-morning or persistent vomiting" },
-    { "key": "neuro_deficit", "label": "Focal neurologic deficit / weakness" },
-    { "key": "vision_change", "label": "Persistent visual change / papilledema concern" },
-    { "key": "thunderclap", "label": "Sudden severe (thunderclap) onset" },
-    { "key": "worsening_pattern", "label": "Progressively worsening pattern" },
-    { "key": "fever_stiff_neck", "label": "Fever with neck stiffness" }
+    {
+      "key": "waking_headache",
+      "label": "Headache waking from sleep / worst on waking"
+    },
+    {
+      "key": "vomiting_am",
+      "label": "Early-morning or persistent vomiting"
+    },
+    {
+      "key": "neuro_deficit",
+      "label": "Focal neurologic deficit / weakness"
+    },
+    {
+      "key": "vision_change",
+      "label": "Persistent visual change / papilledema concern"
+    },
+    {
+      "key": "thunderclap",
+      "label": "Sudden severe (thunderclap) onset"
+    },
+    {
+      "key": "worsening_pattern",
+      "label": "Progressively worsening pattern"
+    },
+    {
+      "key": "fever_stiff_neck",
+      "label": "Fever with neck stiffness"
+    }
   ],
   "pedmidas_questions": [
-    { "question_id": "pm1", "question": "Full school days missed in last 3 months" },
-    { "question_id": "pm2", "question": "Partial school days missed in last 3 months" },
-    { "question_id": "pm3", "question": "School days functioning at less than half" },
-    { "question_id": "pm4", "question": "Days unable to do home activities/chores" },
-    { "question_id": "pm5", "question": "Days unable to join play/social/sports" },
-    { "question_id": "pm6", "question": "Days participated in activities at less than half" }
+    {
+      "question_id": "pm1",
+      "question": "Full school days missed in last 3 months"
+    },
+    {
+      "question_id": "pm2",
+      "question": "Partial school days missed in last 3 months"
+    },
+    {
+      "question_id": "pm3",
+      "question": "School days functioning at less than half"
+    },
+    {
+      "question_id": "pm4",
+      "question": "Days unable to do home activities/chores"
+    },
+    {
+      "question_id": "pm5",
+      "question": "Days unable to join play/social/sports"
+    },
+    {
+      "question_id": "pm6",
+      "question": "Days participated in activities at less than half"
+    }
   ],
   "precomputed_state": {
     "agent_status": "Follow-up review ready",
     "evidence": [
-      { "id": "evb-1", "source_type": "history", "source_label": "First visit summary, 2026-07-18", "quote": "PedMIDAS 32, ~8 headache days/month, ibuprofen ~3x/week." },
-      { "id": "evb-2", "source_type": "transcript", "source_label": "Parent, follow-up visit", "quote": "It's down to maybe one a week now, and she's only left school early once since summer." },
-      { "id": "evb-3", "source_type": "transcript", "source_label": "Parent, follow-up visit", "quote": "She takes the ibuprofen maybe once a week now, and the riboflavin every morning." },
-      { "id": "evb-4", "source_type": "transcript", "source_label": "Parent, follow-up visit", "quote": "Nothing new — no night headaches, no vomiting, nothing scary." },
-      { "id": "evb-5", "source_type": "history", "source_label": "Nurse follow-up call, 2026-08-14", "quote": "Diary being kept most days. Headaches somewhat less frequent. Riboflavin tolerated well." }
+      {
+        "id": "evb-1",
+        "source_type": "history",
+        "source_label": "First visit summary, 2026-07-18",
+        "quote": "PedMIDAS 32, ~8 headache days/month, ibuprofen ~3x/week."
+      },
+      {
+        "id": "evb-2",
+        "source_type": "transcript",
+        "source_label": "Parent, follow-up visit",
+        "quote": "It's down to maybe one a week now, and she's only left school early once since summer."
+      },
+      {
+        "id": "evb-3",
+        "source_type": "transcript",
+        "source_label": "Parent, follow-up visit",
+        "quote": "She takes the ibuprofen maybe once a week now, and the riboflavin every morning."
+      },
+      {
+        "id": "evb-4",
+        "source_type": "transcript",
+        "source_label": "Parent, follow-up visit",
+        "quote": "Nothing new \u2014 no night headaches, no vomiting, nothing scary."
+      },
+      {
+        "id": "evb-5",
+        "source_type": "history",
+        "source_label": "Nurse follow-up call, 2026-08-14",
+        "quote": "Diary being kept most days. Headaches somewhat less frequent. Riboflavin tolerated well."
+      }
     ],
     "profile": {
-      "frequency_days_per_month": { "value": 4, "status": "present", "evidence_ids": ["evb-2"] },
-      "acute_medication_use": { "value": ["Ibuprofen ~1x/week", "Riboflavin daily (preventive, clinician-reviewed)"], "status": "present", "evidence_ids": ["evb-3"] },
-      "school_impact": { "value": "One early dismissal since last visit", "status": "present", "evidence_ids": ["evb-2"] }
+      "frequency_days_per_month": {
+        "value": 4,
+        "status": "present",
+        "evidence_ids": [
+          "evb-2"
+        ]
+      },
+      "acute_medication_use": {
+        "value": [
+          "Ibuprofen ~1x/week",
+          "Riboflavin daily (preventive, clinician-reviewed)"
+        ],
+        "status": "present",
+        "evidence_ids": [
+          "evb-3"
+        ]
+      },
+      "school_impact": {
+        "value": "One early dismissal since last visit",
+        "status": "present",
+        "evidence_ids": [
+          "evb-2"
+        ]
+      }
     },
     "red_flags": [
-      { "key": "waking_headache", "status": "absent", "evidence_ids": ["evb-4"] },
-      { "key": "vomiting_am", "status": "absent", "evidence_ids": ["evb-4"] },
-      { "key": "neuro_deficit", "status": "absent", "evidence_ids": ["evb-4"] },
-      { "key": "vision_change", "status": "unknown", "evidence_ids": [] },
-      { "key": "thunderclap", "status": "absent", "evidence_ids": ["evb-4"] },
-      { "key": "worsening_pattern", "status": "absent", "evidence_ids": ["evb-2"] },
-      { "key": "fever_stiff_neck", "status": "absent", "evidence_ids": ["evb-4"] }
+      {
+        "key": "waking_headache",
+        "status": "absent",
+        "evidence_ids": [
+          "evb-4"
+        ]
+      },
+      {
+        "key": "vomiting_am",
+        "status": "absent",
+        "evidence_ids": [
+          "evb-4"
+        ]
+      },
+      {
+        "key": "neuro_deficit",
+        "status": "absent",
+        "evidence_ids": [
+          "evb-4"
+        ]
+      },
+      {
+        "key": "vision_change",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
+        "key": "thunderclap",
+        "status": "absent",
+        "evidence_ids": [
+          "evb-4"
+        ]
+      },
+      {
+        "key": "worsening_pattern",
+        "status": "absent",
+        "evidence_ids": [
+          "evb-2"
+        ]
+      },
+      {
+        "key": "fever_stiff_neck",
+        "status": "absent",
+        "evidence_ids": [
+          "evb-4"
+        ]
+      }
     ],
     "pedmidas_responses": [
-      { "question_id": "pm1", "value": 1, "evidence_ids": ["evb-2"] },
-      { "question_id": "pm2", "value": 1, "evidence_ids": ["evb-2"] },
-      { "question_id": "pm3", "value": 4, "evidence_ids": ["evb-2"] },
-      { "question_id": "pm4", "value": 2, "evidence_ids": ["evb-5"] },
-      { "question_id": "pm5", "value": 1, "evidence_ids": ["evb-5"] },
-      { "question_id": "pm6", "value": 2, "evidence_ids": ["evb-5"] }
+      {
+        "question_id": "pm1",
+        "value": 1,
+        "evidence_ids": [
+          "evb-2"
+        ]
+      },
+      {
+        "question_id": "pm2",
+        "value": 1,
+        "evidence_ids": [
+          "evb-2"
+        ]
+      },
+      {
+        "question_id": "pm3",
+        "value": 4,
+        "evidence_ids": [
+          "evb-2"
+        ]
+      },
+      {
+        "question_id": "pm4",
+        "value": 2,
+        "evidence_ids": [
+          "evb-5"
+        ]
+      },
+      {
+        "question_id": "pm5",
+        "value": 1,
+        "evidence_ids": [
+          "evb-5"
+        ]
+      },
+      {
+        "question_id": "pm6",
+        "value": 2,
+        "evidence_ids": [
+          "evb-5"
+        ]
+      }
     ],
     "pedmidas_trend": [
-      { "date": "2026-07-18", "score": 32, "evidence_ids": ["evb-1"] },
-      { "date": "2026-09-12", "score": 11, "evidence_ids": ["evb-2", "evb-5"] }
+      {
+        "date": "2026-07-18",
+        "score": 32,
+        "evidence_ids": [
+          "evb-1"
+        ]
+      },
+      {
+        "date": "2026-09-12",
+        "score": 11,
+        "evidence_ids": [
+          "evb-2",
+          "evb-5"
+        ]
+      }
     ],
     "medication_events": [
-      { "date": "2026-07-18", "label": "Lifestyle plan + headache diary started", "kind": "start", "evidence_ids": ["evb-1"] },
-      { "date": "2026-07-22", "label": "Riboflavin started (clinician-reviewed)", "kind": "start", "evidence_ids": ["evb-5"] }
+      {
+        "date": "2026-07-18",
+        "label": "Lifestyle plan + headache diary started",
+        "kind": "start",
+        "evidence_ids": [
+          "evb-1"
+        ]
+      },
+      {
+        "date": "2026-07-22",
+        "label": "Riboflavin started (clinician-reviewed)",
+        "kind": "start",
+        "evidence_ids": [
+          "evb-5"
+        ]
+      }
     ],
     "changes_since_last_visit": [
       "Headache frequency down from ~8 to ~4 days/month [evb-1, evb-2]",
-      "PedMIDAS improved 32 → 11 (moderate → mild disability) [evb-1, evb-2]",
-      "Ibuprofen use reduced from ~3x/week to ~1x/week — overuse concern resolved [evb-3]",
+      "PedMIDAS improved 32 \u2192 11 (moderate \u2192 mild disability) [evb-1, evb-2]",
+      "Ibuprofen use reduced from ~3x/week to ~1x/week \u2014 overuse concern resolved [evb-3]",
       "Riboflavin tolerated, adherent [evb-5]",
       "Red-flag screen remains negative [evb-4]"
     ],
@@ -103,8 +297,8 @@
   "chunks": [],
   "care_plan": {
     "summary": [
-      "8-week follow-up: headache frequency down ~8 → ~4 days/month on lifestyle plan + riboflavin. [evb-1, evb-2]",
-      "PedMIDAS improved 32 → 11; school and activity participation recovering. [evb-1, evb-2, evb-5]",
+      "8-week follow-up: headache frequency down ~8 \u2192 ~4 days/month on lifestyle plan + riboflavin. [evb-1, evb-2]",
+      "PedMIDAS improved 32 \u2192 11; school and activity participation recovering. [evb-1, evb-2, evb-5]",
       "Acute ibuprofen use reduced to ~1x/week; overuse concern resolved. [evb-3]",
       "Red-flag screen remains negative at follow-up. [evb-4]"
     ],
@@ -122,23 +316,48 @@
       "Escalate if trend reverses, disability rises, or red flags appear"
     ],
     "patient_instructions": [
-      "Keep going — the plan is working",
+      "Keep going \u2014 the plan is working",
       "Continue diary and riboflavin as reviewed with your clinician",
       "Return sooner for night waking headaches, morning vomiting, or sudden changes"
     ],
     "disclaimer": "Draft for clinician review. Final clinical decisions remain with the clinician.",
-    "evidence_ids": ["evb-1", "evb-2", "evb-3", "evb-4", "evb-5"]
+    "evidence_ids": [
+      "evb-1",
+      "evb-2",
+      "evb-3",
+      "evb-4",
+      "evb-5"
+    ]
   },
   "canned_qa": [
     {
-      "match": ["changed", "change", "since last", "progress", "improv"],
+      "match": [
+        "changed",
+        "change",
+        "since last",
+        "progress",
+        "improv"
+      ],
       "answer": "Since the July 18 visit: headache frequency dropped from ~8 to ~4 days/month, PedMIDAS improved from 32 to 11, ibuprofen use fell from ~3x/week to ~1x/week, and riboflavin has been tolerated well. The red-flag screen remains negative.",
-      "citations": ["evb-1", "evb-2", "evb-3", "evb-4", "evb-5"]
+      "citations": [
+        "evb-1",
+        "evb-2",
+        "evb-3",
+        "evb-4",
+        "evb-5"
+      ]
     },
     {
-      "match": ["referral", "neurology", "escalat"],
-      "answer": "No neurology referral is suggested while the trend is improving — this remains a clinician decision. The draft plan retains an escalation trigger: refer if the trend reverses, disability rises, or any red flag appears.",
-      "citations": ["evb-2", "evb-4"]
+      "match": [
+        "referral",
+        "neurology",
+        "escalat"
+      ],
+      "answer": "No neurology referral is suggested while the trend is improving \u2014 this remains a clinician decision. The draft plan retains an escalation trigger: refer if the trend reverses, disability rises, or any red flag appears.",
+      "citations": [
+        "evb-2",
+        "evb-4"
+      ]
     }
   ]
 }

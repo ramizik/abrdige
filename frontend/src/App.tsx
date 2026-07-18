@@ -62,6 +62,26 @@ export default function App() {
               Next chunk ({state.chunks_processed}/{state.chunks_total})
             </button>
             <button
+              disabled={busy || state.chunks_processed >= state.chunks_total}
+              onClick={run(async () => {
+                const res = await api.advanceChunk(state.visit_id, false);
+                setState(res.state);
+              })}
+            >
+              Next chunk (raw STT)
+            </button>
+            <button
+              disabled={busy}
+              style={{ fontWeight: 'bold' }}
+              onClick={run(async () => {
+                const res = await api.analyze(state.visit_id);
+                setState(res.state);
+                if (!res.live) setError(`Live analysis fell back: ${res.error}`);
+              })}
+            >
+              {busy ? 'Analyzing…' : 'Analyze (Agent SDK)'}
+            </button>
+            <button
               disabled={busy}
               onClick={run(async () => setState(await api.completeVisit(state.visit_id)))}
             >

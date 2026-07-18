@@ -122,6 +122,82 @@ export interface Patient {
   sex: string;
   preferred_language: string;
   clinic: string;
+  mrn: string;
+  provider: string;
+  visit_length: string;
+  visit_type: string;
+  chief_complaint: string;
+  referral_status: string;
+}
+
+/** --- Pre-visit referral review (New Referral — Initial Review screen) --- */
+
+export interface BriefLine {
+  id: string;
+  text: string;
+  source_label: string;
+  evidence_ids: string[];
+}
+
+export interface TimelineEvent {
+  date: string;
+  label: string;
+  sublabel: string;
+  kind: 'er_visit' | 'records' | 'call' | 'visit' | 'today';
+}
+
+export interface ReferralSnapshot {
+  reason: string;
+  duration: string;
+  prior_workup: string;
+  family_history: string;
+}
+
+export interface PriorEvaluation {
+  id: string;
+  title: string;
+  detail: string;
+  evidence_ids: string[];
+}
+
+export interface PlanItem {
+  id: string;
+  title: string;
+  detail: string;
+  evidence_ids: string[];
+}
+
+export interface HandoffItem {
+  id: string;
+  title: string;
+  detail: string;
+  status: 'draft_ready' | 'pending_decision' | 'not_sent' | 'sent';
+}
+
+export interface UnresolvedItem {
+  id: string;
+  text: string;
+  requested_from: string;
+  date: string;
+}
+
+export interface PrevisitBrief {
+  headline: string;
+  evidence: EvidenceRef[]; // merged into VisitState.evidence by the backend
+  documents_count: number;
+  sources_count: number;
+  assembled_seconds: number;
+  confidence: 'low' | 'moderate' | 'high';
+  brief_lines: BriefLine[];
+  timeline: TimelineEvent[];
+  referral_snapshot: ReferralSnapshot;
+  prior_evaluations: PriorEvaluation[];
+  family_developmental_history: string[];
+  draft_plan: PlanItem[];
+  ask_during_visit: string[];
+  handoff_items: HandoffItem[];
+  unresolved_items: UnresolvedItem[];
+  suggested_questions: string[];
 }
 
 export interface VisitState {
@@ -130,6 +206,7 @@ export interface VisitState {
   mode: VisitMode;
   phase: VisitPhase;
   patient: Patient;
+  previsit: PrevisitBrief | null;
   history: HistoryEntry[];
   transcript: TranscriptTurn[];
   chunks_processed: number;
@@ -169,4 +246,11 @@ export interface AskResponse {
 export interface ChunkAdvanceResponse {
   state: VisitState;
   done: boolean;
+}
+
+export interface AnalyzeResponse {
+  state: VisitState;
+  /** true = real Agent SDK analysis; false = deterministic fallback kept */
+  live: boolean;
+  error?: string | null;
 }

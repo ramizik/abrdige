@@ -1,6 +1,7 @@
 /** Typed client for the Bridge backend. One function per endpoint. */
 
 import type {
+  AnalyzeResponse,
   AskResponse,
   CaseSummary,
   ChunkAdvanceResponse,
@@ -28,11 +29,19 @@ export const api = {
   /** Opens a case and creates a visit; returns initial VisitState. */
   openCase: (caseId: string) => request<VisitState>(`/cases/${caseId}`),
 
-  /** Processes the next transcript chunk; response contains the full updated state. */
-  advanceChunk: (visitId: string) =>
-    request<ChunkAdvanceResponse>(`/visits/${visitId}/transcript-chunk`, {
-      method: 'POST',
-    }),
+  /**
+   * Processes the next transcript chunk; response contains the full updated state.
+   * extract=false appends raw transcript only (STT simulation) — pair with analyze().
+   */
+  advanceChunk: (visitId: string, extract = true) =>
+    request<ChunkAdvanceResponse>(
+      `/visits/${visitId}/transcript-chunk?extract=${extract}`,
+      { method: 'POST' },
+    ),
+
+  /** Mid-visit "Analyze" button: real Agent SDK pipeline over history + transcript so far. */
+  analyze: (visitId: string) =>
+    request<AnalyzeResponse>(`/visits/${visitId}/analyze`, { method: 'POST' }),
 
   completeVisit: (visitId: string) =>
     request<VisitState>(`/visits/${visitId}/complete`, { method: 'POST' }),

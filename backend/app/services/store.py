@@ -14,6 +14,7 @@ from ..models import (
     HistoryEntry,
     MedicationEvent,
     Patient,
+    PrevisitBrief,
     PedMIDASPoint,
     PedMIDASResponse,
     RedFlag,
@@ -66,6 +67,9 @@ def create_visit(case_id: str) -> VisitState | None:
         mode=raw["mode"],
         phase="in_progress",
         patient=Patient(**raw["patient"]),
+        previsit=(
+            PrevisitBrief(**raw["previsit"]) if raw.get("previsit") else None
+        ),
         history=[HistoryEntry(**h) for h in raw["history"]],
         chunks_total=len(raw.get("chunks", [])),
         agent_status="Reading prior history",
@@ -76,6 +80,11 @@ def create_visit(case_id: str) -> VisitState | None:
     state.pedmidas.missing_question_ids = [
         q["question_id"] for q in raw["pedmidas_questions"]
     ]
+    if state.previsit:
+        for ref in state.previsit.evidence:
+            state.evidence[ref.id] = ref
+        if state.previsit.ask_during_visit:
+            state.missing_questions = list(state.previsit.ask_during_visit)
     if "precomputed_state" in raw:
         _apply_delta(state, raw["precomputed_state"], raw)
     _visits[visit_id] = state
@@ -91,9 +100,14 @@ def get_visit_case_raw(visit_id: str) -> dict[str, Any] | None:
     return _visit_case.get(visit_id)
 
 
-def advance_chunk(visit_id: str, delta_override: dict[str, Any] | None = None) -> VisitState | None:
+def advance_chunk(
+    visit_id: str,
+    delta_override: dict[str, Any] | None = None,
+    apply_delta: bool = True,
+) -> VisitState | None:
     """Apply the next transcript chunk. delta_override lets the live extraction
-    path substitute its own delta while keeping the same application logic."""
+    path substitute its own delta. apply_delta=False appends raw transcript
+    turns only — used when the real Analyze pipeline does the extraction."""
     state = _visits.get(visit_id)
     raw = _visit_case.get(visit_id)
     if state is None or raw is None:
@@ -104,8 +118,24 @@ def advance_chunk(visit_id: str, delta_override: dict[str, Any] | None = None) -
     chunk = chunks[state.chunks_processed]
     for turn in chunk.get("turns", []):
         state.transcript.append(TranscriptTurn(**turn))
-    _apply_delta(state, delta_override or chunk.get("delta", {}), raw)
+    if apply_delta:
+        _apply_delta(state, delta_override or chunk.get("delta", {}), raw)
+    else:
+        state.agent_status = "Listening — press Analyze for an updated picture"
     state.chunks_processed += 1
+    return state
+
+
+def apply_analysis_delta(visit_id: str, delta: dict[str, Any]) -> VisitState | None:
+    """Apply a live Agent SDK analysis delta. Analysis is a full re-assessment,
+    so the diary is rebuilt rather than appended to."""
+    state = _visits.get(visit_id)
+    raw = _visit_case.get(visit_id)
+    if state is None or raw is None:
+        return None
+    if delta.get("diary_days"):
+        state.diary.days = []
+    _apply_delta(state, delta, raw)
     return state
 
 
