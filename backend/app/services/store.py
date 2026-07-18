@@ -185,8 +185,26 @@ def _apply_delta(state: VisitState, delta: dict[str, Any], raw: dict[str, Any]) 
     for target_name in ("profile", "exam", "clinician_assessment"):
         target = getattr(state, target_name)
         for field, fact in (delta.get(target_name) or {}).items():
-            if fact is not None:
-                setattr(target, field, type(getattr(target, field))(**fact))
+            if fact is None or not hasattr(target, field):
+                continue
+            fact_cls = type(getattr(target, field))
+            # Live agent deltas sometimes mismatch value shape — coerce
+            # instead of 500-ing mid-visit.
+            value = fact.get("value") if isinstance(fact, dict) else None
+            if isinstance(fact, dict):
+                if fact_cls.__name__ == "ExtractedFact" and isinstance(value, list):
+                    fact = {**fact, "value": ", ".join(str(v) for v in value)}
+                elif fact_cls.__name__ == "ListFact" and isinstance(value, str):
+                    fact = {**fact, "value": [value]}
+                elif fact_cls.__name__ == "NumericFact" and isinstance(value, str):
+                    try:
+                        fact = {**fact, "value": float(value.split()[0])}
+                    except ValueError:
+                        continue
+            try:
+                setattr(target, field, fact_cls(**fact))
+            except Exception:
+                continue  # skip malformed field, keep the visit alive
     for rf_delta in delta.get("red_flags", []):
         for rf in state.red_flags:
             if rf.key == rf_delta["key"]:

@@ -13,6 +13,8 @@ from typing import Any
 
 PROMPT_PATH = Path(__file__).resolve().parent.parent / "prompts" / "extraction.md"
 
+EXTRACTION_MODEL = os.environ.get("BRIDGE_EXTRACTION_MODEL", "claude-haiku-4-5-20251001")
+
 
 def demo_mode() -> bool:
     return os.environ.get("BRIDGE_DEMO_MODE", "1") != "0"
@@ -38,6 +40,7 @@ async def extract_delta_live(
         }
         options = ClaudeAgentOptions(
             system_prompt=system_prompt,
+            model=EXTRACTION_MODEL,
             max_turns=1,
             allowed_tools=[],
         )

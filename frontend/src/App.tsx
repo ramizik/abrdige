@@ -281,13 +281,46 @@ function Tabs({ tab, onTab }: { tab: Tab; onTab: (t: Tab) => void }) {
 
 /* ---------------- Reusable primitives ---------------- */
 
+function GradientPill({ children, tone = 'primary' }: { children: React.ReactNode; tone?: 'primary' | 'warning' | 'danger' }) {
+  const bg =
+    tone === 'danger'
+      ? 'linear-gradient(90deg, #EF4444 0%, #EC4899 55%, #8B5CF6 100%)'
+      : tone === 'warning'
+      ? 'linear-gradient(90deg, #F59E0B 0%, #EC4899 55%, #8B5CF6 100%)'
+      : 'linear-gradient(90deg, var(--color-primary) 0%, #8B5CF6 55%, #EC4899 100%)';
+  const shadow =
+    tone === 'danger'
+      ? '0 4px 14px color-mix(in oklab, #EF4444 30%, transparent)'
+      : tone === 'warning'
+      ? '0 4px 14px color-mix(in oklab, #F59E0B 30%, transparent)'
+      : '0 4px 14px color-mix(in oklab, var(--color-primary) 24%, transparent)';
+  return (
+    <span
+      className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md"
+      style={{
+        fontSize: 11,
+        fontWeight: 800,
+        letterSpacing: '0.08em',
+        textTransform: 'uppercase',
+        color: '#ffffff',
+        fontFamily: 'var(--font-mono)',
+        background: bg,
+        boxShadow: shadow,
+      }}
+    >
+      <span style={{ width: 5, height: 5, borderRadius: 999, background: '#fff', opacity: 0.9 }} />
+      {children}
+    </span>
+  );
+}
+
 function Card({
   eyebrow,
   right,
   children,
   className = '',
 }: {
-  eyebrow?: string;
+  eyebrow?: React.ReactNode;
   right?: React.ReactNode;
   children: React.ReactNode;
   className?: string;
@@ -296,7 +329,7 @@ function Card({
     <div className={`card-surface p-[13px_16px] ${className}`}>
       {(eyebrow || right) && (
         <div className="flex items-center gap-2 mb-2">
-          {eyebrow && <div className="eyebrow">{eyebrow}</div>}
+          {eyebrow && (typeof eyebrow === 'string' ? <GradientPill>{eyebrow}</GradientPill> : <div>{eyebrow}</div>)}
           {right && <div className="ml-auto flex items-center gap-2">{right}</div>}
         </div>
       )}
@@ -792,10 +825,10 @@ function ChangesCard({ state }: { state: VisitState }) {
 function PatientCard({ state }: { state: VisitState }) {
   const p = state.patient;
   return (
-    <div className="card-surface p-3.5">
+    <div className="card-surface p-3.5" style={{ color: '#000' }}>
       <div className="flex items-baseline gap-2">
-        <div className="text-[15px] font-bold">{p.name}</div>
-        <div className="text-[11.5px]" style={{ color: 'var(--color-ink-3)' }}>
+        <div className="text-[15px] font-bold" style={{ color: '#000' }}>{p.name}</div>
+        <div className="text-[11.5px]" style={{ color: '#000' }}>
           {p.age} y · {p.sex}
         </div>
       </div>
@@ -806,15 +839,16 @@ function PatientCard({ state }: { state: VisitState }) {
           ['Clinic', p.clinic],
           ['Visit', `${p.visit_length} · ${p.provider}`],
           ['Chief complaint', p.chief_complaint],
+          ['Insurance', 'Partnership'],
         ].map(([k, v]) => (
           <div key={k} className="flex justify-between text-[11.5px] gap-2">
-            <span style={{ color: 'var(--color-muted-foreground)' }}>{k}</span>
-            <span className="font-medium text-right">{v}</span>
+            <span style={{ color: '#000', opacity: 0.7 }}>{k}</span>
+            <span className="font-semibold text-right" style={{ color: '#000' }}>{v}</span>
           </div>
         ))}
       </div>
       {state.previsit && (
-        <div className="mt-2 pt-2 text-[11.5px]" style={{ borderTop: '1px solid var(--color-border-soft)', color: 'var(--color-ink-2)' }}>
+        <div className="mt-2 pt-2 text-[11.5px]" style={{ borderTop: '1px solid var(--color-border)', color: '#000' }}>
           {state.previsit.headline}
         </div>
       )}
@@ -850,16 +884,13 @@ function VitalStrip({ state }: { state: VisitState }) {
   ];
   return (
     <div className="grid grid-cols-3 gap-1.5">
-      {tiles.map((t, i) => {
-        const tv = toneVars(t.tone);
-        return (
-          <div key={i} className="rounded-[10px] p-2 border" style={{ background: tv.bg, borderColor: tv.bd }}>
-            <div className="eyebrow" style={{ fontSize: 9, color: tv.fg }}>{t.label}</div>
-            <div className="text-[18px] font-bold leading-tight" style={{ color: tv.fg }}>{t.value}</div>
-            {t.sub && <div className="mono text-[9px] mt-[1px]" style={{ color: 'var(--color-muted-foreground)' }}>{t.sub}</div>}
-          </div>
-        );
-      })}
+      {tiles.map((t, i) => (
+        <div key={i} className="rounded-[10px] p-2 border" style={{ background: '#FACC15', borderColor: '#CA8A04' }}>
+          <div className="eyebrow" style={{ fontSize: 9, color: '#000', fontWeight: 900 }}>{t.label}</div>
+          <div className="text-[18px] leading-tight" style={{ color: '#000', fontWeight: 900 }}>{t.value}</div>
+          {t.sub && <div className="mono text-[9px] mt-[1px]" style={{ color: '#000', fontWeight: 700 }}>{t.sub}</div>}
+        </div>
+      ))}
     </div>
   );
 }
@@ -999,12 +1030,7 @@ function EscalationCard({ state }: { state: VisitState }) {
   return (
     <div className="card-surface overflow-hidden" style={{ borderColor: 'var(--color-destructive-soft-border)' }}>
       <div className="flex items-center gap-2 px-3.5 py-2.5" style={{ background: 'var(--color-destructive-soft)' }}>
-        <span className="w-4 h-4 rounded-full flex items-center justify-center text-white font-bold text-[10px]" style={{ background: 'var(--color-destructive)' }}>
-          !
-        </span>
-        <span className="text-[12px] font-bold" style={{ color: 'var(--color-destructive)' }}>
-          Escalation review — clinician required
-        </span>
+        <GradientPill tone="danger">Escalation review · clinician required</GradientPill>
       </div>
       <div className="px-3.5 py-2.5 flex flex-col gap-2">
         {present.map((rf, i) => (
@@ -1038,24 +1064,43 @@ function classifyPlan(item: PlanItem): 'today' | 'pending' {
   return 'today';
 }
 
-function PlanSection({ title, items, accent, bg }: { title: string; items: { title: string; detail: string; ids?: string[] }[]; accent: string; bg: string }) {
+function PlanSection({
+  title,
+  items,
+  accent,
+  bg,
+  solidBlack,
+  borderColor,
+}: {
+  title: string;
+  items: { title: string; detail: string; ids?: string[] }[];
+  accent: string;
+  bg: string;
+  solidBlack?: boolean;
+  borderColor?: string;
+}) {
   return (
-    <div className="rounded-[10px] p-2.5 border" style={{ background: bg, borderColor: 'color-mix(in oklab, ' + accent + ' 30%, transparent)' }}>
+    <div
+      className="rounded-[10px] p-2.5 border"
+      style={{ background: bg, borderColor: borderColor ?? (solidBlack ? '#4ADE80' : 'color-mix(in oklab, ' + accent + ' 30%, transparent)') }}
+    >
       <div className="flex items-center gap-2 mb-1.5">
-        <span className="w-1.5 h-1.5 rounded-full" style={{ background: accent }} />
-        <span className="eyebrow" style={{ fontSize: 9.5, color: accent }}>{title}</span>
-        <span className="ml-auto mono text-[9.5px] font-semibold" style={{ color: accent }}>{items.length}</span>
+        <span className="w-1.5 h-1.5 rounded-full" style={{ background: solidBlack ? '#000' : accent }} />
+        <span className="eyebrow" style={{ fontSize: 9.5, color: solidBlack ? '#000' : accent, fontWeight: solidBlack ? 900 : undefined }}>{title}</span>
+        <span className="ml-auto mono text-[9.5px] font-semibold" style={{ color: solidBlack ? '#000' : accent }}>{items.length}</span>
       </div>
       <div className="flex flex-col gap-2">
         {items.length === 0 ? (
-          <div className="text-[11px] italic" style={{ color: 'var(--color-muted-foreground)' }}>—</div>
+          <div className="text-[11px] italic" style={{ color: solidBlack ? '#000' : 'var(--color-muted-foreground)' }}>—</div>
         ) : (
           items.map((pi, i) => (
             <div key={i} className="flex gap-2 items-baseline">
-              <span className="mono text-[9.5px] flex-none" style={{ color: accent }}>{String(i + 1).padStart(2, '0')}</span>
+              <span className="mono text-[9.5px] flex-none" style={{ color: solidBlack ? '#000' : accent, fontWeight: solidBlack ? 900 : undefined }}>
+                {String(i + 1).padStart(2, '0')}
+              </span>
               <div className="flex-1">
-                <div className="text-[12px] font-semibold" style={{ color: 'var(--color-foreground)' }}>{pi.title}</div>
-                <div className="text-[11px] mt-[1px]" style={{ color: 'var(--color-ink-3)' }}>{pi.detail}</div>
+                <div className="text-[12px]" style={{ color: solidBlack ? '#000' : 'var(--color-foreground)', fontWeight: solidBlack ? 900 : 600 }}>{pi.title}</div>
+                <div className="text-[11px] mt-[1px]" style={{ color: solidBlack ? '#000' : 'var(--color-ink-3)', fontWeight: solidBlack ? 700 : undefined }}>{pi.detail}</div>
               </div>
               {pi.ids && <EvidenceChip ids={pi.ids} title={pi.title} />}
             </div>
@@ -1075,7 +1120,7 @@ function PlanCard({ state }: { state: VisitState }) {
     return (
       <div className="card-surface p-2.5 flex flex-col gap-2">
         <div className="flex items-center gap-2">
-          <div className="eyebrow">Clinician-Review Plan</div>
+          <GradientPill>Clinician-Review Plan</GradientPill>
           <span className="ml-auto mono text-[9.5px]" style={{ color: 'var(--color-muted-foreground)' }}>draft · requires sign-off</span>
         </div>
         <PlanSection
@@ -1112,16 +1157,17 @@ function PlanCard({ state }: { state: VisitState }) {
   return (
     <div className="card-surface p-2.5 flex flex-col gap-2" style={{ opacity: esc ? 0.6 : 1 }}>
       <div className="flex items-center gap-2">
-        <div className="eyebrow">Draft PCP Plan</div>
+        <GradientPill>Draft PCP Plan</GradientPill>
         <span className="ml-auto mono text-[9.5px]" style={{ color: 'var(--color-muted-foreground)' }}>for clinician review</span>
       </div>
       <PlanSection
         title="Discuss today"
         items={today.map((i) => ({ title: i.title, detail: i.detail, ids: i.evidence_ids }))}
-        accent="var(--color-primary)"
-        bg="var(--color-primary-soft)"
+        accent="#16A34A"
+        bg="#DCFCE7"
+        solidBlack
       />
-      <PlanSection title="Pending · referrals & follow-ups" items={pendingAll} accent="var(--color-warning-strong)" bg="var(--color-warning-soft)" />
+      <PlanSection title="Pending · referrals & follow-ups" items={pendingAll} accent="#000" bg="#DCFCE7" borderColor="#4ADE80" solidBlack />
     </div>
   );
 }
@@ -1230,7 +1276,7 @@ function UnresolvedCard({ state }: { state: VisitState }) {
   if (items.length === 0) return null;
   return (
     <div className="rounded-[10px] px-3.5 py-2.5 border" style={{ background: 'var(--color-warning-soft)', borderColor: 'var(--color-warning-soft-border)' }}>
-      <div className="eyebrow" style={{ color: 'var(--color-warning)' }}>Unresolved</div>
+      <GradientPill tone="warning">Unresolved</GradientPill>
       {items.map((u) => (
         <div key={u.id}>
           <div className="text-[11.5px] mt-1 leading-[1.45]" style={{ color: 'var(--color-ink-2)' }}>{u.text}</div>
@@ -1254,7 +1300,7 @@ function CompleteVisitCard({ state, setState }: { state: VisitState; setState: (
   const complete = state.phase === 'complete';
   return (
     <div className="card-surface p-3.5 flex flex-col gap-2">
-      <div className="eyebrow">Complete Visit</div>
+      <GradientPill>Complete Visit</GradientPill>
       <div className="text-[11.5px]" style={{ color: 'var(--color-ink-3)' }}>
         {complete
           ? 'Visit summary generated — plan above is a draft for clinician review.'
@@ -1348,7 +1394,7 @@ function IntelligentInsights({ pack }: { pack: InsightPack }) {
       {pack.note && (
         <div
           className="rounded-lg px-2.5 py-1.5 mb-2 text-[11.5px] leading-[1.45]"
-          style={{ background: 'var(--color-primary-soft)', border: '1px solid var(--color-primary-soft-border)', color: 'var(--color-ink-2)' }}
+          style={{ background: '#FED7AA', border: '2px solid #F97316', color: '#000', fontWeight: 700 }}
         >
           {pack.note}
         </div>
@@ -1373,26 +1419,55 @@ function IntelligentInsights({ pack }: { pack: InsightPack }) {
 
       {tab === 'dx' && (
         <div className="flex flex-col gap-2">
-          {pack.dxs.map((d, i) => (
-            <div key={i} className="rounded-lg p-2" style={{ background: 'var(--color-surface-2)', border: '1px solid var(--color-border-soft)' }}>
-              <div className="flex items-start justify-between gap-2 mb-1">
-                <span className="text-[12.5px] font-semibold leading-[1.35]" style={{ color: 'var(--color-ink-1)' }}>{d.dx}</span>
-                <Chip tone={d.tone}>{d.guideline}</Chip>
-              </div>
-              <ConfidenceBar value={d.confidence} tone={d.tone} />
-              <div className="mt-1.5 flex flex-col gap-1">
-                {d.criteria.map((c, j) => (
-                  <CriterionRow key={j} text={c.text} met={c.met} />
-                ))}
-              </div>
-              <div className="mt-1.5 text-[11px] italic leading-[1.45]" style={{ color: 'var(--color-ink-3)' }}>{d.rationale}</div>
-              <div className="mt-1.5">
-                <a href={d.guideline_url} target="_blank" rel="noreferrer" className="mono text-[10px] font-semibold underline" style={{ color: 'var(--color-primary)' }}>
-                  {d.guideline} ↗
-                </a>
-              </div>
-            </div>
-          ))}
+          {(() => {
+            const topIdx = pack.dxs.reduce((best, d, i, arr) => (d.confidence > arr[best].confidence ? i : best), 0);
+            return pack.dxs.map((d, i) => {
+              const isTop = i === topIdx;
+              return (
+                <div
+                  key={i}
+                  className="rounded-lg p-2"
+                  style={{
+                    background: isTop ? '#FED7AA' : 'var(--color-surface-2)',
+                    border: isTop ? '2px solid #F97316' : '1px solid var(--color-border-soft)',
+                  }}
+                >
+                  <div className="flex items-start justify-between gap-2 mb-1">
+                    <span
+                      className="leading-[1.3]"
+                      style={{ color: isTop ? '#000' : 'var(--color-ink-1)', fontWeight: isTop ? 900 : 600, fontSize: isTop ? 15 : 12.5 }}
+                    >
+                      {d.dx}
+                    </span>
+                    <Chip tone={d.tone}>{d.guideline}</Chip>
+                  </div>
+                  <ConfidenceBar value={d.confidence} tone={d.tone} />
+                  <div className="mt-1.5 flex flex-col gap-1">
+                    {d.criteria.map((c, j) => (
+                      <CriterionRow key={j} text={c.text} met={c.met} />
+                    ))}
+                  </div>
+                  <div
+                    className="mt-1.5 text-[11px] italic leading-[1.45]"
+                    style={{ color: isTop ? '#000' : 'var(--color-ink-3)', fontWeight: isTop ? 600 : undefined }}
+                  >
+                    {d.rationale}
+                  </div>
+                  <div className="mt-1.5">
+                    <a
+                      href={d.guideline_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mono text-[10px] font-semibold underline"
+                      style={{ color: isTop ? '#9A3412' : 'var(--color-primary)' }}
+                    >
+                      {d.guideline} ↗
+                    </a>
+                  </div>
+                </div>
+              );
+            });
+          })()}
         </div>
       )}
 
@@ -1608,17 +1683,14 @@ function HeadacheKPIs({ state }: { state: VisitState }) {
   ];
   return (
     <div className="grid grid-cols-4 gap-2">
-      {kpis.map((k, i) => {
-        const tv = toneVars(k.tone);
-        return (
-          <div key={i} className="rounded-[10px] p-2.5 border relative overflow-hidden" style={{ background: tv.bg, borderColor: tv.bd }}>
-            <div className="absolute top-1 right-2 text-[16px] opacity-40" style={{ color: tv.fg }}>{k.icon}</div>
-            <div className="eyebrow" style={{ fontSize: 9, color: tv.fg }}>{k.label}</div>
-            <div className="text-[20px] font-bold leading-tight mt-[2px]" style={{ color: tv.fg }}>{k.value}</div>
-            {k.sub && <div className="mono text-[9px] mt-[2px]" style={{ color: 'var(--color-muted-foreground)' }}>{k.sub}</div>}
-          </div>
-        );
-      })}
+      {kpis.map((k, i) => (
+        <div key={i} className="rounded-[10px] p-2.5 border relative overflow-hidden" style={{ background: '#FACC15', borderColor: '#CA8A04' }}>
+          <div className="absolute top-1 right-2 text-[16px]" style={{ color: '#000', opacity: 0.55 }}>{k.icon}</div>
+          <div className="eyebrow" style={{ fontSize: 9, color: '#000', fontWeight: 900 }}>{k.label}</div>
+          <div className="text-[20px] leading-tight mt-[2px]" style={{ color: '#000', fontWeight: 900 }}>{k.value}</div>
+          {k.sub && <div className="mono text-[9px] mt-[2px]" style={{ color: '#000', fontWeight: 700 }}>{k.sub}</div>}
+        </div>
+      ))}
     </div>
   );
 }
