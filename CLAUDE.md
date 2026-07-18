@@ -33,6 +33,10 @@ Theme: **The Future of Agentic AI in Healthcare by Abridge**.
 
 Use **Anthropic's Agent SDK** meaningfully.
 
+Core integrations (both must be visibly real in the demo):
+1. **Anthropic Agent SDK** — the Visit Intelligence Agent.
+2. **Medplum FHIR server** — the synthetic-data EHR. All seeded patient data (patients, prior visits, vitals, observations, PedMIDAS questionnaire responses) lives in Medplum as FHIR resources and is fetched by the backend at case load.
+
 Important context:
 - Judges will likely see many generic AI copilot/chatbot entries.
 - This project must feel like a real clinical workflow tool, not AI theater.
@@ -59,7 +63,7 @@ A primary care pediatrician in an underserved / safety-net setting seeing a chil
 Bridge is a **live pediatric headache visit copilot**.
 
 It combines:
-- preloaded prior history / prior visits / vitals from seeded JSON
+- preloaded prior history / prior visits / vitals from **Medplum FHIR** (synthetic data seeded ahead of demo; local JSON snapshot as deterministic fallback)
 - live transcript chunks from the encounter (synthetic STT stream for MVP)
 - structured extraction of headache-relevant facts
 - PedMIDAS capture and scoring when sufficient data exists
@@ -111,7 +115,8 @@ PedMIDAS is a strong clinical anchor because it is a validated tool for assessin
 - pediatric headache / migraine only
 - first visit workflow
 - follow-up visit state (visit 2+)
-- seeded pre-visit history JSON
+- Medplum-hosted synthetic FHIR data (patients, encounters, observations, questionnaire responses) as the pre-visit history source
+- seeded pre-visit history JSON as deterministic fallback
 - synthetic transcript chunks simulating STT
 - structured extraction + grounded evidence
 - live dashboard updates during the visit
@@ -119,7 +124,8 @@ PedMIDAS is a strong clinical anchor because it is a validated tool for assessin
 - grounded Ask Bridge feature
 
 ### Out of scope
-- real EHR/FHIR integration
+- EHR integrations beyond Medplum (no Epic/Cerner, no hospital connections)
+- real patient data of any kind — Medplum holds synthetic data only
 - real telephony or production STT
 - broad multi-condition platform
 - real medication ordering
@@ -150,7 +156,7 @@ Bridge should process this encounter live.
 
 ### What happens during the visit
 1. PCP opens the patient case.
-2. Bridge loads seeded pre-visit history / prior context JSON.
+2. Bridge fetches pre-visit history / prior context from Medplum FHIR (falls back to bundled JSON snapshot if Medplum is unreachable).
 3. Synthetic transcript chunks arrive sequentially.
 4. The Anthropic-based Visit Intelligence Agent extracts structured facts from each chunk.
 5. The frontend updates a live headache dashboard.
@@ -307,7 +313,8 @@ You do not need to use this exact schema, but keep the same philosophy: typed fa
 Every important claim must trace to evidence.
 
 Evidence may come from:
-- prior-history JSON
+- Medplum FHIR resources (prior history, vitals, observations)
+- prior-history JSON fallback snapshot
 - transcript chunks
 - local case data
 - constrained local demo pathway reference
@@ -431,13 +438,36 @@ If fewer endpoints makes the build safer, reduce them.
 
 ### Backend behavior
 - validate structured outputs with Pydantic
-- support deterministic seeded fallback state
+- fetch case data from Medplum FHIR at case load (see Medplum Integration section)
+- support deterministic seeded fallback state when Medplum is unreachable
 - allow “load sample case” behavior
 - avoid complex async/event infra unless it is clearly needed
 - polling or simple sequential updates are acceptable for MVP
 
 No microservices.
-No database unless there is a compelling reason.
+No database — Medplum is the persistence layer; local JSON is the fallback.
+
+***
+
+## Medplum Integration
+Medplum is the second core integration (alongside the Agent SDK). It acts as the synthetic-data EHR.
+
+### Role (implemented)
+- **Source of truth for case data**: the backend fetches each demo case from Medplum at case load (`store.load_cases()` → `medplum.fetch_case_def()`); the agent works entirely off that Medplum-sourced state.
+- **Seeded resources per case** (`backend/scripts/seed_medplum.py`, idempotent conditional PUTs): `Patient`, one `DocumentReference` per prior-history note, a PedMIDAS `Questionnaire`, and the full case definition JSON as a `DocumentReference` (identifier system `https://bridge.demo/case/case-def`) — this last one is what the backend reads.
+- **Write-back target**: on visit completion, Bridge pushes the visit summary to Medplum as a `DocumentReference`.
+- Re-run the seed script after editing `backend/app/demo_data/*.json` — otherwise Medplum serves the stale version.
+
+### Auth
+- Backend uses OAuth2 client-credentials against `https://api.medplum.com/oauth2/token`.
+- Env vars: `MEDPLUM_BASE_URL`, `MEDPLUM_CLIENT_ID`, `MEDPLUM_CLIENT_SECRET` (never commit secrets; use `backend/.env`, keep `.env.example` current).
+- Token cached in-process, re-minted on expiry.
+
+### Demo-stability rule (non-negotiable)
+Every Medplum read has a deterministic local fallback: if the fetch fails or times out (~3s), the backend silently serves the bundled JSON snapshot and flags `source: "cached"` in the response. The demo must never blank-screen because of network/Medplum issues.
+
+### Scope guard
+- Medplum usage stays narrow: seed script, case-load reads, visit-completion write-back. No subscriptions, no bots, no Medplum UI work.
 
 ***
 
@@ -487,6 +517,7 @@ Follow this order unless explicitly told otherwise:
 
 1. scaffold frontend and backend
 2. define schemas and seeded JSON cases
+2b. seed Medplum with synthetic FHIR bundles for Case A and Case B; wire backend case-load to Medplum with JSON fallback
 3. build first-visit dashboard from static seeded state
 4. build transcript chunk simulator
 5. wire deterministic structured updates to UI
@@ -509,7 +540,7 @@ Mandatory:
 - no blank screen failures
 - friendly error handling
 - manual “use cached demo result” fallback if live call fails
-- core demo must not depend on fragile external integrations
+- core demo must not depend on fragile external integrations (Medplum included — every Medplum read has the JSON fallback path)
 
 This matters more than cleverness.
 
@@ -518,6 +549,7 @@ This matters more than cleverness.
 ## What to Build vs Simulate
 ### Build for real
 - polished dashboard
+- Medplum FHIR reads (case load) and visit-completion write-back, with fallback
 - seeded history ingestion
 - transcript chunk flow
 - structured extraction contract
@@ -528,7 +560,7 @@ This matters more than cleverness.
 
 ### Simulate responsibly
 - live STT microphone pipeline
-- real EHR/FHIR access
+- EHR access beyond Medplum (Epic/Cerner etc.)
 - large-scale fax ingestion
 - full guideline engine
 - persistent patient storage

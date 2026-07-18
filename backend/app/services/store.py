@@ -5,6 +5,7 @@ import uuid
 from pathlib import Path
 from typing import Any
 
+from . import medplum
 from ..models import (
     CarePlanDraft,
     CaseSummary,
@@ -25,15 +26,26 @@ from ..models import (
 DEMO_DATA_DIR = Path(__file__).resolve().parent.parent / "demo_data"
 
 _cases: dict[str, dict[str, Any]] = {}
+# case_id -> "medplum" | "local" (where the case definition actually came from)
+_case_source: dict[str, str] = {}
 _visits: dict[str, VisitState] = {}
 # visit_id -> case raw dict (for chunks / canned answers)
 _visit_case: dict[str, dict[str, Any]] = {}
 
 
 def load_cases() -> None:
+    """Load demo cases, preferring Medplum FHIR with the local JSON fallback.
+
+    Local files define which cases exist; for each one we try to fetch the
+    seeded case definition from Medplum. Any failure silently falls back to
+    the bundled snapshot so the demo can never blank-screen.
+    """
     for path in sorted(DEMO_DATA_DIR.glob("case_*.json")):
-        raw = json.loads(path.read_text())
-        _cases[raw["case_id"]] = raw
+        local = json.loads(path.read_text())
+        case_id = local["case_id"]
+        remote = medplum.fetch_case_def(case_id) if medplum.enabled() else None
+        _cases[case_id] = remote or local
+        _case_source[case_id] = "medplum" if remote else "local"
 
 
 def list_cases() -> list[CaseSummary]:
@@ -71,6 +83,7 @@ def create_visit(case_id: str) -> VisitState | None:
             PrevisitBrief(**raw["previsit"]) if raw.get("previsit") else None
         ),
         history=[HistoryEntry(**h) for h in raw["history"]],
+        history_source=_case_source.get(case_id, "local"),
         chunks_total=len(raw.get("chunks", [])),
         agent_status="Reading prior history",
         red_flags=[
@@ -148,6 +161,9 @@ def complete_visit(visit_id: str) -> VisitState | None:
         state.care_plan = CarePlanDraft(**raw["care_plan"])
     state.phase = "complete"
     state.agent_status = "Visit summary ready"
+    if medplum.enabled():
+        summary_lines = state.care_plan.summary if state.care_plan else []
+        medplum.push_visit_summary(state.case_id, state.patient.name, summary_lines)
     return state
 
 

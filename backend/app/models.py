@@ -224,6 +224,8 @@ class VisitState(BaseModel):
     patient: Patient
     previsit: Optional[PrevisitBrief] = None
     history: list[HistoryEntry] = Field(default_factory=list)
+    # "medplum" when prior history came live from the FHIR server, else "local"
+    history_source: str = "local"
     transcript: list[TranscriptTurn] = Field(default_factory=list)
     chunks_processed: int = 0
     chunks_total: int = 0

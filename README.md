@@ -23,6 +23,28 @@ npm run dev
 - `BRIDGE_DEMO_MODE=1` (default): deterministic precomputed extraction — demo-safe.
 - `BRIDGE_DEMO_MODE=0` + `ANTHROPIC_API_KEY`: live Agent SDK extraction per transcript chunk, falls back to precomputed deltas on any failure.
 
+## Medplum FHIR (synthetic-data EHR)
+Medplum is the source of truth for demo case data. The backend fetches each case
+from Medplum at case load; the Visit Intelligence Agent then works entirely off
+that Medplum-sourced state (prior history, previsit brief, PedMIDAS catalog,
+transcript chunks, care plan, grounded Q&A).
+
+- **Seed** (idempotent, run after editing `backend/app/demo_data/*.json`):
+  ```bash
+  cd backend && .venv/bin/python -m scripts.seed_medplum
+  ```
+  Pushes per case: `Patient`, history `DocumentReference`s, a PedMIDAS
+  `Questionnaire`, and the full case definition JSON as a `DocumentReference`
+  (what the backend reads at case load).
+- **Read**: `store.load_cases()` fetches the case definition from Medplum
+  (3s timeout); any failure silently falls back to the bundled local JSON.
+  `VisitState.history_source` reports `"medplum"` or `"local"`.
+- **Write-back**: on visit completion the summary is pushed to Medplum as a
+  `DocumentReference`.
+- **Config**: `MEDPLUM_BASE_URL`, `MEDPLUM_CLIENT_ID`, `MEDPLUM_CLIENT_SECRET`
+  in `backend/.env` (see `.env.example`). Unset → pure local mode; the demo
+  never blank-screens on Medplum/network failure.
+
 ## API
 | Endpoint | Purpose |
 |---|---|
