@@ -1,0 +1,1202 @@
+{
+  "case_id": "case-d",
+  "title": "Noah Reyes — Red-flag escalation review",
+  "mode": "follow_up",
+  "description": "Previously improving on amitriptyline; new early-morning vomiting + occipital pain + progressive worsening → SNOOP positive. Urgent neurology referral + expedited imaging suggested; routine pathway paused for clinician review.",
+  "patient": {
+    "id": "pt-noah",
+    "name": "Noah Reyes",
+    "age": 8,
+    "sex": "M",
+    "preferred_language": "English",
+    "clinic": "Eastside Pediatrics",
+    "mrn": "MRN 021-5560",
+    "provider": "Dr. Okafor",
+    "visit_length": "15 min",
+    "visit_type": "Urgent escalation review",
+    "chief_complaint": "Headache — new red-flag symptoms",
+    "referral_status": "Escalation Review Needed"
+  },
+  "history": [
+    {
+      "id": "hxd-1",
+      "label": "Pediatric neurology consult",
+      "date": "2025-11-12",
+      "text": "Chronic migraine without aura confirmed by pediatric neurology. PedMIDAS 46 (severe disability). Preventive therapy recommended; MRI ordered to complete workup."
+    },
+    {
+      "id": "hxd-2",
+      "label": "MRI brain report",
+      "date": "2025-11-20",
+      "text": "MRI brain without contrast unremarkable. No structural abnormality identified."
+    },
+    {
+      "id": "hxd-3",
+      "label": "Amitriptyline start note",
+      "date": "2025-12-01",
+      "text": "Amitriptyline started nightly per neurology plan. Family counseled on adherence; PCP interval care with neurology follow-up in 3 months."
+    },
+    {
+      "id": "hxd-4",
+      "label": "Neurology follow-up",
+      "date": "2026-03-10",
+      "text": "Improving on amitriptyline. PedMIDAS 24, down from 46. Continue current dose; next re-score at PCP interval visit."
+    },
+    {
+      "id": "hxd-5",
+      "label": "Parent call / nurse triage",
+      "date": "2026-07-16",
+      "text": "Parent reports Noah vomiting in the mornings this week, right when he wakes up. Headaches most days of the week now, worsening since June. Reduced appetite and less active since June per parent. No fever reported. Urgent visit scheduled."
+    },
+    {
+      "id": "hxd-6",
+      "label": "Vitals (today)",
+      "date": "2026-07-18",
+      "text": "BP 98/60, HR 88, T 36.9C, Ht 128 cm, Wt 26 kg. Appears tired but alert."
+    }
+  ],
+  "red_flag_catalog": [
+    {
+      "key": "thunderclap",
+      "label": "Sudden severe (thunderclap) / worst headache of life"
+    },
+    {
+      "key": "waking_headache",
+      "label": "Wakes from sleep / worst on awakening"
+    },
+    {
+      "key": "vomiting_am",
+      "label": "Early-morning vomiting unrelated to illness"
+    },
+    {
+      "key": "exertional_valsalva",
+      "label": "Triggered by cough / Valsalva / exertion"
+    },
+    {
+      "key": "neuro_deficit",
+      "label": "Focal weakness or numbness"
+    },
+    {
+      "key": "vision_change",
+      "label": "Vision changes (double vision, non-aura vision loss)"
+    },
+    {
+      "key": "speech_difficulty",
+      "label": "Difficulty speaking or understanding"
+    },
+    {
+      "key": "gait_change",
+      "label": "Imbalance or gait changes"
+    },
+    {
+      "key": "seizures",
+      "label": "Seizure history or recent seizure"
+    },
+    {
+      "key": "altered_mental_status",
+      "label": "Altered mental status / personality change"
+    },
+    {
+      "key": "fever_stiff_neck",
+      "label": "Fever, stiff neck, or systemic infection signs"
+    },
+    {
+      "key": "cancer_immunosuppression_shunt",
+      "label": "History of cancer, immune suppression, or shunt"
+    },
+    {
+      "key": "head_trauma",
+      "label": "Recent significant head trauma"
+    },
+    {
+      "key": "worsening_pattern",
+      "label": "Progressive worsening over weeks/months"
+    }
+  ],
+  "pedmidas_questions": [
+    {
+      "question_id": "pm1",
+      "question": "Full school days missed in last 3 months"
+    },
+    {
+      "question_id": "pm2",
+      "question": "Partial school days missed in last 3 months"
+    },
+    {
+      "question_id": "pm3",
+      "question": "School days functioning at less than half"
+    },
+    {
+      "question_id": "pm4",
+      "question": "Days unable to do home activities/chores"
+    },
+    {
+      "question_id": "pm5",
+      "question": "Days unable to join play/social/sports"
+    },
+    {
+      "question_id": "pm6",
+      "question": "Days participated in activities at less than half"
+    }
+  ],
+  "precomputed_state": {
+    "agent_status": "Red flags present — escalation review",
+    "evidence": [
+      {
+        "id": "evd-1",
+        "source_type": "history",
+        "source_label": "Neurology follow-up, 2026-03-10",
+        "quote": "Improving on amitriptyline. PedMIDAS 24, down from 46."
+      },
+      {
+        "id": "evd-2",
+        "source_type": "transcript",
+        "source_label": "Parent, 00:00:14",
+        "quote": "He was doing really well until about a month ago. Now they're coming back harder."
+      },
+      {
+        "id": "evd-3",
+        "source_type": "transcript",
+        "source_label": "Parent, 00:00:52",
+        "quote": "He's throwing up in the mornings. Three times this week — right when he wakes up."
+      },
+      {
+        "id": "evd-4",
+        "source_type": "transcript",
+        "source_label": "Parent, 00:01:16",
+        "quote": "That's new — before it was always his forehead."
+      },
+      {
+        "id": "evd-5",
+        "source_type": "transcript",
+        "source_label": "Parent, 00:01:35",
+        "quote": "He's been bumping into things more. I thought he was tired."
+      },
+      {
+        "id": "evd-6",
+        "source_type": "transcript",
+        "source_label": "Parent, 00:01:45",
+        "quote": "Yes, three or four nights this week."
+      },
+      {
+        "id": "evd-7",
+        "source_type": "transcript",
+        "source_label": "Parent, 00:02:08",
+        "quote": "No, he takes it every night."
+      },
+      {
+        "id": "evd-8",
+        "source_type": "transcript",
+        "source_label": "Clinician, 00:02:30",
+        "quote": "Given the morning vomiting, the new location at the back of his head, and the balance changes, I'm pausing our routine plan today. I want neurology to see him this week, and we'll get expedited imaging review per their guidance."
+      },
+      {
+        "id": "evd-9",
+        "source_type": "transcript",
+        "source_label": "Parent, 00:00:30",
+        "quote": "Six full days, and he's come home early four other times."
+      },
+      {
+        "id": "evd-10",
+        "source_type": "history",
+        "source_label": "Nurse triage call, 2026-07-16",
+        "quote": "Parent reports Noah vomiting in the mornings this week, right when he wakes up."
+      },
+      {
+        "id": "evd-11",
+        "source_type": "history",
+        "source_label": "Neurology consult, 2025-11-12",
+        "quote": "Chronic migraine without aura confirmed by pediatric neurology. PedMIDAS 46 (severe disability)."
+      },
+      {
+        "id": "evd-12",
+        "source_type": "history",
+        "source_label": "MRI brain report, 2025-11-20",
+        "quote": "MRI brain without contrast unremarkable. No structural abnormality identified."
+      },
+      {
+        "id": "evd-13",
+        "source_type": "history",
+        "source_label": "Amitriptyline start note, 2025-12-01",
+        "quote": "Amitriptyline started nightly per neurology plan."
+      },
+      {
+        "id": "evd-14",
+        "source_type": "history",
+        "source_label": "Nurse triage call, 2026-07-16",
+        "quote": "Reduced appetite and less active since June per parent."
+      },
+      {
+        "id": "evd-15",
+        "source_type": "history",
+        "source_label": "Nurse triage call, 2026-07-16",
+        "quote": "Headaches most days of the week now, worsening since June."
+      },
+      {
+        "id": "evd-16",
+        "source_type": "history",
+        "source_label": "Nurse triage call, 2026-07-16",
+        "quote": "No fever reported."
+      }
+    ],
+    "profile": {
+      "onset": {
+        "value": "Chronic migraine since ~Oct 2025 (neuro-confirmed Nov 2025); current worsening since June 2026",
+        "status": "present",
+        "evidence_ids": ["evd-11", "evd-15"]
+      },
+      "location": {
+        "value": "New occipital — previously frontal (atypical change)",
+        "status": "present",
+        "evidence_ids": ["evd-4"]
+      },
+      "progression": {
+        "value": "Progressive worsening since June — previously improving",
+        "status": "present",
+        "evidence_ids": ["evd-2", "evd-15"]
+      },
+      "frequency_days_per_month": {
+        "value": 20,
+        "status": "needs_confirmation",
+        "evidence_ids": ["evd-15"]
+      },
+      "associated_symptoms": {
+        "value": [
+          "Early-morning vomiting on waking (3x this week)"
+        ],
+        "status": "present",
+        "evidence_ids": ["evd-3", "evd-10"]
+      },
+      "preventive_medication_use": {
+        "value": [
+          "Amitriptyline nightly (adherent)"
+        ],
+        "status": "present",
+        "evidence_ids": ["evd-7", "evd-13"]
+      },
+      "treatment_response": {
+        "value": "Early response lost — improving through March, now worsening despite preventive adherence",
+        "status": "present",
+        "evidence_ids": ["evd-1", "evd-2", "evd-7"]
+      },
+      "school_impact": {
+        "value": "6 full + 4 partial school days missed in last 3 months (PedMIDAS capture)",
+        "status": "present",
+        "evidence_ids": ["evd-9"]
+      },
+      "habits": {
+        "value": [
+          "Night waking from headache 3-4 nights/week (new)",
+          "Reduced appetite per parent",
+          "Decreased activity since June"
+        ],
+        "status": "present",
+        "evidence_ids": ["evd-6", "evd-14"]
+      }
+    },
+    "red_flags": [
+      {
+        "key": "vomiting_am",
+        "status": "present",
+        "evidence_ids": ["evd-3", "evd-10"]
+      },
+      {
+        "key": "worsening_pattern",
+        "status": "present",
+        "evidence_ids": ["evd-2", "evd-15"]
+      },
+      {
+        "key": "waking_headache",
+        "status": "present",
+        "evidence_ids": ["evd-6"]
+      },
+      {
+        "key": "gait_change",
+        "status": "present",
+        "evidence_ids": ["evd-5"]
+      },
+      {
+        "key": "thunderclap",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
+        "key": "vision_change",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
+        "key": "speech_difficulty",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
+        "key": "seizures",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
+        "key": "altered_mental_status",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
+        "key": "exertional_valsalva",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
+        "key": "neuro_deficit",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
+        "key": "fever_stiff_neck",
+        "status": "absent",
+        "evidence_ids": ["evd-16"]
+      },
+      {
+        "key": "head_trauma",
+        "status": "unknown",
+        "evidence_ids": []
+      },
+      {
+        "key": "cancer_immunosuppression_shunt",
+        "status": "absent",
+        "evidence_ids": ["emrd-ev-4"]
+      }
+    ],
+    "pedmidas_responses": [
+      {
+        "question_id": "pm1",
+        "value": 6,
+        "evidence_ids": ["evd-9"]
+      },
+      {
+        "question_id": "pm2",
+        "value": 4,
+        "evidence_ids": ["evd-9"]
+      }
+    ],
+    "pedmidas_trend": [
+      {
+        "date": "2025-11-12",
+        "score": 46,
+        "evidence_ids": ["evd-11"]
+      },
+      {
+        "date": "2026-03-10",
+        "score": 24,
+        "evidence_ids": ["evd-1"]
+      },
+      {
+        "date": "2026-07-18",
+        "score": 41,
+        "evidence_ids": ["evd-9", "evd-15"]
+      }
+    ],
+    "medication_events": [
+      {
+        "date": "2025-12-01",
+        "label": "Amitriptyline started (neurology plan)",
+        "kind": "start",
+        "evidence_ids": ["evd-13"]
+      }
+    ],
+    "changes_since_last_visit": [
+      "PedMIDAS worsened 24 → 41 since March — early response lost [evd-1, evd-9, evd-15]",
+      "New early-morning vomiting — 3x this week on waking [evd-3, evd-10]",
+      "Headache location shifted frontal → occipital — atypical for his prior pattern [evd-4]",
+      "Night waking from headache 3-4 nights/week — new [evd-6]",
+      "Possible ataxia — parent reports bumping into things more [evd-5]",
+      "Worsening despite maintained amitriptyline adherence [evd-2, evd-7]"
+    ],
+    "missing_questions": [
+      "When did morning vomiting start — how often?",
+      "Any new vision changes, dizziness, or clumsiness?",
+      "Neck pain or stiffness with the headaches?",
+      "Waking at night from headache — pattern changed?",
+      "New triggers, sleep changes, or missed amitriptyline doses?"
+    ]
+  },
+  "chunks": [
+    {
+      "turns": [
+        {
+          "id": "td-1",
+          "speaker": "clinician",
+          "text": "How has Noah been since March?",
+          "timestamp": "00:00:10"
+        },
+        {
+          "id": "td-2",
+          "speaker": "parent",
+          "text": "He was doing really well until about a month ago. Now they're coming back harder.",
+          "timestamp": "00:00:14"
+        },
+        {
+          "id": "td-3",
+          "speaker": "clinician",
+          "text": "How much school has he missed from the headaches in the last three months?",
+          "timestamp": "00:00:24"
+        },
+        {
+          "id": "td-4",
+          "speaker": "parent",
+          "text": "Six full days, and he's come home early four other times.",
+          "timestamp": "00:00:30"
+        }
+      ],
+      "delta": {
+        "agent_status": "Checking red flags — pattern change detected",
+        "evidence": [
+          {
+            "id": "evd-2",
+            "source_type": "transcript",
+            "source_label": "Parent, 00:00:14",
+            "quote": "He was doing really well until about a month ago. Now they're coming back harder."
+          },
+          {
+            "id": "evd-9",
+            "source_type": "transcript",
+            "source_label": "Parent, 00:00:30",
+            "quote": "Six full days, and he's come home early four other times."
+          }
+        ],
+        "profile": {
+          "progression": {
+            "value": "Progressive worsening since June — previously improving",
+            "status": "present",
+            "evidence_ids": ["evd-2"]
+          },
+          "school_impact": {
+            "value": "6 full + 4 partial school days missed in last 3 months (PedMIDAS capture)",
+            "status": "present",
+            "evidence_ids": ["evd-9"]
+          }
+        },
+        "red_flags": [
+          {
+            "key": "worsening_pattern",
+            "status": "present",
+            "evidence_ids": ["evd-2"]
+          }
+        ],
+        "pedmidas_responses": [
+          {
+            "question_id": "pm1",
+            "value": 6,
+            "evidence_ids": ["evd-9"]
+          },
+          {
+            "question_id": "pm2",
+            "value": 4,
+            "evidence_ids": ["evd-9"]
+          }
+        ]
+      }
+    },
+    {
+      "turns": [
+        {
+          "id": "td-5",
+          "speaker": "clinician",
+          "text": "Anything different about the headaches themselves?",
+          "timestamp": "00:00:48"
+        },
+        {
+          "id": "td-6",
+          "speaker": "parent",
+          "text": "He's throwing up in the mornings. Three times this week — right when he wakes up.",
+          "timestamp": "00:00:52"
+        }
+      ],
+      "delta": {
+        "agent_status": "Red flag detected — early-morning vomiting",
+        "evidence": [
+          {
+            "id": "evd-3",
+            "source_type": "transcript",
+            "source_label": "Parent, 00:00:52",
+            "quote": "He's throwing up in the mornings. Three times this week — right when he wakes up."
+          }
+        ],
+        "profile": {
+          "associated_symptoms": {
+            "value": [
+              "Early-morning vomiting on waking (3x this week)"
+            ],
+            "status": "present",
+            "evidence_ids": ["evd-3"]
+          }
+        },
+        "red_flags": [
+          {
+            "key": "vomiting_am",
+            "status": "present",
+            "evidence_ids": ["evd-3"]
+          }
+        ]
+      }
+    },
+    {
+      "turns": [
+        {
+          "id": "td-7",
+          "speaker": "clinician",
+          "text": "Noah, where's the pain now?",
+          "timestamp": "00:01:10"
+        },
+        {
+          "id": "td-8",
+          "speaker": "patient",
+          "text": "Back of my head. Right here.",
+          "timestamp": "00:01:13"
+        },
+        {
+          "id": "td-9",
+          "speaker": "parent",
+          "text": "That's new — before it was always his forehead.",
+          "timestamp": "00:01:16"
+        },
+        {
+          "id": "td-10",
+          "speaker": "clinician",
+          "text": "Any new clumsiness, vision changes, or trouble with balance?",
+          "timestamp": "00:01:30"
+        },
+        {
+          "id": "td-11",
+          "speaker": "parent",
+          "text": "He's been bumping into things more. I thought he was tired.",
+          "timestamp": "00:01:35"
+        },
+        {
+          "id": "td-12",
+          "speaker": "clinician",
+          "text": "Is he waking at night with the headaches?",
+          "timestamp": "00:01:42"
+        },
+        {
+          "id": "td-13",
+          "speaker": "parent",
+          "text": "Yes, three or four nights this week.",
+          "timestamp": "00:01:45"
+        }
+      ],
+      "delta": {
+        "agent_status": "Multiple red flags present — escalation review",
+        "evidence": [
+          {
+            "id": "evd-4",
+            "source_type": "transcript",
+            "source_label": "Parent, 00:01:16",
+            "quote": "That's new — before it was always his forehead."
+          },
+          {
+            "id": "evd-5",
+            "source_type": "transcript",
+            "source_label": "Parent, 00:01:35",
+            "quote": "He's been bumping into things more. I thought he was tired."
+          },
+          {
+            "id": "evd-6",
+            "source_type": "transcript",
+            "source_label": "Parent, 00:01:45",
+            "quote": "Yes, three or four nights this week."
+          }
+        ],
+        "profile": {
+          "location": {
+            "value": "New occipital — previously frontal (atypical change)",
+            "status": "present",
+            "evidence_ids": ["evd-4"]
+          },
+          "habits": {
+            "value": [
+              "Night waking from headache 3-4 nights/week (new)"
+            ],
+            "status": "present",
+            "evidence_ids": ["evd-6"]
+          }
+        },
+        "red_flags": [
+          {
+            "key": "gait_change",
+            "status": "present",
+            "evidence_ids": ["evd-5"]
+          },
+          {
+            "key": "waking_headache",
+            "status": "present",
+            "evidence_ids": ["evd-6"]
+          }
+        ]
+      }
+    },
+    {
+      "turns": [
+        {
+          "id": "td-14",
+          "speaker": "clinician",
+          "text": "Any missed amitriptyline doses?",
+          "timestamp": "00:02:05"
+        },
+        {
+          "id": "td-15",
+          "speaker": "parent",
+          "text": "No, he takes it every night.",
+          "timestamp": "00:02:08"
+        },
+        {
+          "id": "td-16",
+          "speaker": "clinician",
+          "text": "Given the morning vomiting, the new location at the back of his head, and the balance changes, I'm pausing our routine plan today. I want neurology to see him this week, and we'll get expedited imaging review per their guidance. Before you leave I'll go over warning signs to watch for tonight.",
+          "timestamp": "00:02:30"
+        }
+      ],
+      "delta": {
+        "agent_status": "Routine pathway paused — escalation drafts ready",
+        "evidence": [
+          {
+            "id": "evd-7",
+            "source_type": "transcript",
+            "source_label": "Parent, 00:02:08",
+            "quote": "No, he takes it every night."
+          },
+          {
+            "id": "evd-8",
+            "source_type": "transcript",
+            "source_label": "Clinician, 00:02:30",
+            "quote": "Given the morning vomiting, the new location at the back of his head, and the balance changes, I'm pausing our routine plan today. I want neurology to see him this week, and we'll get expedited imaging review per their guidance."
+          }
+        ],
+        "profile": {
+          "preventive_medication_use": {
+            "value": [
+              "Amitriptyline nightly (adherent)"
+            ],
+            "status": "present",
+            "evidence_ids": ["evd-7"]
+          },
+          "treatment_response": {
+            "value": "Early response lost — worsening despite preventive adherence",
+            "status": "present",
+            "evidence_ids": ["evd-2", "evd-7"]
+          }
+        },
+        "clinician_assessment": {
+          "impression": {
+            "value": "Pattern change with red flags — secondary cause must be excluded",
+            "status": "present",
+            "evidence_ids": ["evd-8"]
+          },
+          "concern_level": {
+            "value": "high",
+            "status": "present",
+            "evidence_ids": ["evd-8"]
+          },
+          "tentative_classification": {
+            "value": "possible secondary",
+            "status": "present",
+            "evidence_ids": ["evd-8"]
+          },
+          "plan_selections": {
+            "value": [
+              "Same-week neurology contact",
+              "Expedited imaging review per neurology guidance",
+              "Family return precautions tonight"
+            ],
+            "status": "present",
+            "evidence_ids": ["evd-8"]
+          }
+        }
+      }
+    }
+  ],
+  "previsit": {
+    "headline": "Escalation Review Needed",
+    "documents_count": 16,
+    "sources_count": 6,
+    "assembled_seconds": 7.0,
+    "confidence": "high",
+    "evidence": [
+      {
+        "id": "pevd-1",
+        "source_type": "document",
+        "source_label": "Neuro consult - 11/12/25",
+        "quote": "Chronic migraine without aura confirmed by pediatric neurology. PedMIDAS 46 (severe disability)."
+      },
+      {
+        "id": "pevd-2",
+        "source_type": "document",
+        "source_label": "Imaging report - 11/20/25",
+        "quote": "MRI brain without contrast unremarkable at initial workup. No structural abnormality identified."
+      },
+      {
+        "id": "pevd-3",
+        "source_type": "document",
+        "source_label": "Med list - 03/10/26",
+        "quote": "Preventive amitriptyline started Dec 1; initial response favorable through March."
+      },
+      {
+        "id": "pevd-4",
+        "source_type": "history",
+        "source_label": "Nurse triage call - 07/16/26",
+        "quote": "Parent reports Noah vomiting in the mornings this week, right when he wakes up. Headaches most days of the week now, worsening since June."
+      },
+      {
+        "id": "pevd-5",
+        "source_type": "history",
+        "source_label": "Red-flag pre-screen - today",
+        "quote": "New progressive pattern change flagged — routine path paused pending neurology contact."
+      }
+    ],
+    "brief_lines": [
+      {
+        "id": "bld-1",
+        "text": "Referred for chronic headache; pediatric neurology confirmed chronic migraine without aura on Nov 12, 2025.",
+        "source_label": "Neuro consult - 11/12/25",
+        "evidence_ids": ["pevd-1"]
+      },
+      {
+        "id": "bld-2",
+        "text": "MRI brain without contrast unremarkable at initial workup.",
+        "source_label": "Imaging report - 11/20/25",
+        "evidence_ids": ["pevd-2"]
+      },
+      {
+        "id": "bld-3",
+        "text": "Preventive amitriptyline started Dec 1; initial response favorable through March (PedMIDAS 46 → 24).",
+        "source_label": "Med list - 03/10/26",
+        "evidence_ids": ["pevd-3"]
+      },
+      {
+        "id": "bld-4",
+        "text": "Family now reports new early-morning vomiting and worsening pattern since June — early response lost.",
+        "source_label": "Nurse triage call - 07/16/26",
+        "evidence_ids": ["pevd-4"]
+      },
+      {
+        "id": "bld-5",
+        "text": "New progressive pattern change flagged — routine path paused pending neurology contact.",
+        "source_label": "Red-flag pre-screen - today",
+        "evidence_ids": ["pevd-5"]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2025-10-30",
+        "label": "Referral received",
+        "sublabel": "PCP → Pediatric Neurology",
+        "kind": "records"
+      },
+      {
+        "date": "2025-11-12",
+        "label": "Neurology consult",
+        "sublabel": "Chronic migraine without aura",
+        "kind": "visit"
+      },
+      {
+        "date": "2025-11-20",
+        "label": "MRI brain",
+        "sublabel": "Unremarkable",
+        "kind": "visit"
+      },
+      {
+        "date": "2025-12-01",
+        "label": "Preventive start",
+        "sublabel": "Amitriptyline started",
+        "kind": "visit"
+      },
+      {
+        "date": "2026-03-10",
+        "label": "Neurology follow-up",
+        "sublabel": "Improving — PedMIDAS 24",
+        "kind": "visit"
+      },
+      {
+        "date": "2026-07-18",
+        "label": "Today",
+        "sublabel": "New vomiting reported — escalation review",
+        "kind": "today"
+      }
+    ],
+    "referral_snapshot": {
+      "reason": "New red-flag symptoms in established migraine",
+      "duration": "Chronic migraine since Nov 2025; worsening since June 2026",
+      "prior_workup": "MRI 11/20/25 unremarkable · neuro-managed",
+      "family_history": "No family neurologic history documented"
+    },
+    "prior_evaluations": [
+      {
+        "id": "ped-1",
+        "title": "Neurology consult · Nov 12, 2025",
+        "detail": "Chronic migraine without aura; preventive therapy recommended",
+        "evidence_ids": ["pevd-1"]
+      },
+      {
+        "id": "ped-2",
+        "title": "MRI brain · Nov 20, 2025",
+        "detail": "Without contrast — unremarkable, no structural abnormality",
+        "evidence_ids": ["pevd-2"]
+      },
+      {
+        "id": "ped-3",
+        "title": "Neurology follow-up · Mar 10, 2026",
+        "detail": "Improving on amitriptyline; PCP interval care until next neuro visit",
+        "evidence_ids": ["pevd-3"]
+      }
+    ],
+    "family_developmental_history": [
+      "Born 34 weeks — NICU x2 weeks",
+      "Bilateral ear tubes age 3",
+      "Immunizations up to date"
+    ],
+    "draft_plan": [
+      {
+        "id": "dpd-1",
+        "title": "Same-week neurology contact",
+        "detail": "Draft message ready — new early-morning vomiting, worsening pattern; clinician sign-off required before sending",
+        "evidence_ids": ["pevd-4", "pevd-5"]
+      },
+      {
+        "id": "dpd-2",
+        "title": "Expedited MRI review / new imaging order",
+        "detail": "Compare against Nov 20, 2025 study; order per neurology guidance",
+        "evidence_ids": ["pevd-2"]
+      },
+      {
+        "id": "dpd-3",
+        "title": "Hold routine titration changes",
+        "detail": "Routine plan paused pending specialist input — do not adjust amitriptyline outside neurology guidance",
+        "evidence_ids": ["pevd-3", "pevd-5"]
+      },
+      {
+        "id": "dpd-4",
+        "title": "Family return precautions tonight",
+        "detail": "Handout draft ready · English",
+        "evidence_ids": ["pevd-5"]
+      },
+      {
+        "id": "dpd-5",
+        "title": "Urgent follow-up within 1 week",
+        "detail": "Re-score PedMIDAS within 1 week, not 8",
+        "evidence_ids": ["pevd-4"]
+      }
+    ],
+    "ask_during_visit": [
+      "When did morning vomiting start — how often?",
+      "Any new vision changes, dizziness, or clumsiness?",
+      "Waking at night from headache — pattern changed?"
+    ],
+    "handoff_items": [
+      {
+        "id": "hod-1",
+        "title": "Urgent neurology message",
+        "detail": "Drafted — awaiting clinician send",
+        "status": "draft_ready"
+      },
+      {
+        "id": "hod-2",
+        "title": "Family return-precautions handout",
+        "detail": "Red-flag symptoms to watch tonight",
+        "status": "draft_ready"
+      },
+      {
+        "id": "hod-3",
+        "title": "Imaging order — pending neurology confirmation",
+        "detail": "Held for neurology confirmation",
+        "status": "not_sent"
+      }
+    ],
+    "unresolved_items": [
+      {
+        "id": "urd-1",
+        "text": "New symptom onset date unconfirmed — parent report only, no nursing triage note yet.",
+        "requested_from": "Triage callback requested",
+        "date": "2026-07-18"
+      }
+    ],
+    "suggested_questions": [
+      "What changed since the last follow-up?",
+      "What did the MRI show?",
+      "Why is escalation suggested?"
+    ]
+  },
+  "emr_summary": {
+    "headline": "Agent-assembled chart summary",
+    "evidence": [
+      {
+        "id": "emrd-ev-1",
+        "source_type": "history",
+        "source_label": "Amitriptyline start note - 12/01/25",
+        "quote": "Amitriptyline started nightly per neurology plan."
+      },
+      {
+        "id": "emrd-ev-2",
+        "source_type": "history",
+        "source_label": "MRI brain report - 11/20/25",
+        "quote": "MRI brain without contrast unremarkable. No structural abnormality identified."
+      },
+      {
+        "id": "emrd-ev-3",
+        "source_type": "history",
+        "source_label": "Neurology consult - 11/12/25",
+        "quote": "Chronic migraine without aura confirmed by pediatric neurology."
+      },
+      {
+        "id": "emrd-ev-4",
+        "source_type": "document",
+        "source_label": "Problem list",
+        "quote": "Born 34 weeks; NICU x2 weeks. Bilateral ear tubes age 3. No history of cancer, immunosuppression, or shunt."
+      }
+    ],
+    "items": [
+      {
+        "id": "emrd-1",
+        "category": "medication",
+        "label": "Amitriptyline nightly (preventive)",
+        "detail": "Started 12/01/25 by neurology; adherent per family",
+        "flag": "hold changes pending neurology",
+        "date": "2025-12-01",
+        "evidence_ids": ["emrd-ev-1"]
+      },
+      {
+        "id": "emrd-2",
+        "category": "imaging",
+        "label": "MRI brain 11/2025 — unremarkable",
+        "detail": "Without contrast; no structural abnormality at initial workup",
+        "flag": "expedited re-review suggested",
+        "date": "2025-11-20",
+        "evidence_ids": ["emrd-ev-2"]
+      },
+      {
+        "id": "emrd-3",
+        "category": "referral",
+        "label": "Pediatric neurology — established",
+        "detail": "Consult 11/12/25, follow-up 03/10/26; PCP interval care",
+        "flag": "urgent contact drafted",
+        "date": "2025-11-12",
+        "evidence_ids": ["emrd-ev-3"]
+      },
+      {
+        "id": "emrd-4",
+        "category": "pmh",
+        "label": "Born 34 wk — NICU x2 weeks; ear tubes age 3",
+        "detail": "No cancer, immunosuppression, or shunt history on chart",
+        "flag": "",
+        "date": "",
+        "evidence_ids": ["emrd-ev-4"]
+      },
+      {
+        "id": "emrd-5",
+        "category": "no_show",
+        "label": "No missed appointments",
+        "detail": "All neurology visits kept on schedule",
+        "flag": "",
+        "date": "",
+        "evidence_ids": []
+      },
+      {
+        "id": "emrd-6",
+        "category": "wait_status",
+        "label": "Urgent slot requested — same week",
+        "detail": "Neurology contact drafted, pending clinician send",
+        "flag": "escalation active",
+        "date": "2026-07-18",
+        "evidence_ids": []
+      }
+    ]
+  },
+  "care_plan": {
+    "summary": [
+      "Established chronic migraine (Nov 2025), previously improving on amitriptyline — PedMIDAS 46 → 24 by March. [evd-11, evd-1]",
+      "New early-morning vomiting — 3x this week on waking. Red flag PRESENT. [evd-3, evd-10]",
+      "New occipital pain — previously frontal; atypical location change. [evd-4]",
+      "Night waking from headache 3-4 nights/week and possible ataxia (bumping into things more). [evd-5, evd-6]",
+      "Progressive worsening since June despite preventive adherence — PedMIDAS back to 41 today. [evd-2, evd-7, evd-9, evd-15]"
+    ],
+    "questions_to_ask": [
+      "When did morning vomiting start — how often?",
+      "Any new vision changes, dizziness, or clumsiness?",
+      "Neck pain or stiffness with the headaches?"
+    ],
+    "suggested_pathway": [
+      "PAUSE routine migraine pathway — SNOOP red flags present (clinician review required)",
+      "Same-week neurology contact — urgent message drafted, awaiting clinician sign-off",
+      "Expedited imaging: MRI re-review vs new MRI order per neurology guidance",
+      "Hold amitriptyline changes pending neurology input"
+    ],
+    "referral_considerations": [
+      "Urgent neurology contact required — SNOOP positive (early-morning vomiting, progressive worsening, occipital shift, possible ataxia). Clinician sign-off required before sending.",
+      "Expedited imaging suggested per neurology guidance — order held for confirmation."
+    ],
+    "patient_instructions": [
+      "Return precautions start TONIGHT: go to the ER for worsening or repeated vomiting, confusion or unusual sleepiness, new weakness, vision loss, or a worst-ever headache.",
+      "Continue amitriptyline every night — do not change the dose.",
+      "Keep the urgent follow-up visit within 1 week."
+    ],
+    "disclaimer": "Draft for clinician review. Final clinical decisions remain with the clinician.",
+    "evidence_ids": [
+      "evd-1",
+      "evd-2",
+      "evd-3",
+      "evd-4",
+      "evd-5",
+      "evd-6",
+      "evd-7",
+      "evd-8",
+      "evd-9",
+      "evd-10",
+      "evd-11",
+      "evd-15"
+    ]
+  },
+  "canned_qa": [
+    {
+      "match": [
+        "changed",
+        "change",
+        "since last",
+        "worse",
+        "worsen"
+      ],
+      "answer": "PedMIDAS had improved to 24 by the March follow-up, but the family now reports new early-morning vomiting (3x this week on waking), a new occipital pain location (previously frontal), night waking 3-4 nights/week, and possible balance changes — all with amitriptyline adherence maintained. These are SNOOP red flags: the routine pathway is paused and urgent escalation drafts are ready for clinician review.",
+      "citations": [
+        "evd-1",
+        "evd-3",
+        "evd-4",
+        "evd-5",
+        "evd-6",
+        "evd-7"
+      ]
+    },
+    {
+      "match": [
+        "mri",
+        "imaging",
+        "scan"
+      ],
+      "answer": "The initial MRI brain without contrast (Nov 20, 2025) was unremarkable — no structural abnormality identified. Given the new red flags, expedited re-review of that study and a possible new MRI order per neurology guidance are suggested; the imaging order is held pending clinician and neurology confirmation.",
+      "citations": [
+        "evd-12"
+      ]
+    },
+    {
+      "match": [
+        "escalat",
+        "urgent",
+        "why",
+        "refer",
+        "neurolog"
+      ],
+      "answer": "The red-flag screen is SNOOP positive: new early-morning vomiting, progressive worsening despite preventive adherence, an atypical shift to occipital pain, and possible ataxia (bumping into things more). These warrant same-week neurology contact and expedited imaging review. Drafts are ready in the action panel — nothing is sent without clinician sign-off.",
+      "citations": [
+        "evd-2",
+        "evd-3",
+        "evd-4",
+        "evd-5",
+        "evd-7"
+      ]
+    },
+    {
+      "match": [
+        "tonight",
+        "watch",
+        "family",
+        "home",
+        "precaution"
+      ],
+      "answer": "Suggested family return precautions starting tonight: go to the ER for worsening or repeated vomiting, new confusion or unusual sleepiness, weakness, vision loss, or a sudden worst-ever headache. Continue amitriptyline nightly without changes and keep the urgent follow-up within one week. A draft handout is ready for clinician review.",
+      "citations": [
+        "evd-3",
+        "evd-7",
+        "evd-8"
+      ]
+    }
+  ],
+  "insights": {
+    "note": "Red flags present — routine migraine pathway paused. Urgent escalation drafts ready for clinician review; nothing is sent without sign-off.",
+    "dxs": [
+      {
+        "dx": "Secondary headache — urgent evaluation required",
+        "confidence": 0.55,
+        "tone": "red",
+        "guideline": "SNOOP red flags / ICHD-3 5–12",
+        "guideline_url": "https://ichd-3.org/",
+        "criteria": [
+          {
+            "text": "Early-morning vomiting on waking (new, 3x this week)",
+            "met": "met"
+          },
+          {
+            "text": "Progressive worsening over weeks despite preventive adherence",
+            "met": "met"
+          },
+          {
+            "text": "Atypical location change (frontal → occipital)",
+            "met": "met"
+          },
+          {
+            "text": "Possible ataxia — parent-reported, exam confirmation needed",
+            "met": "partial"
+          }
+        ],
+        "rationale": "Multiple SNOOP flags emerged in a previously improving, neuro-managed patient. Suggested: same-week neurology contact and expedited imaging — clinician review required."
+      },
+      {
+        "dx": "Chronic migraine (established) — pattern no longer fits alone",
+        "confidence": 0.4,
+        "tone": "amber",
+        "guideline": "ICHD-3 · 1.3",
+        "guideline_url": "https://ichd-3.org/1-migraine/1-3-chronic-migraine/",
+        "criteria": [
+          {
+            "text": "Criteria met at Nov 2025 neurology diagnosis",
+            "met": "met"
+          },
+          {
+            "text": "Current phenotype consistent with prior migraine pattern",
+            "met": "unmet"
+          }
+        ],
+        "rationale": "Established diagnosis, but new occipital location, morning vomiting, and night waking are atypical for his prior pattern — secondary cause must be excluded first."
+      }
+    ],
+    "txs": [
+      {
+        "step": "Escalate",
+        "rec": "Same-week neurology contact — suggested, clinician sign-off required",
+        "detail": "Draft message ready: new early-morning vomiting, occipital shift, possible ataxia, worsening pattern despite adherence.",
+        "evidence": "SNOOP red-flag screen",
+        "evidence_url": "https://ichd-3.org/",
+        "tone": "red"
+      },
+      {
+        "step": "Imaging",
+        "rec": "Expedited MRI review / new order per neurology guidance — suggested",
+        "detail": "Compare against unremarkable Nov 20, 2025 study; order held pending neurology confirmation.",
+        "evidence": "AAN pediatric headache imaging guidance",
+        "evidence_url": "https://www.aan.com/Guidelines/",
+        "tone": "red"
+      },
+      {
+        "step": "Hold",
+        "rec": "Hold preventive medication changes — clinician review required",
+        "detail": "Continue amitriptyline nightly; no titration outside neurology guidance while escalation is active.",
+        "evidence": "Neurology plan · 03/10/26",
+        "evidence_url": "https://www.aan.com/Guidelines/",
+        "tone": "amber"
+      },
+      {
+        "step": "Safety",
+        "rec": "Family return precautions tonight — draft handout ready",
+        "detail": "ER if worsening or repeated vomiting, confusion, weakness, vision loss, or worst-ever headache.",
+        "evidence": "Red-flag safety counseling",
+        "evidence_url": "https://www.aan.com/Guidelines/",
+        "tone": "amber"
+      }
+    ]
+  }
+}
