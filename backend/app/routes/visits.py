@@ -80,15 +80,23 @@ def ask(visit_id: str, req: AskRequest) -> AskResponse:
 
 
 @router.get("/visits/{visit_id}/export.pdf")
-def export_pdf(visit_id: str) -> Response:
+def export_pdf(visit_id: str, audience: str = "doctor") -> Response:
+    """Audience-specific export: ?audience=doctor (clinical summary, default)
+    or ?audience=patient (family action plan)."""
+    if audience not in ("doctor", "patient"):
+        raise HTTPException(
+            status_code=422, detail="audience must be 'doctor' or 'patient'"
+        )
     state = _require_visit(visit_id)
     if state.care_plan is None:
         state = store.complete_visit(visit_id)
-    content = pdf.build_visit_pdf(state)
+    content = pdf.build_visit_pdf(state, audience)  # type: ignore[arg-type]
     return Response(
         content=content,
         media_type="application/pdf",
         headers={
-            "Content-Disposition": f'inline; filename="byebyeheadache-visit-{visit_id}.pdf"'
+            "Content-Disposition": (
+                f'inline; filename="byebyeheadache-{audience}-{visit_id}.pdf"'
+            )
         },
     )

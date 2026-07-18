@@ -1245,14 +1245,27 @@ function CompleteVisitCard({ state, setState }: { state: VisitState; setState: (
         >
           {complete ? 'Visit complete ✓' : busy ? 'Completing…' : 'Complete visit'}
         </button>
-        <a href={api.pdfUrl(state.visit_id)} target="_blank" rel="noreferrer">
+      </div>
+      <div className="flex gap-2">
+        <a href={api.pdfUrl(state.visit_id, 'doctor')} target="_blank" rel="noreferrer" className="flex-1">
           <button
-            className="text-[11.5px] font-semibold rounded-[7px] px-3 py-1.5 cursor-pointer"
-            style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}
+            className="w-full text-[11.5px] font-semibold rounded-[7px] px-3 py-1.5 cursor-pointer"
+            style={{ background: 'var(--color-surface)', border: '1px solid var(--color-primary-soft-border)', color: 'var(--color-primary)' }}
           >
-            Export PDF
+            Doctor PDF
           </button>
         </a>
+        <a href={api.pdfUrl(state.visit_id, 'patient')} target="_blank" rel="noreferrer" className="flex-1">
+          <button
+            className="w-full text-[11.5px] font-semibold rounded-[7px] px-3 py-1.5 cursor-pointer"
+            style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', color: 'var(--color-accent-foreground)' }}
+          >
+            Family PDF
+          </button>
+        </a>
+      </div>
+      <div className="mono text-[9px]" style={{ color: 'var(--color-muted-foreground)' }}>
+        Doctor PDF = clinical summary · Family PDF = plain-language action plan
       </div>
     </div>
   );

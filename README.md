@@ -112,7 +112,7 @@ cd backend && .venv/bin/python -m scripts.seed_medplum
 | `POST /visits/{id}/analyze` | **real Agent SDK re-assessment** of the visit so far |
 | `POST /visits/{id}/complete` | finalize: care plan + summary write-back to Medplum |
 | `POST /visits/{id}/ask` | grounded Q&A with evidence citations |
-| `GET /visits/{id}/export.pdf` | family-facing PDF action plan |
+| `GET /visits/{id}/export.pdf?audience=doctor\|patient` | audience-specific PDF: clinical visit summary (doctor) or plain-language family action plan (patient), both with charts (PedMIDAS trend/gauge, diary heatmap, red-flag states) |
 
 ***
 

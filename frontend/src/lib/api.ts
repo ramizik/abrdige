@@ -54,6 +54,8 @@ export const api = {
       body: JSON.stringify({ question }),
     }),
 
-  /** URL for the end-of-visit PDF (open in new tab or iframe). */
-  pdfUrl: (visitId: string) => `${API_BASE}/visits/${visitId}/export.pdf`,
+  /** URL for the end-of-visit PDF (open in new tab or iframe).
+   * audience: 'doctor' = clinical summary, 'patient' = family action plan. */
+  pdfUrl: (visitId: string, audience: 'doctor' | 'patient' = 'doctor') =>
+    `${API_BASE}/visits/${visitId}/export.pdf?audience=${audience}`,
 };
