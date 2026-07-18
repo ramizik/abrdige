@@ -1,16 +1,16 @@
 {
   "case_id": "case-a",
-  "title": "Maya R. — First headache visit",
+  "title": "Elena Cruz — First headache visit",
   "mode": "first_visit",
-  "description": "12-year-old with 4 months of recurrent headaches. Nonurgent migraine-compatible pattern, school impact, no red flags.",
+  "description": "9-year-old with 4 months of recurrent headaches, now 2-3x/week. One ER visit in March (no imaging). Migraine-compatible pattern, school impact, no red flags.",
   "patient": {
-    "id": "pt-001",
-    "name": "Maya R.",
-    "age": 12,
+    "id": "pt-elena",
+    "name": "Elena Cruz",
+    "age": 9,
     "sex": "F",
     "preferred_language": "English",
-    "clinic": "Eastside Community Pediatrics",
-    "mrn": "MRN 204-8817",
+    "clinic": "Eastside Pediatrics",
+    "mrn": "MRN 118-4402",
     "provider": "Dr. Okafor",
     "visit_length": "20 min",
     "visit_type": "First PCP headache visit",
@@ -21,32 +21,32 @@
     {
       "id": "hx-1",
       "label": "Well-child visit note",
-      "date": "2026-02-10",
-      "text": "12-year-old female, healthy, immunizations up to date. Mother mentions occasional headaches over the winter, not evaluated. Normal growth, normal neuro screening exam. BMI 50th percentile."
+      "date": "2026-01-15",
+      "text": "9-year-old female, healthy. Term birth, no complications. Mild intermittent asthma, albuterol PRN, well controlled. Immunizations up to date. No prior hospitalizations or surgeries. No headache complaints at this visit. Normal growth and development, normal neuro screening exam."
     },
     {
       "id": "hx-2",
-      "label": "Nurse triage call",
-      "date": "2026-05-28",
-      "text": "Parent called: Maya sent home from school twice this month with headache and nausea. Advised scheduling headache-focused visit."
+      "label": "Outside ER visit note",
+      "date": "2026-03-02",
+      "text": "Presented with acute headache and vomiting. Treated with IV fluids and observation. No imaging obtained; discharged same day, improved. Note references a head CT order — no report found in records. PCP follow-up recommended."
     },
     {
       "id": "hx-3",
       "label": "Vitals (today)",
       "date": "2026-07-18",
-      "text": "BP 104/66, HR 78, T 36.8C, Ht 152 cm, Wt 43 kg. No fever. Appears well."
+      "text": "BP 98/62, HR 84, T 36.9C, Ht 133 cm, Wt 29 kg. No fever. Appears well."
     },
     {
       "id": "hx-4",
       "label": "Medication list & allergies",
       "date": "2026-07-18",
-      "text": "No daily medications. PRN ibuprofen per parent report at check-in. PRN albuterol inhaler (mild intermittent asthma). Allergies: amoxicillin — rash (childhood)."
+      "text": "No daily medications. PRN ibuprofen per parent report at check-in — minimal relief, inconsistent dosing. PRN albuterol inhaler (mild intermittent asthma). Allergies: no known drug allergies."
     },
     {
       "id": "hx-5",
-      "label": "Urgent care visit note",
-      "date": "2026-05-15",
-      "text": "Presented with headache and nausea after school. Neuro exam grossly normal, no imaging performed. Discharged same day with ibuprofen advice; PCP follow-up recommended."
+      "label": "Intake form",
+      "date": "2026-07-18",
+      "text": "Headaches about 4 months, now 2-3 times a week per parent. OTC ibuprofen tried with minimal relief. No prior neurology contact. Mother: migraine with aura. Red-flag screen items all answered no."
     }
   ],
   "red_flag_catalog": [
@@ -139,14 +139,14 @@
         {
           "id": "t-1",
           "speaker": "clinician",
-          "text": "So Maya, tell me about these headaches. When did they start?",
+          "text": "Hi Elena, hi mom. Can you tell me when the headaches started?",
           "timestamp": "00:00:12"
         },
         {
           "id": "t-2",
-          "speaker": "patient",
-          "text": "Around the start of March, I guess. Like four months ago. They keep coming back.",
-          "timestamp": "00:00:19"
+          "speaker": "parent",
+          "text": "Around March. She had one bad one that sent us to the ER — the fluids helped. They watched her for a few hours and sent us home, no scans or anything.",
+          "timestamp": "00:00:18"
         }
       ],
       "delta": {
@@ -155,13 +155,20 @@
           {
             "id": "ev-1",
             "source_type": "transcript",
-            "source_label": "Patient, 00:00:19",
-            "quote": "Around the start of March, I guess. Like four months ago. They keep coming back."
+            "source_label": "Parent, 00:00:18",
+            "quote": "Around March. She had one bad one that sent us to the ER — the fluids helped. They watched her for a few hours and sent us home, no scans or anything."
           }
         ],
         "profile": {
           "onset": {
-            "value": "~4 months ago (early March 2026)",
+            "value": "~4 months ago (March 2026)",
+            "status": "present",
+            "evidence_ids": [
+              "ev-1"
+            ]
+          },
+          "repeat_visits": {
+            "value": "1 ER visit for acute headache with vomiting (Mar 2, 2026) — IV fluids, no imaging",
             "status": "present",
             "evidence_ids": [
               "ev-1"
@@ -183,26 +190,26 @@
         {
           "id": "t-3",
           "speaker": "clinician",
-          "text": "How often are they happening now? How many days in a month would you say?",
-          "timestamp": "00:01:02"
+          "text": "And how often is she getting them now?",
+          "timestamp": "00:00:34"
         },
         {
           "id": "t-4",
           "speaker": "parent",
-          "text": "It's gotten to maybe two a week. So eight days a month, sometimes more.",
-          "timestamp": "00:01:10"
+          "text": "Two, sometimes three times a week. Usually after school.",
+          "timestamp": "00:00:38"
         },
         {
           "id": "t-5",
-          "speaker": "patient",
-          "text": "They last a really long time too, like most of the afternoon until I sleep.",
-          "timestamp": "00:01:21"
+          "speaker": "clinician",
+          "text": "And how long does one usually last?",
+          "timestamp": "00:00:44"
         },
         {
-          "id": "t-5b",
+          "id": "t-6",
           "speaker": "parent",
-          "text": "It got bad enough in May that we took her to urgent care once after school. They checked her and sent us home, told us to see you.",
-          "timestamp": "00:01:34"
+          "text": "A couple of hours, sometimes the rest of the evening until she falls asleep.",
+          "timestamp": "00:00:49"
         }
       ],
       "delta": {
@@ -211,42 +218,38 @@
           {
             "id": "ev-2",
             "source_type": "transcript",
-            "source_label": "Parent, 00:01:10",
-            "quote": "It's gotten to maybe two a week. So eight days a month, sometimes more."
+            "source_label": "Parent, 00:00:38",
+            "quote": "Two, sometimes three times a week. Usually after school."
           },
           {
             "id": "ev-3",
             "source_type": "transcript",
-            "source_label": "Patient, 00:01:21",
-            "quote": "They last a really long time too, like most of the afternoon until I sleep."
-          },
-          {
-            "id": "ev-3b",
-            "source_type": "transcript",
-            "source_label": "Parent, 00:01:34",
-            "quote": "It got bad enough in May that we took her to urgent care once after school."
+            "source_label": "Parent, 00:00:49",
+            "quote": "A couple of hours, sometimes the rest of the evening until she falls asleep."
           }
         ],
         "profile": {
           "frequency_days_per_month": {
-            "value": 8,
+            "value": 10,
             "status": "present",
             "evidence_ids": [
               "ev-2"
             ]
           },
           "episode_duration": {
-            "value": "Several hours (afternoon until sleep)",
+            "value": "Hours (sometimes the rest of the evening until sleep)",
             "status": "present",
             "evidence_ids": [
               "ev-3"
             ]
           },
-          "repeat_visits": {
-            "value": "1 urgent-care visit for headache (May 2026); no ED visits reported",
-            "status": "present",
+          "triggers": {
+            "value": [
+              "After-school timing pattern"
+            ],
+            "status": "needs_confirmation",
             "evidence_ids": [
-              "ev-3b"
+              "ev-2"
             ]
           }
         },
@@ -259,34 +262,34 @@
     {
       "turns": [
         {
-          "id": "t-6",
-          "speaker": "clinician",
-          "text": "Where does it hurt, and what does it feel like?",
-          "timestamp": "00:02:05"
-        },
-        {
           "id": "t-7",
-          "speaker": "patient",
-          "text": "Mostly here on both sides of my forehead. It's like pounding, like a drum. Pretty bad — I can't really do homework when it happens.",
-          "timestamp": "00:02:14"
-        },
-        {
-          "id": "t-7b",
           "speaker": "clinician",
-          "text": "If you have one and you run around — gym class, soccer — does it get worse?",
-          "timestamp": "00:02:25"
+          "text": "Elena, where does it hurt, and what does it feel like?",
+          "timestamp": "00:00:58"
         },
         {
-          "id": "t-7c",
+          "id": "t-8",
           "speaker": "patient",
-          "text": "Yeah, way worse. If I run at practice with a headache it pounds harder and I have to stop.",
-          "timestamp": "00:02:31"
+          "text": "Right here, across my forehead. Both sides. It pounds, like a drum.",
+          "timestamp": "00:01:02"
         },
         {
-          "id": "t-2x",
+          "id": "t-9",
+          "speaker": "clinician",
+          "text": "If one comes at soccer, does running around make it worse?",
+          "timestamp": "00:01:08"
+        },
+        {
+          "id": "t-10",
+          "speaker": "patient",
+          "text": "Yeah, it pounds harder when I run. I have to sit down.",
+          "timestamp": "00:01:12"
+        },
+        {
+          "id": "t-11",
           "speaker": "parent",
-          "timestamp": "00:02:52",
-          "text": "Maybe two of those a month are the really bad ones where she just can't do anything."
+          "text": "Maybe once a month there's a really bad one where she just can't do anything at all.",
+          "timestamp": "00:01:16"
         }
       ],
       "delta": {
@@ -295,25 +298,25 @@
           {
             "id": "ev-4",
             "source_type": "transcript",
-            "source_label": "Patient, 00:02:14",
-            "quote": "Mostly here on both sides of my forehead. It's like pounding, like a drum. Pretty bad — I can't really do homework when it happens."
+            "source_label": "Patient, 00:01:02",
+            "quote": "Right here, across my forehead. Both sides. It pounds, like a drum."
           },
           {
             "id": "ev-4b",
             "source_type": "transcript",
-            "source_label": "Patient, 00:02:31",
-            "quote": "Yeah, way worse. If I run at practice with a headache it pounds harder and I have to stop."
+            "source_label": "Patient, 00:01:12",
+            "quote": "Yeah, it pounds harder when I run. I have to sit down."
           },
           {
-            "id": "ev-4x",
+            "id": "ev-4c",
             "source_type": "transcript",
-            "source_label": "Parent, 00:02:52",
-            "quote": "Maybe two of those a month are the really bad ones where she just can't do anything."
+            "source_label": "Parent, 00:01:16",
+            "quote": "Maybe once a month there's a really bad one where she just can't do anything at all."
           }
         ],
         "profile": {
           "location": {
-            "value": "Bilateral frontal",
+            "value": "Bifrontal (across the forehead, both sides)",
             "status": "present",
             "evidence_ids": [
               "ev-4"
@@ -327,24 +330,25 @@
             ]
           },
           "severity": {
-            "value": "Moderate–severe (stops homework)",
+            "value": "Moderate-severe (has to stop activity)",
             "status": "present",
             "evidence_ids": [
-              "ev-4"
+              "ev-4b",
+              "ev-4c"
             ]
           },
           "activity_worsening": {
-            "value": "Worse with routine physical activity (running at practice)",
+            "value": "Worse with routine physical activity (running at soccer)",
             "status": "present",
             "evidence_ids": [
               "ev-4b"
             ]
           },
           "severe_attacks_per_month": {
-            "value": 2,
+            "value": 1,
             "status": "present",
             "evidence_ids": [
-              "ev-4x"
+              "ev-4c"
             ]
           }
         },
@@ -356,28 +360,34 @@
     {
       "turns": [
         {
-          "id": "t-8",
+          "id": "t-12",
           "speaker": "clinician",
-          "text": "When the headache comes, does she feel sick to her stomach? Bothered by light or noise?",
-          "timestamp": "00:03:00"
+          "text": "Any nausea, or does light bother you when it happens?",
+          "timestamp": "00:01:20"
         },
         {
-          "id": "t-9",
+          "id": "t-13",
+          "speaker": "patient",
+          "text": "Yeah — the lights in the classroom are the worst. Sometimes I feel sick.",
+          "timestamp": "00:01:25"
+        },
+        {
+          "id": "t-14",
           "speaker": "parent",
-          "text": "Yes, she gets nauseous — she's thrown up once or twice. And she goes to her room and turns off the lights, says our voices are too loud.",
-          "timestamp": "00:03:11"
+          "text": "She'll ask to lie down in a dark room.",
+          "timestamp": "00:01:28"
         },
         {
-          "id": "t-9b",
+          "id": "t-15",
           "speaker": "clinician",
-          "text": "Maya, right before a headache starts, do you ever see flashing lights, zigzag lines, spots — or get numbness or tingling?",
-          "timestamp": "00:03:24"
+          "text": "Elena, right before a headache starts, do you ever see flashing lights, zigzag lines, spots — or get numb or tingly anywhere?",
+          "timestamp": "00:01:34"
         },
         {
-          "id": "t-9c",
+          "id": "t-16",
           "speaker": "patient",
           "text": "No, nothing like that. It just starts hurting.",
-          "timestamp": "00:03:31"
+          "timestamp": "00:01:40"
         }
       ],
       "delta": {
@@ -386,34 +396,40 @@
           {
             "id": "ev-5",
             "source_type": "transcript",
-            "source_label": "Parent, 00:03:11",
-            "quote": "Yes, she gets nauseous — she's thrown up once or twice. And she goes to her room and turns off the lights, says our voices are too loud."
+            "source_label": "Patient, 00:01:25",
+            "quote": "Yeah — the lights in the classroom are the worst. Sometimes I feel sick."
           },
           {
             "id": "ev-5b",
             "source_type": "transcript",
-            "source_label": "Patient, 00:03:31",
+            "source_label": "Parent, 00:01:28",
+            "quote": "She'll ask to lie down in a dark room."
+          },
+          {
+            "id": "ev-5c",
+            "source_type": "transcript",
+            "source_label": "Patient, 00:01:40",
             "quote": "No, nothing like that. It just starts hurting."
           }
         ],
         "profile": {
           "associated_symptoms": {
             "value": [
-              "Nausea",
-              "Occasional vomiting with attacks",
               "Photophobia",
-              "Phonophobia"
+              "Nausea",
+              "Dark-room seeking"
             ],
             "status": "present",
             "evidence_ids": [
-              "ev-5"
+              "ev-5",
+              "ev-5b"
             ]
           },
           "aura": {
             "value": "No visual or sensory aura reported",
             "status": "negative",
             "evidence_ids": [
-              "ev-5b"
+              "ev-5c"
             ]
           },
           "relievers": {
@@ -422,7 +438,7 @@
             ],
             "status": "present",
             "evidence_ids": [
-              "ev-5"
+              "ev-5b"
             ]
           }
         },
@@ -434,40 +450,28 @@
     {
       "turns": [
         {
-          "id": "t-10",
+          "id": "t-17",
           "speaker": "clinician",
-          "text": "Important safety questions. Do headaches ever wake her up from sleep? Any vomiting first thing in the morning? Any weakness, numbness, or trouble seeing?",
-          "timestamp": "00:04:02"
+          "text": "Some important safety questions. Any early-morning headaches, vomiting on waking, or vision changes?",
+          "timestamp": "00:02:20"
         },
         {
-          "id": "t-11",
+          "id": "t-18",
           "speaker": "parent",
-          "text": "No, never at night — they're always afternoon or evening. No morning vomiting. Nothing like weakness or vision problems.",
-          "timestamp": "00:04:18"
+          "text": "No — the ER vomiting was during the headache, not waking up. No vision problems, and nothing in the mornings.",
+          "timestamp": "00:02:26"
         },
         {
-          "id": "t-12",
+          "id": "t-19",
           "speaker": "clinician",
-          "text": "Any seizures or staring spells? Changes in how she walks or her balance? Times she seemed confused or not herself? And does coughing, straining, or hard exercise ever set a headache off suddenly?",
-          "timestamp": "00:04:31"
+          "text": "Do headaches ever wake her from sleep? Any weakness, numbness, trouble speaking, or a sudden worst-headache-of-her-life moment?",
+          "timestamp": "00:02:34"
         },
         {
-          "id": "t-13",
+          "id": "t-20",
           "speaker": "parent",
-          "text": "No seizures, walking is fine, she's always been sharp. Coughing or straining has never started one. And nothing sudden — they came on gradually, never a worst-headache-of-her-life moment.",
-          "timestamp": "00:04:44"
-        },
-        {
-          "id": "t-4x",
-          "speaker": "clinician",
-          "timestamp": "00:04:55",
-          "text": "A few more: any trouble speaking or understanding during these? Fevers or a stiff neck? Any big hits to the head recently? And she's never had cancer, immune problems, or a shunt, right?"
-        },
-        {
-          "id": "t-4y",
-          "speaker": "parent",
-          "timestamp": "00:05:02",
-          "text": "No, speech is normal, no fevers or stiff neck, no head injuries, and none of that medical history — she's been healthy."
+          "text": "Never at night — they're always afternoon or evening. No weakness or numbness, her speech is fine, and nothing sudden — they build up slowly.",
+          "timestamp": "00:02:42"
         }
       ],
       "delta": {
@@ -476,30 +480,17 @@
           {
             "id": "ev-6",
             "source_type": "transcript",
-            "source_label": "Parent, 00:04:18",
-            "quote": "No, never at night — they're always afternoon or evening. No morning vomiting. Nothing like weakness or vision problems."
+            "source_label": "Parent, 00:02:26",
+            "quote": "No — the ER vomiting was during the headache, not waking up. No vision problems, and nothing in the mornings."
           },
           {
             "id": "ev-7",
             "source_type": "transcript",
-            "source_label": "Parent, 00:04:44",
-            "quote": "No seizures, walking is fine, she's always been sharp. Coughing or straining has never started one. And nothing sudden — they came on gradually, never a worst-headache-of-her-life moment."
-          },
-          {
-            "id": "ev-7b",
-            "source_type": "transcript",
-            "source_label": "Parent, 00:05:02",
-            "quote": "No, speech is normal, no fevers or stiff neck, no head injuries, and none of that medical history — she's been healthy."
+            "source_label": "Parent, 00:02:42",
+            "quote": "Never at night — they're always afternoon or evening. No weakness or numbness, her speech is fine, and nothing sudden — they build up slowly."
           }
         ],
         "red_flags": [
-          {
-            "key": "waking_headache",
-            "status": "absent",
-            "evidence_ids": [
-              "ev-6"
-            ]
-          },
           {
             "key": "vomiting_am",
             "status": "absent",
@@ -508,35 +499,28 @@
             ]
           },
           {
-            "key": "neuro_deficit",
+            "key": "vision_change",
             "status": "absent",
             "evidence_ids": [
               "ev-6"
             ]
           },
           {
-            "key": "seizures",
+            "key": "waking_headache",
             "status": "absent",
             "evidence_ids": [
               "ev-7"
             ]
           },
           {
-            "key": "gait_change",
+            "key": "neuro_deficit",
             "status": "absent",
             "evidence_ids": [
               "ev-7"
             ]
           },
           {
-            "key": "altered_mental_status",
-            "status": "absent",
-            "evidence_ids": [
-              "ev-7"
-            ]
-          },
-          {
-            "key": "exertional_valsalva",
+            "key": "speech_difficulty",
             "status": "absent",
             "evidence_ids": [
               "ev-7"
@@ -548,47 +532,13 @@
             "evidence_ids": [
               "ev-7"
             ]
-          },
-          {
-            "key": "vision_change",
-            "status": "absent",
-            "evidence_ids": [
-              "ev-6"
-            ]
-          },
-          {
-            "key": "speech_difficulty",
-            "status": "absent",
-            "evidence_ids": [
-              "ev-7b"
-            ]
-          },
-          {
-            "key": "fever_stiff_neck",
-            "status": "absent",
-            "evidence_ids": [
-              "ev-7b"
-            ]
-          },
-          {
-            "key": "cancer_immunosuppression_shunt",
-            "status": "absent",
-            "evidence_ids": [
-              "ev-7b"
-            ]
-          },
-          {
-            "key": "head_trauma",
-            "status": "absent",
-            "evidence_ids": [
-              "ev-7b"
-            ]
           }
         ],
         "missing_questions_remove": [
           "Any headaches that wake her from sleep?"
         ],
         "missing_questions_add": [
+          "Seizures, gait or balance changes, fever/stiff neck, head trauma?",
           "Is the overall pattern stable or worsening month to month?"
         ]
       }
@@ -596,118 +546,204 @@
     {
       "turns": [
         {
-          "id": "t-14",
+          "id": "t-21",
           "speaker": "clinician",
-          "text": "Compared to March, are they getting more frequent or stronger month over month, or about the same?",
-          "timestamp": "00:05:10"
+          "text": "Any seizures or staring spells? Changes in her balance or how she walks? Times she seemed confused or not herself? And does coughing, straining, or hard exercise ever set one off suddenly?",
+          "timestamp": "00:02:50"
         },
         {
-          "id": "t-15",
+          "id": "t-22",
           "speaker": "parent",
-          "text": "They went up in the spring but the last two months it's been about the same. Not really worse.",
-          "timestamp": "00:05:20"
+          "text": "No seizures, her balance is fine, and she's always herself. Coughing or straining has never started one.",
+          "timestamp": "00:03:00"
+        },
+        {
+          "id": "t-23",
+          "speaker": "clinician",
+          "text": "Any fevers or a stiff neck with these? Any big hits to the head recently? And she's never had cancer, immune problems, or a shunt, right?",
+          "timestamp": "00:03:06"
+        },
+        {
+          "id": "t-24",
+          "speaker": "parent",
+          "text": "No fevers or stiff neck, no head injuries, and none of that medical history — she's been healthy.",
+          "timestamp": "00:03:14"
+        },
+        {
+          "id": "t-25",
+          "speaker": "clinician",
+          "text": "Compared to March, are they getting worse month to month, or about the same?",
+          "timestamp": "00:03:20"
+        },
+        {
+          "id": "t-26",
+          "speaker": "parent",
+          "text": "They picked up in the spring, but the last couple of months it's been steady. Not really worse.",
+          "timestamp": "00:03:27"
         }
       ],
       "delta": {
-        "agent_status": "Capturing headache pattern",
+        "agent_status": "Checking red flags",
         "evidence": [
           {
             "id": "ev-8",
             "source_type": "transcript",
-            "source_label": "Parent, 00:05:20",
-            "quote": "They went up in the spring but the last two months it's been about the same. Not really worse."
+            "source_label": "Parent, 00:03:00",
+            "quote": "No seizures, her balance is fine, and she's always herself. Coughing or straining has never started one."
+          },
+          {
+            "id": "ev-8b",
+            "source_type": "transcript",
+            "source_label": "Parent, 00:03:14",
+            "quote": "No fevers or stiff neck, no head injuries, and none of that medical history — she's been healthy."
+          },
+          {
+            "id": "ev-9",
+            "source_type": "transcript",
+            "source_label": "Parent, 00:03:27",
+            "quote": "They picked up in the spring, but the last couple of months it's been steady. Not really worse."
           }
-        ],
-        "profile": {
-          "progression": {
-            "value": "Rose in spring, plateaued last 2 months — non-progressive",
-            "status": "present",
-            "evidence_ids": [
-              "ev-8"
-            ]
-          }
-        },
-        "missing_questions_remove": [
-          "Is the overall pattern stable or worsening month to month?"
         ],
         "red_flags": [
           {
-            "key": "worsening_pattern",
+            "key": "seizures",
             "status": "absent",
             "evidence_ids": [
               "ev-8"
             ]
+          },
+          {
+            "key": "gait_change",
+            "status": "absent",
+            "evidence_ids": [
+              "ev-8"
+            ]
+          },
+          {
+            "key": "altered_mental_status",
+            "status": "absent",
+            "evidence_ids": [
+              "ev-8"
+            ]
+          },
+          {
+            "key": "exertional_valsalva",
+            "status": "absent",
+            "evidence_ids": [
+              "ev-8"
+            ]
+          },
+          {
+            "key": "fever_stiff_neck",
+            "status": "absent",
+            "evidence_ids": [
+              "ev-8b"
+            ]
+          },
+          {
+            "key": "head_trauma",
+            "status": "absent",
+            "evidence_ids": [
+              "ev-8b"
+            ]
+          },
+          {
+            "key": "cancer_immunosuppression_shunt",
+            "status": "absent",
+            "evidence_ids": [
+              "ev-8b"
+            ]
+          },
+          {
+            "key": "worsening_pattern",
+            "status": "absent",
+            "evidence_ids": [
+              "ev-9"
+            ]
           }
+        ],
+        "profile": {
+          "progression": {
+            "value": "Rose in spring, steady the last 2 months — non-progressive currently",
+            "status": "present",
+            "evidence_ids": [
+              "ev-9"
+            ]
+          }
+        },
+        "missing_questions_remove": [
+          "Seizures, gait or balance changes, fever/stiff neck, head trauma?",
+          "Is the overall pattern stable or worsening month to month?"
         ]
       }
     },
     {
       "turns": [
         {
-          "id": "t-16",
+          "id": "t-27",
           "speaker": "clinician",
           "text": "Let's talk about school. In the last three months, how many full days has she missed because of headaches? And days she went but left early?",
-          "timestamp": "00:06:05"
+          "timestamp": "00:03:40"
         },
         {
-          "id": "t-17",
+          "id": "t-28",
           "speaker": "parent",
-          "text": "She missed four full days. And left early... I'd say six times.",
-          "timestamp": "00:06:16"
+          "text": "Full days missed — I'd say 3. Partial days, maybe 5 more.",
+          "timestamp": "00:03:48"
         },
         {
-          "id": "t-18",
+          "id": "t-29",
           "speaker": "patient",
-          "text": "And a lot of days I'm there but I can't focus at all, like ten days maybe I got almost nothing done.",
-          "timestamp": "00:06:28"
+          "text": "Some days I'm at school but my head hurts too much to do my work — maybe 4 days like that.",
+          "timestamp": "00:03:56"
         }
       ],
       "delta": {
         "agent_status": "Updating PedMIDAS capture",
         "evidence": [
           {
-            "id": "ev-9",
-            "source_type": "transcript",
-            "source_label": "Parent, 00:06:16",
-            "quote": "She missed four full days. And left early... I'd say six times."
-          },
-          {
             "id": "ev-10",
             "source_type": "transcript",
-            "source_label": "Patient, 00:06:28",
-            "quote": "And a lot of days I'm there but I can't focus at all, like ten days maybe I got almost nothing done."
+            "source_label": "Parent, 00:03:48",
+            "quote": "Full days missed — I'd say 3. Partial days, maybe 5 more."
+          },
+          {
+            "id": "ev-10b",
+            "source_type": "transcript",
+            "source_label": "Patient, 00:03:56",
+            "quote": "Some days I'm at school but my head hurts too much to do my work — maybe 4 days like that."
           }
         ],
         "profile": {
           "school_impact": {
-            "value": "Missed 4 full days, 6 partial days, ~10 low-function days in 3 months",
+            "value": "Missed 3 full days, 5 partial days, ~4 low-function days in 3 months",
             "status": "present",
             "evidence_ids": [
-              "ev-9",
-              "ev-10"
+              "ev-10",
+              "ev-10b"
             ]
           }
         },
         "pedmidas_responses": [
           {
             "question_id": "pm1",
-            "value": 4,
+            "value": 3,
             "evidence_ids": [
-              "ev-9"
+              "ev-10"
             ]
           },
           {
             "question_id": "pm2",
-            "value": 6,
+            "value": 5,
             "evidence_ids": [
-              "ev-9"
+              "ev-10"
             ]
           },
           {
             "question_id": "pm3",
-            "value": 10,
+            "value": 4,
             "evidence_ids": [
-              "ev-10"
+              "ev-10b"
             ]
           }
         ],
@@ -723,16 +759,16 @@
     {
       "turns": [
         {
-          "id": "t-19",
+          "id": "t-30",
           "speaker": "clinician",
-          "text": "Outside school — days she couldn't do things at home, chores, homework? And days she skipped soccer or hanging out with friends, or went but wasn't really herself?",
-          "timestamp": "00:07:12"
+          "text": "Outside school — days she couldn't do her normal things at home? And days she skipped soccer or playing with friends, or went but wasn't really herself?",
+          "timestamp": "00:04:10"
         },
         {
-          "id": "t-20",
+          "id": "t-31",
           "speaker": "parent",
-          "text": "Maybe five days she just went straight to bed and did nothing at home. She skipped soccer practice three times, and probably four more where she played but badly and came off early.",
-          "timestamp": "00:07:30"
+          "text": "Maybe 2 days she went straight to bed and did nothing at home. She skipped soccer twice, and probably 3 more times she played but had to come off early.",
+          "timestamp": "00:04:22"
         }
       ],
       "delta": {
@@ -741,13 +777,13 @@
           {
             "id": "ev-11",
             "source_type": "transcript",
-            "source_label": "Parent, 00:07:30",
-            "quote": "Maybe five days she just went straight to bed and did nothing at home. She skipped soccer practice three times, and probably four more where she played but badly and came off early."
+            "source_label": "Parent, 00:04:22",
+            "quote": "Maybe 2 days she went straight to bed and did nothing at home. She skipped soccer twice, and probably 3 more times she played but had to come off early."
           }
         ],
         "profile": {
           "activity_impact": {
-            "value": "Skipped soccer 3x, limited participation 4x; ~5 days no home activities in 3 months",
+            "value": "Skipped soccer 2x, limited participation 3x; ~2 days no home activities in 3 months",
             "status": "present",
             "evidence_ids": [
               "ev-11"
@@ -757,21 +793,21 @@
         "pedmidas_responses": [
           {
             "question_id": "pm4",
-            "value": 5,
+            "value": 2,
             "evidence_ids": [
               "ev-11"
             ]
           },
           {
             "question_id": "pm5",
-            "value": 3,
+            "value": 2,
             "evidence_ids": [
               "ev-11"
             ]
           },
           {
             "question_id": "pm6",
-            "value": 4,
+            "value": 3,
             "evidence_ids": [
               "ev-11"
             ]
@@ -790,28 +826,28 @@
     {
       "turns": [
         {
-          "id": "t-21",
+          "id": "t-32",
           "speaker": "clinician",
-          "text": "Tell me about sleep, water, meals, screens.",
-          "timestamp": "00:08:15"
+          "text": "What about sleep and screens at home? Water, caffeine?",
+          "timestamp": "00:04:48"
         },
         {
-          "id": "t-22",
-          "speaker": "patient",
-          "text": "I go to sleep around midnight, sometimes later, on my phone. I skip breakfast a lot. I don't really drink water at school.",
-          "timestamp": "00:08:24"
+          "id": "t-33",
+          "speaker": "parent",
+          "text": "Bedtime moves around — she gets about eight hours. She's on the tablet a lot in the evenings. She doesn't drink much water, and no caffeine at all.",
+          "timestamp": "00:04:52"
         },
         {
-          "id": "t-23",
+          "id": "t-34",
           "speaker": "clinician",
           "text": "And what does she take when a headache hits?",
-          "timestamp": "00:08:40"
+          "timestamp": "00:05:04"
         },
         {
-          "id": "t-24",
+          "id": "t-35",
           "speaker": "parent",
-          "text": "Ibuprofen. Honestly, probably three times a week lately. Sometimes it helps if she takes it early.",
-          "timestamp": "00:08:48"
+          "text": "Ibuprofen, but honestly it barely helps. We're not consistent with the dose — maybe once or twice a week she gets some.",
+          "timestamp": "00:05:10"
         }
       ],
       "delta": {
@@ -820,75 +856,69 @@
           {
             "id": "ev-12",
             "source_type": "transcript",
-            "source_label": "Patient, 00:08:24",
-            "quote": "I go to sleep around midnight, sometimes later, on my phone. I skip breakfast a lot. I don't really drink water at school."
+            "source_label": "Parent, 00:04:52",
+            "quote": "Bedtime moves around — she gets about eight hours. She's on the tablet a lot in the evenings. She doesn't drink much water, and no caffeine at all."
           },
           {
             "id": "ev-13",
             "source_type": "transcript",
-            "source_label": "Parent, 00:08:48",
-            "quote": "Ibuprofen. Honestly, probably three times a week lately. Sometimes it helps if she takes it early."
+            "source_label": "Parent, 00:05:10",
+            "quote": "Ibuprofen, but honestly it barely helps. We're not consistent with the dose — maybe once or twice a week she gets some."
           },
           {
             "id": "ev-13b",
             "source_type": "history",
             "source_label": "Medication list (today)",
-            "quote": "No daily medications. PRN ibuprofen per parent report at check-in."
+            "quote": "No daily medications. PRN ibuprofen per parent report at check-in — minimal relief, inconsistent dosing."
           }
         ],
         "profile": {
           "habits": {
             "value": [
-              "Late sleep (~midnight, phone in bed)",
-              "Frequently skips breakfast",
-              "Low water intake at school"
+              "~8 h sleep, variable bedtime",
+              "High evening screen use (tablet)",
+              "Low water intake",
+              "No caffeine",
+              "Soccer 2x/week"
             ],
             "status": "present",
             "evidence_ids": [
+              "ev-12"
+            ]
+          },
+          "triggers": {
+            "value": [
+              "After-school timing pattern",
+              "Variable sleep schedule (suspected)",
+              "Low hydration (suspected)",
+              "Evening screen time (suspected)"
+            ],
+            "status": "needs_confirmation",
+            "evidence_ids": [
+              "ev-2",
               "ev-12"
             ]
           },
           "acute_medication_use": {
             "value": [
-              "Ibuprofen ~3x/week (OTC, parent-administered)"
+              "Ibuprofen ~1-2x/week (OTC, inconsistent dosing)"
             ],
-            "status": "needs_confirmation",
+            "status": "present",
             "evidence_ids": [
               "ev-13"
             ]
           },
           "treatment_response": {
-            "value": "Partial relief when ibuprofen taken early in attack; inconsistent otherwise",
-            "status": "needs_confirmation",
-            "evidence_ids": [
-              "ev-13"
-            ]
-          },
-          "triggers": {
-            "value": [
-              "Poor sleep",
-              "Skipped meals",
-              "Dehydration (suspected)"
-            ],
-            "status": "needs_confirmation",
-            "evidence_ids": [
-              "ev-12"
-            ]
-          },
-          "relievers": {
-            "value": [
-              "Rest in dark, quiet room",
-              "Ibuprofen (helps if taken early)"
-            ],
+            "value": "Minimal relief from ibuprofen; dosing inconsistent — dose/timing not yet optimized",
             "status": "present",
             "evidence_ids": [
-              "ev-5",
-              "ev-13"
+              "ev-13",
+              "ev-13b"
             ]
           },
           "medication_overuse_risk": {
-            "value": "Ibuprofen ~3 days/week (~12 days/month) — meets ≥10 days/month overuse threshold",
-            "status": "present",
+            "value": "Ibuprofen ~1-2 days/week (~6 days/month) — below the >=10 days/month overuse threshold",
+            "status": "negative",
             "evidence_ids": [
               "ev-13"
             ]
@@ -911,49 +941,56 @@
           },
           {
             "day": 5,
-            "intensity": 3,
-            "evidence_ids": [
-              "ev-2"
-            ]
-          },
-          {
-            "day": 9,
-            "intensity": 2,
-            "evidence_ids": [
-              "ev-2"
-            ]
-          },
-          {
-            "day": 12,
             "intensity": 1,
             "evidence_ids": [
               "ev-2"
             ]
           },
           {
-            "day": 16,
+            "day": 8,
+            "intensity": 2,
+            "evidence_ids": [
+              "ev-2"
+            ]
+          },
+          {
+            "day": 11,
             "intensity": 3,
             "evidence_ids": [
+              "ev-4c"
+            ]
+          },
+          {
+            "day": 14,
+            "intensity": 1,
+            "evidence_ids": [
               "ev-2"
             ]
           },
           {
-            "day": 19,
+            "day": 17,
             "intensity": 2,
             "evidence_ids": [
               "ev-2"
             ]
           },
           {
-            "day": 23,
+            "day": 20,
             "intensity": 2,
+            "evidence_ids": [
+              "ev-2"
+            ]
+          },
+          {
+            "day": 24,
+            "intensity": 1,
             "evidence_ids": [
               "ev-2"
             ]
           },
           {
             "day": 27,
-            "intensity": 1,
+            "intensity": 2,
             "evidence_ids": [
               "ev-2"
             ]
@@ -971,28 +1008,28 @@
     {
       "turns": [
         {
-          "id": "t-25",
+          "id": "t-36",
           "speaker": "clinician",
-          "text": "Does anyone in the family get migraines?",
-          "timestamp": "00:09:30"
+          "text": "Family history of migraines?",
+          "timestamp": "00:05:30"
         },
         {
-          "id": "t-26",
+          "id": "t-37",
           "speaker": "parent",
-          "text": "I did as a teenager, pretty bad ones. My mother too.",
-          "timestamp": "00:09:36"
+          "text": "I get migraines with aura. Have for years.",
+          "timestamp": "00:05:33"
         },
         {
-          "id": "t-9x",
+          "id": "t-38",
           "speaker": "clinician",
-          "timestamp": "00:10:05",
-          "text": "Her exam today is reassuring — she's well-appearing, neuro exam is completely normal: eye movements, strength, coordination and gait all fine. I got a good look at her optic discs and there's no papilledema."
+          "text": "Her exam today is reassuring — she's well-appearing, and her neuro exam is completely normal: eye movements, strength, coordination and gait all fine. I got a good look at her optic discs and there's no papilledema.",
+          "timestamp": "00:06:10"
         },
         {
-          "id": "t-9y",
+          "id": "t-39",
           "speaker": "clinician",
-          "timestamp": "00:10:30",
-          "text": "Putting it together, this looks most like migraine — my concern level today is low. Plan: start a headache diary, work on sleep and hydration, keep ibuprofen to no more than two days a week so we don't get rebound headaches, and I'll see her back in eight weeks. No imaging needed today."
+          "text": "Putting it together, this looks most like migraine — my concern level today is low. Plan: start a headache diary, work on regular sleep, evening screens and hydration, keep ibuprofen to no more than two days a week but give a proper dose early in the attack, and we set her PedMIDAS baseline today. No imaging is needed today, and I'll see her back in eight weeks.",
+          "timestamp": "00:06:35"
         }
       ],
       "delta": {
@@ -1001,26 +1038,26 @@
           {
             "id": "ev-14",
             "source_type": "transcript",
-            "source_label": "Parent, 00:09:36",
-            "quote": "I did as a teenager, pretty bad ones. My mother too."
+            "source_label": "Parent, 00:05:33",
+            "quote": "I get migraines with aura. Have for years."
           },
           {
             "id": "ev-15",
             "source_type": "history",
             "source_label": "Vitals (today)",
-            "quote": "BP 104/66, HR 78, T 36.8C. No fever. Appears well."
+            "quote": "BP 98/62, HR 84, T 36.9C, Ht 133 cm, Wt 29 kg. No fever. Appears well."
           },
           {
             "id": "ev-16",
             "source_type": "transcript",
-            "source_label": "Clinician, 00:10:05",
-            "quote": "she's well-appearing, neuro exam is completely normal: eye movements, strength, coordination and gait all fine. I got a good look at her optic discs and there's no papilledema."
+            "source_label": "Clinician, 00:06:10",
+            "quote": "she's well-appearing, and her neuro exam is completely normal: eye movements, strength, coordination and gait all fine. I got a good look at her optic discs and there's no papilledema."
           },
           {
             "id": "ev-17",
             "source_type": "transcript",
-            "source_label": "Clinician, 00:10:30",
-            "quote": "this looks most like migraine — my concern level today is low. Plan: start a headache diary, work on sleep and hydration, keep ibuprofen to no more than two days a week"
+            "source_label": "Clinician, 00:06:35",
+            "quote": "this looks most like migraine — my concern level today is low. Plan: start a headache diary, work on regular sleep, evening screens and hydration, keep ibuprofen to no more than two days a week"
           }
         ],
         "missing_questions_remove": [
@@ -1029,7 +1066,7 @@
         "missing_questions_add": [],
         "profile": {
           "family_history": {
-            "value": "Mother (teenage-onset migraine) and maternal grandmother",
+            "value": "Mother: migraine with aura (longstanding)",
             "status": "present",
             "evidence_ids": [
               "ev-14"
@@ -1070,7 +1107,7 @@
         },
         "clinician_assessment": {
           "impression": {
-            "value": "Recurrent headaches most consistent with migraine; reassuring exam, no red flags",
+            "value": "First structured evaluation: recurrent headaches most consistent with migraine; reassuring exam, no red flags",
             "status": "present",
             "evidence_ids": [
               "ev-17"
@@ -1093,8 +1130,9 @@
           "plan_selections": {
             "value": [
               "Headache diary + follow-up (8 weeks)",
-              "Lifestyle counseling (sleep, hydration)",
-              "Acute treatment guidance (ibuprofen ≤2 days/week)",
+              "Lifestyle counseling (sleep, hydration, evening screens)",
+              "Acute treatment guidance (ibuprofen <=2 days/week, proper dose early)",
+              "PedMIDAS baseline set today",
               "No imaging today"
             ],
             "status": "present",
@@ -1113,25 +1151,25 @@
         "id": "emr-ev-1",
         "source_type": "history",
         "source_label": "Medication list & allergies - 07/18",
-        "quote": "No daily medications. PRN ibuprofen per parent report at check-in. PRN albuterol inhaler (mild intermittent asthma). Allergies: amoxicillin — rash (childhood)."
+        "quote": "No daily medications. PRN ibuprofen per parent report at check-in — minimal relief, inconsistent dosing. PRN albuterol inhaler (mild intermittent asthma). Allergies: no known drug allergies."
       },
       {
         "id": "emr-ev-2",
         "source_type": "history",
-        "source_label": "Urgent care visit note - 05/15",
-        "quote": "Presented with headache and nausea after school. Neuro exam grossly normal, no imaging performed. Discharged same day with ibuprofen advice; PCP follow-up recommended."
+        "source_label": "Outside ER visit note - 03/02",
+        "quote": "Presented with acute headache and vomiting. Treated with IV fluids and observation. No imaging obtained; discharged same day, improved. Note references a head CT order — no report found in records."
       },
       {
         "id": "emr-ev-3",
         "source_type": "history",
-        "source_label": "Well-child note - 02/10",
-        "quote": "Mother mentions occasional headaches over the winter, not evaluated. Normal growth, normal neuro screening exam."
+        "source_label": "Well-child note - 01/15",
+        "quote": "Term birth, no complications. Mild intermittent asthma, albuterol PRN, well controlled. Immunizations up to date. No headache complaints at this visit."
       },
       {
         "id": "emr-ev-4",
         "source_type": "document",
         "source_label": "Intake form - 07/18",
-        "quote": "PRN ibuprofen with minimal relief per parent report. No prior neurology contact. Mother: migraine."
+        "quote": "Headaches about 4 months, now 2-3 times a week per parent. OTC ibuprofen tried with minimal relief. No prior neurology contact. Mother: migraine with aura."
       }
     ],
     "items": [
@@ -1143,25 +1181,37 @@
         "flag": "",
         "date": "",
         "evidence_ids": [
-          "emr-ev-1"
+          "emr-ev-1",
+          "emr-ev-3"
         ]
       },
       {
         "id": "emr-2",
-        "category": "allergy",
-        "label": "Amoxicillin — rash",
-        "detail": "Childhood reaction documented",
-        "flag": "confirm before any prescription",
+        "category": "pmh",
+        "label": "Term birth, no complications",
+        "detail": "Immunizations up to date; no hospitalizations or surgeries",
+        "flag": "",
         "date": "",
+        "evidence_ids": [
+          "emr-ev-3"
+        ]
+      },
+      {
+        "id": "emr-3",
+        "category": "allergy",
+        "label": "No known drug allergies",
+        "detail": "Per check-in medication reconciliation",
+        "flag": "none on file",
+        "date": "2026-07-18",
         "evidence_ids": [
           "emr-ev-1"
         ]
       },
       {
-        "id": "emr-3",
+        "id": "emr-4",
         "category": "family_history",
-        "label": "Mother: migraine",
-        "detail": "Per intake form; confirm degree/severity at visit",
+        "label": "Mother: migraine with aura",
+        "detail": "Per intake form; confirmed during today's visit",
         "flag": "migraine risk factor",
         "date": "2026-07-18",
         "evidence_ids": [
@@ -1169,11 +1219,11 @@
         ]
       },
       {
-        "id": "emr-4",
+        "id": "emr-5",
         "category": "medication",
         "label": "Ibuprofen PRN (parent-reported)",
-        "detail": "Frequency not quantified in chart",
-        "flag": "overuse watch — quantify at visit",
+        "detail": "Minimal relief, inconsistent dosing per intake",
+        "flag": "quantify frequency and dose at visit",
         "date": "2026-07-18",
         "evidence_ids": [
           "emr-ev-1",
@@ -1181,10 +1231,10 @@
         ]
       },
       {
-        "id": "emr-5",
+        "id": "emr-6",
         "category": "medication",
         "label": "Albuterol inhaler PRN",
-        "detail": "For asthma",
+        "detail": "For mild intermittent asthma",
         "flag": "no headache contraindication identified",
         "date": "",
         "evidence_ids": [
@@ -1192,40 +1242,40 @@
         ]
       },
       {
-        "id": "emr-6",
+        "id": "emr-7",
         "category": "visit_note",
-        "label": "Urgent care visit — headache + nausea",
-        "detail": "Normal neuro exam, no imaging, discharged same day, PCP follow-up advised",
-        "flag": "repeat acute-care use for headache",
-        "date": "2026-05-15",
+        "label": "ER visit — acute headache + vomiting",
+        "detail": "IV fluids and observation, no imaging, discharged same day, PCP follow-up advised",
+        "flag": "acute-care use for headache",
+        "date": "2026-03-02",
         "evidence_ids": [
           "emr-ev-2"
         ]
       },
       {
-        "id": "emr-7",
+        "id": "emr-8",
         "category": "visit_note",
-        "label": "Well-child visit — headaches first mentioned",
-        "detail": "Not evaluated at the time; normal neuro screen",
+        "label": "Well-child visit — no headache complaints",
+        "detail": "Normal growth and development, normal neuro screen (pre-dates headache onset)",
         "flag": "",
-        "date": "2026-02-10",
+        "date": "2026-01-15",
         "evidence_ids": [
           "emr-ev-3"
         ]
       },
       {
-        "id": "emr-8",
+        "id": "emr-9",
         "category": "imaging",
-        "label": "No head imaging on file",
-        "detail": "No CT/MRI ever performed",
-        "flag": "baseline for escalation decision",
-        "date": "",
+        "label": "No head imaging report on file",
+        "detail": "ER note references a head CT order — no report found in records",
+        "flag": "unresolved — report requested from ER",
+        "date": "2026-07-17",
         "evidence_ids": [
           "emr-ev-2"
         ]
       },
       {
-        "id": "emr-9",
+        "id": "emr-10",
         "category": "lab",
         "label": "No headache-relevant labs",
         "detail": "Nothing in past 12 months",
@@ -1234,7 +1284,7 @@
         "evidence_ids": []
       },
       {
-        "id": "emr-10",
+        "id": "emr-11",
         "category": "referral",
         "label": "No prior neurology or ophthalmology referral",
         "detail": "First structured headache evaluation",
@@ -1245,16 +1295,16 @@
         ]
       },
       {
-        "id": "emr-11",
+        "id": "emr-12",
         "category": "wait_status",
-        "label": "Pediatric neurology wait ~10–12 weeks (regional)",
+        "label": "Pediatric neurology wait ~10-12 weeks (regional)",
         "detail": "Informs timing if escalation needed",
         "flag": "plan around wait if referring",
         "date": "2026-07-17",
         "evidence_ids": []
       },
       {
-        "id": "emr-12",
+        "id": "emr-13",
         "category": "no_show",
         "label": "No missed appointments on record",
         "detail": "Family engaged with care",
@@ -1266,32 +1316,35 @@
   },
   "care_plan": {
     "summary": [
-      "12-year-old with ~4 months of recurrent bilateral frontal pounding headaches, ~8 days/month, lasting hours; rose in spring, non-progressive last 2 months. [ev-1, ev-2, ev-3, ev-4, ev-8]",
-      "Phenotype: worse with routine activity, nausea with occasional vomiting, photophobia and phonophobia, no aura; family history of migraine (mother, grandmother). [ev-4b, ev-5, ev-5b, ev-14]",
-      "Red-flag screen negative today: no thunderclap onset, morning vomiting, sleep awakening, focal deficits, seizures, gait change, altered mental status, or exertional/Valsalva trigger; normal vitals. [ev-6, ev-7, ev-15]",
-      "Functional burden: PedMIDAS 32 (moderate) — 4 full + 6 partial school days missed, soccer skipped/limited 7x, one urgent-care visit in May. [ev-9, ev-10, ev-11, ev-3b]",
-      "Treatment response: ibuprofen ~3x/week with partial relief only when taken early — approaching overuse range; lifestyle contributors present (late sleep, skipped breakfast, low hydration). [ev-13, ev-12]"
+      "9-year-old with 4 months of recurrent bifrontal pounding headaches, 2-3 days/week (~10 days/month), lasting hours; frequency rose in spring, steady the last 2 months. [ev-1, ev-2, ev-3, ev-4, ev-9]",
+      "Phenotype: worse with routine activity, photophobia and nausea with dark-room seeking, no aura; family history of migraine with aura (mother). [ev-4b, ev-5, ev-5b, ev-5c, ev-14]",
+      "Red-flag screen negative today across all 14 items: no thunderclap, waking headaches, morning vomiting, focal deficits, vision or speech change, seizures, gait change, altered mental status, fever/stiff neck, trauma, or progressive worsening; normal vitals and exam, no papilledema. [ev-6, ev-7, ev-8, ev-8b, ev-9, ev-15, ev-16]",
+      "Functional burden: PedMIDAS 19 (mild disability) — 3 full + 5 partial school days missed, ~4 low-function school days, soccer skipped/limited 5x; one ER visit in March. [ev-10, ev-10b, ev-11, ev-1]",
+      "Treatment response: OTC ibuprofen with minimal relief and inconsistent dosing at ~1-2 days/week — below overuse threshold; lifestyle contributors present (variable bedtime, high evening screens, low hydration). [ev-13, ev-13b, ev-12]",
+      "Unresolved record: the outside ER note references a head CT order but no report is on file — report requested from the ER, reconcile before any imaging decision. [emr-ev-2]"
     ],
     "questions_to_ask": [
-      "Confirm exact ibuprofen dose and count per week",
-      "Menstrual pattern relationship, if applicable"
+      "Confirm weight-based ibuprofen dose (10 mg/kg) and counsel on taking it early in the attack",
+      "Confirm whether any head CT was actually performed at the March ER visit"
     ],
     "suggested_pathway": [
       "Discuss migraine-compatible feature pattern with family (clinician review required)",
       "Start structured headache diary with family (draft provided)",
-      "Lifestyle plan: regular sleep schedule, breakfast, hydration goal, screen limits at night",
-      "Review acute medication strategy; counsel on limiting NSAID use to <3 days/week",
+      "Lifestyle plan: consistent bedtime, evening screen limits, daily hydration goal",
+      "Acute strategy: proper-dose ibuprofen early in attack, capped at 2 days/week",
+      "PedMIDAS baseline 19 recorded today — re-score at 8-week follow-up",
       "Consider preventive-pathway discussion if frequency/disability persists at follow-up"
     ],
     "referral_considerations": [
       "No urgent neurology referral indicated today based on negative red-flag screen (clinician to confirm)",
-      "Refer if red flags emerge, pattern progresses, or disability remains moderate-high despite 8–12 weeks of initial plan"
+      "Refer to neurology if red flags emerge, the pattern progresses, or frequency exceeds ~4/month despite 8-12 weeks of the initial plan",
+      "Reconcile the referenced ER head CT order before any new imaging decision"
     ],
     "patient_instructions": [
       "Keep the headache diary daily — one tap per day",
-      "Same bedtime every night, phone out of the bedroom",
-      "Eat breakfast; carry a water bottle at school",
-      "Take ibuprofen early in an attack, but not more than 3 days per week",
+      "Same bedtime every night; tablet away an hour before bed",
+      "Carry a water bottle to school and drink through the day",
+      "Give ibuprofen at the right dose early in an attack, but not more than 2 days per week",
       "Return sooner if headaches wake her at night, come with vomiting in the morning, or change suddenly"
     ],
     "disclaimer": "Draft for clinician review. Final clinical decisions remain with the clinician.",
@@ -1299,21 +1352,27 @@
       "ev-1",
       "ev-2",
       "ev-3",
-      "ev-3b",
       "ev-4",
       "ev-4b",
-      "ev-5b",
+      "ev-4c",
       "ev-5",
+      "ev-5b",
+      "ev-5c",
       "ev-6",
       "ev-7",
       "ev-8",
+      "ev-8b",
       "ev-9",
       "ev-10",
+      "ev-10b",
       "ev-11",
       "ev-12",
       "ev-13",
+      "ev-13b",
       "ev-14",
-      "ev-15"
+      "ev-15",
+      "ev-16",
+      "emr-ev-2"
     ]
   },
   "canned_qa": [
@@ -1322,24 +1381,39 @@
         "school",
         "impact"
       ],
-      "answer": "The family reported Maya missed 4 full school days and left early 6 times in the last 3 months, plus about 10 days where she was present but got almost nothing done. This is captured in PedMIDAS items 1–3.",
+      "answer": "The family reported Elena missed 3 full school days and left early 5 times in the last 3 months, plus about 4 days where she was at school but couldn't do her work. This is captured in PedMIDAS items 1-3 (baseline total 19, mild disability).",
       "citations": [
-        "ev-9",
-        "ev-10"
+        "ev-10",
+        "ev-10b"
       ]
     },
     {
       "match": [
         "red flag",
         "red-flag",
+        "snoop",
         "concerning",
         "safety"
       ],
-      "answer": "All eight screened red flags are marked absent based on today's interview: no thunderclap onset, no early-morning vomiting, no headaches waking her from sleep, no focal deficits, no seizures, no gait change, no altered mental status, and no exertional/cough/Valsalva trigger. The overall pattern is also non-progressive over the last two months.",
+      "answer": "No SNOOP red flags identified on the intake questionnaire — no systemic symptoms, focal deficits, thunderclap onset, or morning vomiting reported. Today's interview confirmed all 14 screened red flags as absent, including waking headaches, seizures, gait change, and progressive worsening. This remains a clinician-review screen, not a diagnosis.",
       "citations": [
+        "pev-5",
         "ev-6",
         "ev-7",
         "ev-8"
+      ]
+    },
+    {
+      "match": [
+        "er",
+        "emergency",
+        "ed visit",
+        "hospital"
+      ],
+      "answer": "Mar 2, 2026: acute headache with vomiting, treated with IV fluids and observation. No imaging was obtained; discharged same day. Note: the ER record references a head CT order, but no report has been found — it has been requested from the ER.",
+      "citations": [
+        "emr-ev-2",
+        "ev-1"
       ]
     },
     {
@@ -1349,9 +1423,10 @@
         "ct",
         "scan"
       ],
-      "answer": "The chart shows no head imaging has ever been performed — none at the May urgent-care visit (normal neuro exam, discharged same day) and none since. With today's negative red-flag screen, no imaging trigger is currently met; this remains a clinician decision.",
+      "answer": "No head imaging report is on file. The March ER note references a head CT order, but no report was found in records — it has been requested from the ER for reconciliation. With today's negative red-flag screen and normal exam, no imaging trigger is currently met; this remains a clinician decision.",
       "citations": [
-        "emr-ev-2"
+        "emr-ev-2",
+        "ev-16"
       ]
     },
     {
@@ -1361,21 +1436,10 @@
         "medical history",
         "pmh"
       ],
-      "answer": "From the chart: mild intermittent asthma managed with PRN albuterol (no headache contraindication identified), and a documented childhood amoxicillin rash. No daily medications.",
+      "answer": "From the chart: term birth with no complications, mild intermittent asthma managed with PRN albuterol (no headache contraindication identified), immunizations up to date, and no known drug allergies. No daily medications.",
       "citations": [
-        "emr-ev-1"
-      ]
-    },
-    {
-      "match": [
-        "urgent care",
-        "emergency",
-        "ed visit"
-      ],
-      "answer": "One urgent-care visit on 2026-05-15 for headache and nausea after school: normal neuro exam, no imaging, discharged the same day with PCP follow-up advised. The parent confirmed this during today's visit. No ED visits on record.",
-      "citations": [
-        "emr-ev-2",
-        "ev-3b"
+        "emr-ev-1",
+        "emr-ev-3"
       ]
     },
     {
@@ -1384,9 +1448,10 @@
         "ibuprofen",
         "overuse"
       ],
-      "answer": "Per parent report, Maya takes ibuprofen about 3 times per week for attacks, which approaches the medication-overuse range and is flagged for clinician review. Exact dosing was not confirmed during the visit.",
+      "answer": "Per parent report, Elena gets OTC ibuprofen about 1-2 days per week with minimal relief and inconsistent dosing — below the >=10 days/month overuse threshold. The draft plan suggests a proper weight-based dose taken early in the attack, capped at 2 days/week (clinician review required).",
       "citations": [
-        "ev-13"
+        "ev-13",
+        "emr-ev-1"
       ]
     },
     {
@@ -1394,9 +1459,10 @@
         "family history",
         "family"
       ],
-      "answer": "The mother reported having significant migraines as a teenager, and the maternal grandmother had them as well.",
+      "answer": "The mother reports longstanding migraine with aura, confirmed during today's visit and on the intake form. No vision or hearing concerns and normal growth and development are noted for Elena.",
       "citations": [
-        "ev-14"
+        "ev-14",
+        "emr-ev-4"
       ]
     }
   ],
@@ -1411,105 +1477,84 @@
         "id": "pev-1",
         "source_type": "document",
         "source_label": "Intake form - 07/18",
-        "quote": "Headaches about 4 months, now happening most weeks, sent home from school twice in May."
+        "quote": "Headaches about 4 months, now 2-3 times a week per parent."
       },
       {
         "id": "pev-2",
         "source_type": "history",
-        "source_label": "Nurse triage call - 05/28",
-        "quote": "Maya sent home from school twice this month with headache and nausea."
+        "source_label": "Outside ER note - 03/02",
+        "quote": "Presented with acute headache and vomiting. Treated with IV fluids and observation. No imaging obtained; discharged same day."
       },
       {
         "id": "pev-3",
-        "source_type": "history",
-        "source_label": "Well-child note - 02/10",
-        "quote": "Mother mentions occasional headaches over the winter, not evaluated. Normal neuro screening exam."
+        "source_type": "document",
+        "source_label": "Intake form - 07/18",
+        "quote": "OTC ibuprofen tried with minimal relief. No prior neurology contact."
       },
       {
         "id": "pev-4",
         "source_type": "document",
         "source_label": "Intake form - 07/18",
-        "quote": "PRN ibuprofen with minimal relief per parent report. No prior neurology contact."
+        "quote": "Mother: migraine with aura."
       },
       {
         "id": "pev-5",
         "source_type": "document",
         "source_label": "Intake questionnaire - 07/18",
-        "quote": "Red-flag screen items all answered 'no': thunderclap onset, morning vomiting, sleep awakening, focal deficits, seizures, gait change, altered mental status, exertional/Valsalva trigger."
+        "quote": "Red-flag screen items all answered no."
       }
     ],
     "brief_lines": [
       {
         "id": "bl-1",
-        "text": "Presenting complaint: recurrent headaches x4 months, sent home from school twice in May per triage call.",
+        "text": "Presenting complaint: headaches x4 months, now 2-3x/week per parent intake form.",
         "source_label": "Intake form - 07/18",
         "evidence_ids": [
-          "pev-1",
-          "pev-2"
+          "pev-1"
         ]
       },
       {
         "id": "bl-2",
-        "text": "Headaches first noted at winter well-child visit; not evaluated at that time, neuro screen normal.",
-        "source_label": "Well-child note - 02/10",
+        "text": "Seen once in ER (Mar 2) for acute headache with vomiting; treated with fluids, no imaging done.",
+        "source_label": "ER note - 03/02",
+        "evidence_ids": [
+          "pev-2"
+        ]
+      },
+      {
+        "id": "bl-3",
+        "text": "No prior neurology contact; OTC ibuprofen tried with minimal relief.",
+        "source_label": "Intake form - 07/18",
         "evidence_ids": [
           "pev-3"
         ]
       },
       {
-        "id": "bl-3",
-        "text": "No prior neurology contact, no head imaging ever performed; OTC ibuprofen tried with minimal relief.",
+        "id": "bl-4",
+        "text": "Family history positive for migraine with aura (mother).",
         "source_label": "Intake form - 07/18",
         "evidence_ids": [
           "pev-4"
         ]
       },
       {
-        "id": "bl-3b",
-        "text": "One urgent-care visit (05/15) for headache + nausea: normal neuro exam, discharged same day, PCP follow-up advised.",
-        "source_label": "Urgent care note - 05/15",
-        "evidence_ids": [
-          "emr-ev-2"
-        ]
-      },
-      {
-        "id": "bl-4",
-        "text": "Intake red-flag questionnaire clear - no urgent neuro red flags reported.",
-        "source_label": "Intake questionnaire - 07/18",
-        "evidence_ids": [
-          "pev-5"
-        ]
-      },
-      {
         "id": "bl-5",
-        "text": "Baseline PedMIDAS not yet established - today's visit sets the starting point.",
+        "text": "Baseline PedMIDAS not yet established — today's visit sets the starting point.",
         "source_label": "Visit today",
         "evidence_ids": []
       }
     ],
     "timeline": [
       {
-        "date": "2026-02-10",
-        "label": "Well-child visit",
-        "sublabel": "Headaches mentioned, not evaluated",
-        "kind": "visit"
-      },
-      {
-        "date": "2026-05-15",
-        "label": "Urgent care visit",
-        "sublabel": "Headache + nausea; normal neuro exam, no imaging",
+        "date": "2026-03-02",
+        "label": "ER visit",
+        "sublabel": "Headache + vomiting, fluids given",
         "kind": "er_visit"
       },
       {
-        "date": "2026-05-28",
-        "label": "Nurse triage call",
-        "sublabel": "Sent home from school twice; visit advised",
-        "kind": "call"
-      },
-      {
-        "date": "2026-07-17",
-        "label": "Records assembled",
-        "sublabel": "Intake form + prior notes pulled by ByeByeHeadache",
+        "date": "2026-06-28",
+        "label": "Records requested",
+        "sublabel": "ER note pulled by Bridge",
         "kind": "records"
       },
       {
@@ -1522,16 +1567,16 @@
     "referral_snapshot": {
       "reason": "Headaches x4 months, worsening frequency",
       "duration": "Since March 2026",
-      "prior_workup": "None - first structured evaluation",
-      "family_history": "Mother: migraine (per intake form)"
+      "prior_workup": "None — first evaluation",
+      "family_history": "Mother: migraine with aura"
     },
     "prior_evaluations": [
       {
         "id": "pe-1",
-        "title": "Well-child visit - Feb 10",
-        "detail": "Occasional headaches noted, normal neuro screen, no workup",
+        "title": "ER visit - Mar 2",
+        "detail": "Acute headache with vomiting — IV fluids, no imaging",
         "evidence_ids": [
-          "pev-3"
+          "pev-2"
         ]
       },
       {
@@ -1539,7 +1584,7 @@
         "title": "OTC ibuprofen trialed at home",
         "detail": "Parent reports minimal relief, inconsistent dosing",
         "evidence_ids": [
-          "pev-4"
+          "pev-3"
         ]
       },
       {
@@ -1547,27 +1592,31 @@
         "title": "No prior specialist contact",
         "detail": "This is the first structured evaluation",
         "evidence_ids": [
-          "pev-4"
+          "pev-3"
         ]
       }
     ],
     "family_developmental_history": [
-      "Mother with migraine history (per intake form)",
-      "Development on track; doing well in school until recent absences"
+      "Mother: migraine with aura",
+      "No vision or hearing concerns",
+      "Normal growth & development",
+      "No recent head trauma"
     ],
     "draft_plan": [
       {
         "id": "dp-1",
         "title": "Complete structured headache history",
-        "detail": "Frequency, triggers, aura features - this visit",
-        "evidence_ids": []
+        "detail": "Frequency, triggers, aura features — this visit",
+        "evidence_ids": [
+          "pev-1"
+        ]
       },
       {
         "id": "dp-2",
-        "title": "Start headache diary + acute treatment review",
-        "detail": "Confirm ibuprofen dose/frequency; watch overuse range",
+        "title": "Start headache diary + acute treatment",
+        "detail": "Ibuprofen 10 mg/kg at onset, cap 2 days/week",
         "evidence_ids": [
-          "pev-4"
+          "pev-3"
         ]
       },
       {
@@ -1579,14 +1628,14 @@
       {
         "id": "dp-4",
         "title": "Referral threshold",
-        "detail": "Refer to neurology if red flags emerge or frequency worsens despite treatment",
+        "detail": "Refer to neurology if red flags emerge or frequency >4/mo despite treatment",
         "evidence_ids": []
       }
     ],
     "ask_during_visit": [
-      "How often are headaches occurring - any pattern?",
-      "Any vision changes, vomiting, or morning headaches?",
-      "Barriers to consistent acute treatment?"
+      "Onset, location, and severity of the pain?",
+      "Nausea, light/sound sensitivity, vomiting, or aura?",
+      "Any headache history or ER visits before March 2?"
     ],
     "handoff_items": [
       {
@@ -1597,7 +1646,7 @@
       },
       {
         "id": "ho-2",
-        "title": "Neurology referral - pending decision",
+        "title": "Neurology referral — pending decision",
         "detail": "Hold unless red flags or poor response",
         "status": "not_sent"
       }
@@ -1605,15 +1654,15 @@
     "unresolved_items": [
       {
         "id": "ur-1",
-        "text": "Triage call mentions school nurse log - not yet received in records.",
-        "requested_from": "School health office",
+        "text": "ER note references a head CT order — no report found in records yet.",
+        "requested_from": "ER",
         "date": "2026-07-17"
       }
     ],
     "suggested_questions": [
       "Ask about this chart...",
       "Any red flags on intake screen?",
-      "What happened at the well-child visit?"
+      "What happened at the ER visit?"
     ]
   },
   "insights": {
@@ -1636,18 +1685,18 @@
           },
           {
             "text": "N/V OR photo+phonophobia",
-            "met": "met"
+            "met": "partial"
           },
           {
             "text": "Not better accounted for by another ICHD-3 dx",
             "met": "met"
           }
         ],
-        "rationale": "Attack features fit 1.1; total attack count still being clarified in visit."
+        "rationale": "Pounding bifrontal pain, activity aggravation, photophobia + nausea, family history of migraine with aura; attack count and phonophobia still being clarified in visit."
       },
       {
         "dx": "Tension-type headache",
-        "confidence": 0.3,
+        "confidence": 0.25,
         "tone": "neutral",
         "guideline": "ICHD-3 · 2",
         "guideline_url": "https://ichd-3.org/2-tension-type-headache/",
@@ -1661,7 +1710,7 @@
             "met": "unmet"
           }
         ],
-        "rationale": "Less likely given photophobia + activity aggravation."
+        "rationale": "Less likely given pounding quality, photophobia, nausea and activity aggravation."
       },
       {
         "dx": "Secondary headache screen",
@@ -1683,38 +1732,38 @@
             "met": "unmet"
           }
         ],
-        "rationale": "Red-flag screen negative so far today — continue monitoring at follow-up."
+        "rationale": "Red-flag screen negative today; reconcile the referenced ER head CT order and continue monitoring at follow-up."
       }
     ],
     "txs": [
       {
         "step": "Acute · first-line",
-        "rec": "Ibuprofen 10 mg/kg (max 600 mg) at onset",
-        "detail": "Treat early; hydrate; dark quiet room.",
+        "rec": "Ibuprofen 10 mg/kg at onset, cap 2 days/week",
+        "detail": "Treat early with a proper weight-based dose; hydrate; dark quiet room. Prior use was inconsistent.",
         "evidence": "AAN/AHS 2019 · Level A",
         "evidence_url": "https://www.aan.com/Guidelines/",
         "tone": "teal"
       },
       {
         "step": "Acute · rescue",
-        "rec": "Consider triptan if NSAID inadequate at 1 h",
-        "detail": "Rizatriptan (age ≥6) or almotriptan (age ≥12) FDA-approved.",
+        "rec": "Consider triptan if optimized NSAID inadequate at 1 h",
+        "detail": "Rizatriptan is FDA-approved age ≥6.",
         "evidence": "AAN/AHS 2019 · Level A",
         "evidence_url": "https://www.aan.com/Guidelines/",
         "tone": "teal"
       },
       {
         "step": "Preventive · lifestyle",
-        "rec": "Sleep regularization, hydration, trigger diary × 8 wk",
-        "detail": "Reassess PedMIDAS at follow-up before pharm prevention.",
+        "rec": "Sleep regularization, hydration, screen limits, trigger diary × 8 wk",
+        "detail": "Reassess PedMIDAS (baseline 19) at follow-up before pharm prevention.",
         "evidence": "AAP · Pediatric migraine care",
         "evidence_url": "https://publications.aap.org/",
         "tone": "teal"
       },
       {
         "step": "If frequency rises",
-        "rec": "Discuss preventive: topiramate or amitriptyline+CBT",
-        "detail": "Shared decision; CHAMP data supports combined approach.",
+        "rec": "Discuss preventive options and neurology referral",
+        "detail": "Shared decision if >4/mo despite treatment; CHAMP data supports combined pharm+CBT approach.",
         "evidence": "CHAMP · NEJM 2017",
         "evidence_url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1610384",
         "tone": "amber"
